@@ -78,3 +78,86 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ============ ЭЛЕМЕНТЫ ПРОЕКТА: МОДАЛЬНОЕ ОКНО ============
+const elementsData = [
+    {
+        title: 'Школьная лига',
+        desc: 'Всероссийские соревнования школьной лиги проводятся в течение всего учебного года. Любая школа страны может принять участие в соревнованиях и стать участником ярких, массовых финалов, проводимых фондом «Биатлон ГТО» и Министерством спорта Российской Федерации. Заменить текст на свой.',
+        img: 'images/champion.png',
+        link: '#'
+    },
+    {
+        title: 'Фестиваль',
+        desc: 'Ежегодные фестивали биатлона ГТО собирают участников со всей страны. Это праздник спорта, где каждый может попробовать себя в стрельбе и показать свои навыки. Заменить текст на свой.',
+        img: 'images/teacher.png',
+        link: '#'
+    },
+    {
+        title: 'Образование учителей',
+        desc: 'Программа повышения квалификации «Школа тренеров: Биатлон ГТО» готовит педагогов к внедрению модуля «биатлон» в уроки физкультуры. Более 700 педагогов-тренеров уже прошли обучение. Заменить текст на свой.',
+        img: 'images/student.png',
+        link: '#'
+    },
+    {
+        title: 'Урок физкультуры',
+        desc: 'С 1 сентября 2024 года приказом Министра просвещения РФ модуль «Биатлон» включён в уроки физической культуры по всей стране. Заменить текст на свой.',
+        img: 'images/schoolboy.png',
+        link: '#'
+    },
+    {
+        title: 'Биатлонная секция',
+        desc: 'Школьные спортивные клубы и секции биатлона ГТО позволяют ребятам тренироваться регулярно и готовиться к соревнованиям. Заменить текст на свой.',
+        img: 'images/college.png',
+        link: '#'
+    },
+    {
+        title: 'Дошкольный биатлон',
+        desc: 'Первое знакомство со спортом через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких участников. Заменить текст на свой.',
+        img: 'images/preschool.png',
+        link: '#'
+    }
+];
+
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalImg = document.getElementById('modalImg');
+const modalBtn = document.getElementById('modalBtn');
+
+function openModal(index) {
+    const data = elementsData[index];
+    if (!data) return;
+    modalTitle.textContent = data.title;
+    modalDesc.textContent = data.desc;
+    modalImg.src = data.img;
+    modalImg.alt = data.title;
+    modalBtn.href = data.link;
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.element-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const index = parseInt(card.getAttribute('data-element'), 10);
+        openModal(index);
+    });
+});
+
+modalClose.addEventListener('click', closeModal);
+
+modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) closeModal();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        closeModal();
+    }
+});
