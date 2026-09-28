@@ -44,7 +44,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.hero-card, .stat-item, .faq-item, .project-card, .gallery-item').forEach(el => {
+document.querySelectorAll('.hero-card, .stat-item, .faq-item, .project-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -197,26 +197,50 @@ elementModal.addEventListener('click', (e) => {
     if (e.target === elementModal) closeElementModal();
 });
 
-// ============ НАШИ ПРОЕКТЫ: ЛАЙТБОКС ============
+// ============ НАШИ ПРОЕКТЫ: ДАННЫЕ ============
 const projectsData = [
     { img: 'images/project-1.jpg', title: 'Всероссийский финал «Биатлон ГТО» в ВДЦ «Смена»', desc: 'Стрельба из пневматической винтовки' },
     { img: 'images/project-2.jpg', title: 'Семинары-практикумы в школах и колледжах и патриотических организациях', desc: 'Заменить текст на свой' },
     { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона', desc: 'При поддержке УрГПУ' }
 ];
 
-// ============ ФОТОГАЛЕРЕЯ: ЛАЙТБОКС ============
-const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+// ============ ФОТОГАЛЕРЕЯ: СЛАЙДЕР + ЛАЙТБОКС ============
+const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
+const galleryImages = gallerySlides.map(slide => slide.querySelector('img'));
 let currentGalleryIndex = 0;
 
+const gallerySlider = document.getElementById('gallerySlider');
+const gallerySliderPrev = document.getElementById('gallerySliderPrev');
+const gallerySliderNext = document.getElementById('gallerySliderNext');
+
+// Прокрутка слайдера
+function scrollSlider(direction) {
+    const slide = gallerySlider.querySelector('.gallery-slide');
+    if (!slide) return;
+    const slideWidth = slide.offsetWidth + 16; // 16 — gap
+    gallerySlider.scrollBy({ left: direction * slideWidth * 2, behavior: 'smooth' });
+}
+
+gallerySliderPrev.addEventListener('click', () => scrollSlider(-1));
+gallerySliderNext.addEventListener('click', () => scrollSlider(1));
+
+// Лайтбокс
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
+const lightboxCounter = document.getElementById('lightboxCounter');
 
-function openLightbox(src, alt) {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || '';
+function updateCounter() {
+    lightboxCounter.textContent = (currentGalleryIndex + 1) + ' / ' + galleryImages.length;
+}
+
+function openLightbox(index) {
+    currentGalleryIndex = index;
+    lightboxImg.src = galleryImages[index].src;
+    lightboxImg.alt = galleryImages[index].alt;
+    updateCounter();
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -227,28 +251,35 @@ function closeLightbox() {
 }
 
 function showNextImage() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
-    lightboxImg.src = galleryItems[currentGalleryIndex].src;
-    lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
+    lightboxImg.src = galleryImages[currentGalleryIndex].src;
+    lightboxImg.alt = galleryImages[currentGalleryIndex].alt;
+    updateCounter();
 }
 
 function showPrevImage() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
-    lightboxImg.src = galleryItems[currentGalleryIndex].src;
-    lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+    lightboxImg.src = galleryImages[currentGalleryIndex].src;
+    lightboxImg.alt = galleryImages[currentGalleryIndex].alt;
+    updateCounter();
 }
 
-galleryItems.forEach((img, idx) => {
-    img.parentElement.addEventListener('click', () => {
-        currentGalleryIndex = idx;
-        openLightbox(img.src, img.alt);
-    });
+// Клик по слайду — открыть лайтбокс
+gallerySlides.forEach((slide, idx) => {
+    slide.addEventListener('click', () => openLightbox(idx));
 });
 
+// Клик по карточке проекта — открыть проект в лайтбоксе
 document.querySelectorAll('.project-card').forEach((card, idx) => {
     card.addEventListener('click', () => {
         const data = projectsData[idx];
-        if (data) openLightbox(data.img, data.title);
+        if (data) {
+            lightboxImg.src = data.img;
+            lightboxImg.alt = data.title;
+            lightboxCounter.textContent = data.title;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     });
 });
 
@@ -258,6 +289,23 @@ lightboxNext.addEventListener('click', showNextImage);
 
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
+});
+
+// Свайпы для лайтбокса
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 50) {
+        if (diff < 0) showNextImage();
+        else showPrevImage();
+    }
 });
 
 // ============ КЛАВИАТУРА ============
