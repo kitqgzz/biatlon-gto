@@ -319,3 +319,17 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') showPrevImage();
     }
 });
+
+// ============ ФОРМА «БИАТЛОША ГТО» ============
+const preschoolForm = document.getElementById('preschoolForm');
+if (preschoolForm) {
+    preschoolForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = document.getElementById('preschoolFormMessage');
+        if (message) {
+            message.classList.add('show');
+            preschoolForm.reset();
+            setTimeout(() => message.classList.remove('show'), 5000);
+        }
+    });
+}
