@@ -49,15 +49,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
     justify-content: space-between;
     gap: 20px;
 }
-.logo-img {
-    height: 48px;
-    width: auto;
-}
-.nav {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
+.logo-img { height: 48px; width: auto; }
+.nav { display: flex; gap: 12px; align-items: center; }
 .nav a {
     color: var(--blue-dark);
     font-size: 14px;
@@ -166,10 +159,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     pointer-events: none;
     border-radius: 40px;
 }
-.hero-top {
-    position: relative;
-    z-index: 2;
-}
+.hero-top { position: relative; z-index: 2; }
 .hero-title {
     font-size: clamp(36px, 6vw, 84px);
     font-weight: 900;
@@ -213,18 +203,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
     margin: 0 auto 28px;
     line-height: 1.6;
 }
-.hero-cta {
-    position: relative;
-    z-index: 2;
-}
+.hero-cta { position: relative; z-index: 2; }
 
 /* ============ СЕКЦИИ ============ */
-.section {
-    padding: 100px 0;
-}
-.section-gray {
-    background: var(--gray);
-}
+.section { padding: 100px 0; }
+.section-gray { background: var(--gray); }
 .section-title {
     font-size: clamp(28px, 3.5vw, 44px);
     font-weight: 900;
@@ -242,7 +225,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     line-height: 1.7;
 }
 
-/* ============ О ПРОЕКТЕ — 2 КОЛОНКИ ============ */
+/* ============ О ПРОЕКТЕ ============ */
 .about-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -317,9 +300,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     filter: drop-shadow(0 10px 20px rgba(13, 43, 92, 0.15));
     transition: transform 0.4s ease;
 }
-.hero-card:hover .hero-card-img img {
-    transform: scale(1.06);
-}
+.hero-card:hover .hero-card-img img { transform: scale(1.06); }
 .hero-card h3 {
     font-size: 20px;
     font-weight: 800;
@@ -335,67 +316,237 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* ============ ЭЛЕМЕНТЫ ПРОЕКТА ============ */
-.elements-head {
-    text-align: center;
-    margin-bottom: 40px;
-}
-.elements-num {
-    font-size: clamp(48px, 6vw, 80px);
-    font-weight: 900;
-    color: var(--blue);
-    line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -2px;
-}
-.elements-text {
-    font-size: 17px;
-    color: #5A6B85;
-    font-weight: 500;
-}
-.elements-banner {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-    border-radius: 28px;
-    padding: 60px 40px;
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
+.elements-section {
+    background: linear-gradient(135deg, #1A4B8C 0%, #0D2B5C 100%);
+    padding: 100px 0;
     overflow: hidden;
+    position: relative;
 }
-.elements-banner::before {
+.elements-section::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(245,158,11,0.25), transparent 55%);
+    background:
+        radial-gradient(circle at 15% 50%, rgba(74, 143, 224, 0.35), transparent 55%),
+        radial-gradient(circle at 85% 80%, rgba(245, 158, 11, 0.15), transparent 50%);
     pointer-events: none;
 }
-.elements-banner-inner {
-    position: relative;
-    z-index: 2;
-}
-.elements-banner-title {
-    font-size: clamp(22px, 3vw, 36px);
-    font-weight: 900;
-    color: var(--white);
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-.elements-banner-sub {
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
-}
-.elements-actions {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
+.elements-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 120px 120px;
+    pointer-events: none;
+    opacity: 0.6;
 }
 
-/* ============ FAQ ============ */
-.faq-list {
-    max-width: 860px;
-    margin: 0 auto;
+.elements-wrap {
+    position: relative;
+    z-index: 2;
+    min-height: 640px;
 }
+
+.elements-title {
+    position: absolute;
+    left: 0;
+    bottom: 40px;
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    z-index: 3;
+    pointer-events: none;
+}
+.elements-title br { display: block; }
+
+.elements-cards {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 0 120px;
+    min-height: 620px;
+    perspective: 1200px;
+}
+
+.element-card {
+    flex: 0 0 auto;
+    width: 220px;
+    height: 320px;
+    background: var(--color, #6FD8B6);
+    border-radius: 24px;
+    padding: 20px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    cursor: pointer;
+    position: relative;
+    will-change: transform;
+}
+.element-card:hover {
+    transform: rotate(0deg) translateY(-16px) scale(1.08);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    z-index: 10;
+}
+.element-card-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.element-card-img img {
+    max-height: 180px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+    transition: transform 0.4s ease;
+}
+.element-card:hover .element-card-img img { transform: scale(1.06); }
+.element-card-label {
+    width: 100%;
+    background: var(--white);
+    color: var(--blue-dark);
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+    padding: 10px 8px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============ МОДАЛЬНОЕ ОКНО ============ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 43, 92, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal {
+    background: #FFFFFF;
+    border-radius: 32px;
+    max-width: 1000px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.modal-overlay.active .modal {
+    transform: scale(1) translateY(0);
+}
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(13, 43, 92, 0.08);
+    color: var(--blue-dark);
+    font-size: 28px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    z-index: 5;
+    font-weight: 300;
+}
+.modal-close:hover {
+    background: var(--orange);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+.modal-body {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 60px;
+    min-height: 420px;
+}
+.modal-text { position: relative; z-index: 2; }
+.modal-title {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+.modal-desc {
+    font-size: 15px;
+    color: #4A5A75;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+.modal-btn { margin-top: 8px; }
+.modal-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.modal-image img {
+    max-height: 400px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.2));
+    animation: modalFloat 4s ease-in-out infinite;
+}
+@keyframes modalFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.modal-image::before,
+.modal-image::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,158,11,0.5), transparent 70%);
+    filter: blur(20px);
+}
+.modal-image::before { top: 10%; left: 0; }
+.modal-image::after { bottom: 10%; right: 0; }
+
+/* ============ FAQ ============ */
+.faq-list { max-width: 860px; margin: 0 auto; }
 .faq-item {
     background: var(--white);
     border-radius: 16px;
@@ -509,26 +660,17 @@ button { font-family: inherit; cursor: pointer; border: none; }
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-.footer p, .footer li {
-    font-size: 14px;
-    line-height: 1.8;
-}
+.footer p, .footer li { font-size: 14px; line-height: 1.8; }
 .footer ul { list-style: none; }
 .footer ul li a { transition: color 0.2s; }
 .footer ul li a:hover { color: var(--orange); }
-.footer-logo {
-    margin-bottom: 16px;
-}
+.footer-logo { margin-bottom: 16px; }
 .footer-logo-img {
     height: 44px;
     width: auto;
     filter: brightness(0) invert(1);
 }
-.footer-socials {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
-}
+.footer-socials { display: flex; gap: 12px; margin-top: 20px; }
 .footer-social {
     width: 42px; height: 42px;
     border-radius: 12px;
@@ -558,6 +700,10 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .heroes-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .nav a { padding: 8px 14px; font-size: 13px; }
+    .elements-cards { gap: 12px; }
+    .element-card { width: 180px; height: 270px; }
+    .element-card-img img { max-height: 140px; }
+    .element-card-label { font-size: 10px; }
 }
 
 @media (max-width: 900px) {
@@ -575,7 +721,37 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .stats-grid { grid-template-columns: 1fr; gap: 32px; }
     .heroes-grid { grid-template-columns: 1fr; }
     .section { padding: 70px 0; }
-    .elements-banner { padding: 40px 24px; }
+
+    .elements-wrap { min-height: auto; }
+    .elements-title {
+        position: static;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .elements-cards {
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 20px 0 40px;
+        min-height: auto;
+    }
+    .element-card {
+        transform: rotate(0) !important;
+        width: 160px;
+        height: 240px;
+    }
+    .element-card:hover { transform: translateY(-10px) scale(1.05); }
+    .element-card-img img { max-height: 120px; }
+
+    .modal-body {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+        gap: 24px;
+        text-align: center;
+    }
+    .modal-image { order: -1; }
+    .modal-image img { max-height: 240px; }
+    .modal-title { font-size: 26px; }
+    .modal-close { top: 12px; right: 12px; width: 38px; height: 38px; font-size: 24px; }
 }
 
 @media (max-width: 600px) {
@@ -585,6 +761,17 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .hero-characters { min-height: 140px; }
     .hero-char { height: 100px !important; }
     .hero-title { letter-spacing: -1px; }
+
+    .elements-cards { gap: 12px; }
+    .element-card {
+        width: calc(50% - 6px);
+        height: 200px;
+        padding: 14px 10px 10px;
+    }
+    .element-card-img img { max-height: 100px; }
+    .element-card-label { font-size: 9px; min-height: 34px; padding: 6px; }
+    .modal-body { padding: 32px 20px; }
+    .modal-image img { max-height: 200px; }
 }
 
 /* ============ МОБИЛЬНОЕ МЕНЮ ============ */
