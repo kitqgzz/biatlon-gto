@@ -173,32 +173,34 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* ============ HERO ============ */
-.hero {
+.hero-section {
+    background: #FFFFFF;
+    padding: 120px 0 40px; /* 120px сверху — чтобы хедер не перекрывал */
+}
+
+.hero-box {
     position: relative;
-    min-height: 100vh;
+    background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 45%, #2E6BC4 100%);
+    border-radius: 40px;
+    padding: 70px 60px;
+    overflow: hidden;
+    min-height: 640px;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 45%, #2E6BC4 100%);
-    overflow: hidden;
-    padding: 140px 0 80px;
 }
-.hero::before {
+
+/* Декоративные свечения внутри синего контейнера */
+.hero-box::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
         radial-gradient(circle at 80% 20%, rgba(74, 143, 224, 0.4), transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.15), transparent 45%);
+        radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.18), transparent 45%);
     pointer-events: none;
+    border-radius: 40px;
 }
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: 0; right: 0;
-    height: 120px;
-    background: linear-gradient(to top, #FFFFFF, transparent);
-    pointer-events: none;
-}
+
 .hero-inner {
     position: relative;
     z-index: 2;
@@ -208,6 +210,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     align-items: center;
     width: 100%;
 }
+
 .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -232,7 +235,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(1.3); }
 }
-.hero h1 {
+
+.hero-content h1 {
     font-size: clamp(32px, 4.5vw, 58px);
     font-weight: 900;
     line-height: 1.1;
@@ -240,13 +244,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
     margin-bottom: 24px;
     letter-spacing: -1px;
 }
-.hero h1 .accent {
+.hero-content h1 .accent {
     background: linear-gradient(90deg, var(--orange), #FFC55C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
-.hero p {
+.hero-content p {
     font-size: clamp(15px, 1.4vw, 18px);
     color: rgba(255,255,255,0.85);
     max-width: 620px;
@@ -277,6 +281,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     margin-top: 6px;
     max-width: 140px;
 }
+
 .hero-visual {
     position: relative;
     display: flex;
