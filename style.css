@@ -144,6 +144,51 @@ button { font-family: inherit; cursor: pointer; border: none; }
     padding-bottom: 20px;
 }
 
+/* ============ ПАРТИЙНЫЙ БАННЕР ============ */
+.party-banner {
+    padding: 40px 0 20px;
+    background: #FFFFFF;
+}
+.party-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.party-logo {
+    height: 64px;
+    width: auto;
+    flex-shrink: 0;
+    filter: drop-shadow(0 4px 10px rgba(13, 43, 92, 0.15));
+    transition: transform 0.3s ease;
+}
+.party-logo:hover { transform: scale(1.05); }
+
+.party-text {
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    max-width: 720px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .party-banner { padding: 30px 0 10px; }
+    .party-banner-inner { gap: 16px; }
+    .party-logo { height: 48px; }
+    .party-text { font-size: 16px; }
+}
+
+@media (max-width: 600px) {
+    .party-banner-inner { flex-direction: column; gap: 12px; }
+    .party-logo { height: 40px; }
+    .party-text { font-size: 14px; line-height: 1.35; }
+}
+
 /* ============ СЕКЦИИ ============ */
 .section { padding: 100px 0; }
 .section-gray { background: var(--gray); }
