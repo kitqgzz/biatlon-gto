@@ -117,7 +117,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     align-items: flex-end;
     justify-content: center;
     padding: 60px;
-    background-image: url('images/hero-bg.jpg');
+    background-image: url('images/hero-bg.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
