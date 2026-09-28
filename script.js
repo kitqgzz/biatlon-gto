@@ -17,7 +17,6 @@ burger.addEventListener('click', () => {
     burger.classList.toggle('active');
 });
 
-// Закрыть меню при клике на ссылку
 nav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('nav-open');
@@ -32,9 +31,7 @@ faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
-        // Закрыть все
         faqItems.forEach(i => i.classList.remove('active'));
-        // Открыть текущий, если был закрыт
         if (!isActive) {
             item.classList.add('active');
         }
@@ -57,20 +54,12 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Применяем к карточкам
-document.querySelectorAll('.stat-card, .audience-card, .step-card, .achieve-card, .doc-item, .geo-item').forEach(el => {
+document.querySelectorAll('.hero-card, .stat-item, .faq-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
-
-// ============ ДУБЛИРОВАНИЕ ПАРТНЁРОВ ДЛЯ БЕСКОНЕЧНОЙ ПРОКРУТКИ ============
-const partnersTrack = document.getElementById('partnersTrack');
-if (partnersTrack) {
-    // Дублируем содержимое для seamless loop
-    partnersTrack.innerHTML += partnersTrack.innerHTML;
-}
 
 // ============ ПЛАВНЫЙ СКРОЛЛ ДЛЯ ЯКОРНЫХ ССЫЛОК ============
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -81,31 +70,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (target) {
             e.preventDefault();
             const headerHeight = header.offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight;
+            const targetPosition = target.offsetTop - headerHeight - 20;
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
             });
-        }
-    });
-});
-
-// ============ ПОДСВЕТКА АКТИВНОГО РАЗДЕЛА В МЕНЮ ============
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav a');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute('id');
-        }
-    });
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
         }
     });
 });
