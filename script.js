@@ -144,9 +144,9 @@ modalOverlay.addEventListener('click', (e) => {
 
 // ============ НАШИ ПРОЕКТЫ: ЛАЙТБОКС ============
 const projectsData = [
-    { img: 'images/project-1.jpg', title: 'Мастер-класс в «Смене»', desc: 'Стрельба из пневматической винтовки' },
-    { img: 'images/project-2.jpg', title: 'Мастер-классы в колледжах и патриотических организациях', desc: 'Заменить текст на свой' },
-    { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона Сергеем Чепиковым', desc: 'При поддержке УрГПУ' }
+    { img: 'images/project-1.jpg', title: 'Мастер-класс в «Смене»' },
+    { img: 'images/project-2.jpg', title: 'Мастер-классы в колледжах и патриотических организациях' },
+    { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона Сергеем Чепиковым' }
 ];
 
 // ============ ФОТОГАЛЕРЕЯ: ЛАЙТБОКС ============
@@ -183,7 +183,6 @@ function showPrevImage() {
     lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
 }
 
-// Открытие галереи
 galleryItems.forEach((img, idx) => {
     img.parentElement.addEventListener('click', () => {
         currentGalleryIndex = idx;
@@ -191,7 +190,6 @@ galleryItems.forEach((img, idx) => {
     });
 });
 
-// Открытие проектов
 document.querySelectorAll('.project-card').forEach((card, idx) => {
     card.addEventListener('click', () => {
         const data = projectsData[idx];
