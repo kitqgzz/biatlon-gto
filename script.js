@@ -68,85 +68,148 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ============ ЭЛЕМЕНТЫ ПРОЕКТА: МОДАЛЬНОЕ ОКНО ============
 const elementsData = [
+    // 0 — Школьная и студенческая лига → ШКОЛЬНИКИ
     {
-        title: 'Школьная лига',
-        desc: 'Всероссийские соревнования школьной лиги проводятся в течение всего учебного года. Любая школа страны может принять участие в соревнованиях и стать участником ярких, массовых финалов. Заменить текст на свой.',
-        img: 'images/champion.png',
-        link: '#'
+        title: 'ШКОЛЬНИКИ',
+        subtitle: 'Живой интерес и движение вперёд',
+        list: [
+            'совершенствовать навыки стрельбы на уроках физкультуры',
+            'выступать на соревнованиях и выходить в финал',
+            'выполнять спортивные нормативы'
+        ],
+        percentTop: '100%',
+        percentBottom: 'ВОВЛЕЧЁННОСТИ',
+        bottom: 'Энергию и мотивацию в школьном возрасте трудно переоценить. Биатлон ГТО — возможность получить яркие эмоции и показать себя.',
+        img: 'images/schoolboy.png'
     },
+    // 1 — Всероссийский круглогодичный марафон → СТУДЕНТЫ ВУЗОВ
     {
-        title: 'Фестиваль',
-        desc: 'Ежегодные фестивали биатлона ГТО собирают участников со всей страны. Это праздник спорта, где каждый может попробовать себя в стрельбе и показать свои навыки. Заменить текст на свой.',
-        img: 'images/teacher.png',
-        link: '#'
+        title: 'СТУДЕНТЫ ВУЗОВ',
+        subtitle: 'Наука и рекорды',
+        list: [
+            'разнообразить учебный процесс спортивной подготовкой',
+            'защищать честь университета на соревнованиях',
+            'изучать спортивно-методическое направление'
+        ],
+        percentTop: '100%',
+        percentBottom: 'ПЕРСПЕКТИВЫ',
+        bottom: 'Спорт становится неотъемлемой частью студенческой жизни, а кроме того Биатлон ГТО открывает возможность для исследований.',
+        img: 'images/student.png'
     },
+    // 2 — Образование учителей → ПЕДАГОГИ И ТРЕНЕРЫ
     {
-        title: 'Образование учителей',
-        desc: 'Программа повышения квалификации «Школа тренеров: Биатлон ГТО» готовит педагогов к внедрению модуля «биатлон» в уроки физкультуры. Более 700 педагогов-тренеров уже прошли обучение. Заменить текст на свой.',
-        img: 'images/student.png',
-        link: '#'
+        title: 'ПЕДАГОГИ И ТРЕНЕРЫ',
+        subtitle: 'Наставники чемпионов',
+        list: [
+            'внедрять модуль «биатлон» в уроки физкультуры',
+            'организовывать школьные спортивные клубы',
+            'повышать квалификацию и посещать семинары'
+        ],
+        percentTop: '100%',
+        percentBottom: 'ДОВЕРИЯ',
+        bottom: 'Учителя и тренеры — главные проводники проекта. Более 100 семинаров-практикумов уже проведено по всей стране.',
+        img: 'images/teacher.png'
     },
+    // 3 — Урок физкультуры → РОДИТЕЛИ
     {
-        title: 'Урок физкультуры',
-        desc: 'С 1 сентября 2024 года приказом Министра просвещения РФ модуль «Биатлон» включён в уроки физической культуры по всей стране. Заменить текст на свой.',
-        img: 'images/schoolboy.png',
-        link: '#'
+        title: 'РОДИТЕЛИ',
+        subtitle: 'Надёжный тыл и опора детей',
+        list: [
+            'вдохновлять детей личным спортивным примером',
+            'поддерживать, мотивировать и болеть на соревнованиях',
+            'выступать на семейных эстафетах'
+        ],
+        percentTop: '100%',
+        percentBottom: 'ПОДДЕРЖКИ',
+        bottom: 'Родители делают с детьми путь от первых выстрелов до пьедестала и медалей. Проект объединяет всю семью.',
+        img: 'images/preschool.png'
     },
+    // 4 — Биатлонная секция → КОЛЛЕКТИВЫ ПРЕДПРИЯТИЙ
     {
-        title: 'Биатлонная секция',
-        desc: 'Школьные спортивные клубы и секции биатлона ГТО позволяют ребятам тренироваться регулярно и готовиться к соревнованиям. Заменить текст на свой.',
-        img: 'images/college.png',
-        link: '#'
+        title: 'КОЛЛЕКТИВЫ ПРЕДПРИЯТИЙ',
+        subtitle: 'Рабочее единство и корпоративный биатлон',
+        list: [
+            'формировать рабочие команды для выступлений на стартах',
+            'проводить тренировки для укрепления здоровья сотрудников',
+            'привлекать внимание к социально значимой инициативе'
+        ],
+        percentTop: '100%',
+        percentBottom: 'ОТВЕТСТВЕННОСТИ',
+        bottom: 'Предприятия-партнёры активно вовлечены в тренировочную и соревновательную деятельность. Совместные старты сплачивают коллектив.',
+        img: 'images/worker.png'
     },
+    // 5 — Биатлоша ГТО → ДОШКОЛЬНИКИ
     {
-        title: 'Биатлоша ГТО',
-        desc: 'Первое знакомство со спортом через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких участников. Заменить текст на свой.',
-        img: 'images/preschool.png',
-        link: '#'
+        title: 'ДОШКОЛЬНИКИ',
+        subtitle: 'Первое знакомство со спортом',
+        list: [
+            'наблюдать за спортивными занятиями родителей',
+            'впервые знакомиться с пневматической биатлонной винтовкой',
+            'играть в подвижные эстафеты'
+        ],
+        percentTop: '100%',
+        percentBottom: 'ЛЮБОПЫТСТВА',
+        bottom: 'В этом возрасте спорт открывается через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких.',
+        img: 'images/preschool.png'
     }
 ];
 
-const modalOverlay = document.getElementById('modalOverlay');
-const modalClose = document.getElementById('modalClose');
-const modalTitle = document.getElementById('modalTitle');
-const modalDesc = document.getElementById('modalDesc');
-const modalImg = document.getElementById('modalImg');
-const modalBtn = document.getElementById('modalBtn');
+const elementModal = document.getElementById('elementModal');
+const elementModalClose = document.getElementById('elementModalClose');
+const emTitle = document.getElementById('emTitle');
+const emSubtitle = document.getElementById('emSubtitle');
+const emList = document.getElementById('emList');
+const emImage = document.getElementById('emImage');
+const emPercent = document.getElementById('emPercent');
+const emBottom = document.getElementById('emBottom');
 
-function openModal(index) {
+function openElementModal(index) {
     const data = elementsData[index];
     if (!data) return;
-    modalTitle.textContent = data.title;
-    modalDesc.textContent = data.desc;
-    modalImg.src = data.img;
-    modalImg.alt = data.title;
-    modalBtn.href = data.link;
-    modalOverlay.classList.add('active');
+
+    emTitle.textContent = data.title;
+    emSubtitle.textContent = data.subtitle;
+    emImage.src = data.img;
+    emImage.alt = data.title;
+    emBottom.textContent = data.bottom;
+
+    // список
+    emList.innerHTML = '';
+    data.list.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        emList.appendChild(li);
+    });
+
+    // проценты: верх + подпись снизу
+    emPercent.innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
+
+    elementModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
-    modalOverlay.classList.remove('active');
+function closeElementModal() {
+    elementModal.classList.remove('active');
     document.body.style.overflow = '';
 }
 
 document.querySelectorAll('.element-card').forEach(card => {
     card.addEventListener('click', () => {
         const index = parseInt(card.getAttribute('data-element'), 10);
-        openModal(index);
+        openElementModal(index);
     });
 });
 
-modalClose.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
+elementModalClose.addEventListener('click', closeElementModal);
+elementModal.addEventListener('click', (e) => {
+    if (e.target === elementModal) closeElementModal();
 });
 
 // ============ НАШИ ПРОЕКТЫ: ЛАЙТБОКС ============
 const projectsData = [
-    { img: 'images/project-1.jpg', title: 'Мастер-класс в «Смене»' },
-    { img: 'images/project-2.jpg', title: 'Мастер-классы в колледжах и патриотических организациях' },
-    { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона Сергеем Чепиковым' }
+    { img: 'images/project-1.jpg', title: 'Всероссийский финал «Биатлон ГТО» в ВДЦ «Смена»', desc: 'Стрельба из пневматической винтовки' },
+    { img: 'images/project-2.jpg', title: 'Семинары-практикумы в школах и колледжах и патриотических организациях', desc: 'Заменить текст на свой' },
+    { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона', desc: 'При поддержке УрГПУ' }
 ];
 
 // ============ ФОТОГАЛЕРЕЯ: ЛАЙТБОКС ============
@@ -183,6 +246,7 @@ function showPrevImage() {
     lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
 }
 
+// Открытие галереи
 galleryItems.forEach((img, idx) => {
     img.parentElement.addEventListener('click', () => {
         currentGalleryIndex = idx;
@@ -190,6 +254,7 @@ galleryItems.forEach((img, idx) => {
     });
 });
 
+// Открытие проектов
 document.querySelectorAll('.project-card').forEach((card, idx) => {
     card.addEventListener('click', () => {
         const data = projectsData[idx];
@@ -208,7 +273,7 @@ lightbox.addEventListener('click', (e) => {
 // ============ КЛАВИАТУРА ============
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        if (modalOverlay.classList.contains('active')) closeModal();
+        if (elementModal.classList.contains('active')) closeElementModal();
         if (lightbox.classList.contains('active')) closeLightbox();
     }
     if (lightbox.classList.contains('active')) {
