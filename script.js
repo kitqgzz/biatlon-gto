@@ -120,7 +120,7 @@ const elementsData = [
         percentTop: '100%',
         percentBottom: 'ПОДДЕРЖКИ',
         bottom: 'Родители делают с детьми путь от первых выстрелов до пьедестала и медалей. Проект объединяет всю семью.',
-        img: 'images/laska.png'
+        img: 'images/preschool.png'
     },
     {
         title: 'КОЛЛЕКТИВЫ ПРЕДПРИЯТИЙ',
