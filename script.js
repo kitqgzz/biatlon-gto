@@ -1,11 +1,8 @@
 // ============ ХЕДЕР ПРИ СКРОЛЛЕ ============
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
+    if (window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
 });
 
 // ============ МОБИЛЬНОЕ МЕНЮ ============
@@ -26,24 +23,17 @@ nav.querySelectorAll('a').forEach(link => {
 
 // ============ FAQ АККОРДЕОН ============
 const faqItems = document.querySelectorAll('.faq-item');
-
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
         faqItems.forEach(i => i.classList.remove('active'));
-        if (!isActive) {
-            item.classList.add('active');
-        }
+        if (!isActive) item.classList.add('active');
     });
 });
 
 // ============ АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ============
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -54,14 +44,14 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.hero-card, .stat-item, .faq-item').forEach(el => {
+document.querySelectorAll('.hero-card, .stat-item, .faq-item, .project-card, .gallery-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
 });
 
-// ============ ПЛАВНЫЙ СКРОЛЛ ДЛЯ ЯКОРНЫХ ССЫЛОК ============
+// ============ ПЛАВНЫЙ СКРОЛЛ ============
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -71,10 +61,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             e.preventDefault();
             const headerHeight = header.offsetHeight;
             const targetPosition = target.offsetTop - headerHeight - 20;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     });
 });
@@ -83,7 +70,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const elementsData = [
     {
         title: 'Школьная лига',
-        desc: 'Всероссийские соревнования школьной лиги проводятся в течение всего учебного года. Любая школа страны может принять участие в соревнованиях и стать участником ярких, массовых финалов, проводимых фондом «Биатлон ГТО» и Министерством спорта Российской Федерации. Заменить текст на свой.',
+        desc: 'Всероссийские соревнования школьной лиги проводятся в течение всего учебного года. Любая школа страны может принять участие в соревнованиях и стать участником ярких, массовых финалов. Заменить текст на свой.',
         img: 'images/champion.png',
         link: '#'
     },
@@ -112,7 +99,7 @@ const elementsData = [
         link: '#'
     },
     {
-        title: 'Дошкольный биатлон',
+        title: 'Биатлоша ГТО',
         desc: 'Первое знакомство со спортом через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких участников. Заменить текст на свой.',
         img: 'images/preschool.png',
         link: '#'
@@ -151,13 +138,83 @@ document.querySelectorAll('.element-card').forEach(card => {
 });
 
 modalClose.addEventListener('click', closeModal);
-
 modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) closeModal();
 });
 
+// ============ НАШИ ПРОЕКТЫ: ЛАЙТБОКС ============
+const projectsData = [
+    { img: 'images/project-1.jpg', title: 'Мастер-класс в «Смене»', desc: 'Стрельба из пневматической винтовки' },
+    { img: 'images/project-2.jpg', title: 'Мастер-классы в колледжах и патриотических организациях', desc: 'Заменить текст на свой' },
+    { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона Сергеем Чепиковым', desc: 'При поддержке УрГПУ' }
+];
+
+// ============ ФОТОГАЛЕРЕЯ: ЛАЙТБОКС ============
+const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+let currentGalleryIndex = 0;
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function showNextImage() {
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
+    lightboxImg.src = galleryItems[currentGalleryIndex].src;
+    lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
+}
+
+function showPrevImage() {
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+    lightboxImg.src = galleryItems[currentGalleryIndex].src;
+    lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
+}
+
+// Открытие галереи
+galleryItems.forEach((img, idx) => {
+    img.parentElement.addEventListener('click', () => {
+        currentGalleryIndex = idx;
+        openLightbox(img.src, img.alt);
+    });
+});
+
+// Открытие проектов
+document.querySelectorAll('.project-card').forEach((card, idx) => {
+    card.addEventListener('click', () => {
+        const data = projectsData[idx];
+        if (data) openLightbox(data.img, data.title);
+    });
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', showPrevImage);
+lightboxNext.addEventListener('click', showNextImage);
+
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+});
+
+// ============ КЛАВИАТУРА ============
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-        closeModal();
+    if (e.key === 'Escape') {
+        if (modalOverlay.classList.contains('active')) closeModal();
+        if (lightbox.classList.contains('active')) closeLightbox();
+    }
+    if (lightbox.classList.contains('active')) {
+        if (e.key === 'ArrowRight') showNextImage();
+        if (e.key === 'ArrowLeft') showPrevImage();
     }
 });
