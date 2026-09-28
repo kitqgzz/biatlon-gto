@@ -107,56 +107,42 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ HERO ============ */
 .hero-section { background: #FFFFFF; padding: 120px 0 40px; }
+
 .hero-box {
     position: relative;
-    background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 45%, #2E6BC4 100%);
     border-radius: 40px;
-    padding: 60px 60px 50px;
     overflow: hidden;
-    text-align: center;
     min-height: 640px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 60px;
+    background-image: url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    box-shadow: 0 20px 60px rgba(13, 43, 92, 0.2);
 }
+
 .hero-box::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(circle at 80% 20%, rgba(74, 143, 224, 0.4), transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.18), transparent 45%);
+    background: linear-gradient(
+        to top,
+        rgba(13, 43, 92, 0.55) 0%,
+        rgba(13, 43, 92, 0.15) 40%,
+        rgba(13, 43, 92, 0) 70%
+    );
     pointer-events: none;
     border-radius: 40px;
 }
-.hero-top { position: relative; z-index: 2; }
-.hero-characters {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 8px;
-    flex-wrap: wrap;
-    min-height: 260px;
-    margin-bottom: 30px;
-}
-.hero-char {
-    height: 200px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25));
-    transition: transform 0.4s ease;
-}
-.hero-char:hover { transform: translateY(-10px) scale(1.05); }
-.hero-char-1 { height: 160px; }
-.hero-char-2 { height: 200px; }
-.hero-char-3 { height: 190px; }
-.hero-char-4 { height: 210px; }
-.hero-char-5 { height: 200px; }
-.hero-char-6 { height: 220px; }
-.hero-char-7 { height: 205px; }
 
-.hero-cta { position: relative; z-index: 2; }
+.hero-cta {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 20px;
+}
 
 /* ============ СЕКЦИИ ============ */
 .section { padding: 100px 0; }
@@ -633,7 +619,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color: rgba(255,255,255,0.5);
 }
 
-/* ============ МОДАЛЬНОЕ ОКНО ЭЛЕМЕНТОВ (НОВЫЙ ДИЗАЙН) ============ */
+/* ============ МОДАЛЬНОЕ ОКНО ЭЛЕМЕНТОВ ============ */
 .element-modal-overlay {
     position: fixed;
     inset: 0;
@@ -810,83 +796,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
     z-index: 3;
 }
 
-/* ============ МОДАЛЬНОЕ ОКНО (СТАРОЕ, НЕ ИСПОЛЬЗУЕТСЯ) ============ */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(13, 43, 92, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.modal-overlay.active { opacity: 1; visibility: visible; }
-.modal {
-    background: #FFFFFF;
-    border-radius: 32px;
-    max-width: 1000px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    max-height: 90vh;
-    overflow-y: auto;
-}
-.modal-overlay.active .modal { transform: scale(1) translateY(0); }
-.modal-close {
-    position: absolute;
-    top: 20px; right: 20px;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: rgba(13, 43, 92, 0.08);
-    color: var(--blue-dark);
-    font-size: 28px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.25s ease;
-    z-index: 5;
-    font-weight: 300;
-}
-.modal-close:hover { background: var(--orange); color: var(--white); transform: rotate(90deg); }
-.modal-body {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-    gap: 40px;
-    padding: 60px;
-    min-height: 420px;
-}
-.modal-title {
-    font-size: clamp(28px, 3.5vw, 48px);
-    font-weight: 900;
-    color: var(--blue-dark);
-    line-height: 1.05;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
-}
-.modal-desc { font-size: 15px; color: #4A5A75; line-height: 1.7; margin-bottom: 24px; }
-.modal-image { display: flex; align-items: center; justify-content: center; }
-.modal-image img {
-    max-height: 400px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.2));
-    animation: modalFloat 4s ease-in-out infinite;
-}
 @keyframes modalFloat {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
 }
 
 /* ============ ЛАЙТБОКС ============ */
@@ -969,10 +885,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 @media (max-width: 900px) {
     .nav { display: none; }
     .burger { display: flex; }
+
     .hero-section { padding: 100px 0 30px; }
-    .hero-box { border-radius: 28px; padding: 40px 24px 32px; min-height: auto; }
-    .hero-characters { gap: 6px; min-height: 180px; }
-    .hero-char { height: 130px !important; }
+    .hero-box {
+        border-radius: 28px;
+        padding: 32px 24px;
+        min-height: 480px;
+        background-position: center top;
+    }
+
     .about-columns { grid-template-columns: 1fr; gap: 32px; }
     .stats-grid { grid-template-columns: 1fr; gap: 32px; }
     .heroes-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -993,13 +914,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
     .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-    .modal-body { grid-template-columns: 1fr; padding: 40px 24px; gap: 24px; text-align: center; }
-    .modal-image { order: -1; }
-    .modal-image img { max-height: 240px; }
-    .modal-title { font-size: 26px; }
-    .modal-close { top: 12px; right: 12px; width: 38px; height: 38px; font-size: 24px; }
-
-    /* Новое модальное окно элементов — адаптив */
     .element-modal-inner {
         grid-template-columns: 1fr;
         padding: 60px 28px 140px;
@@ -1025,8 +939,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .container { padding: 0 18px; }
     .section { padding: 60px 0; }
-    .hero-characters { min-height: 140px; }
-    .hero-char { height: 90px !important; }
+
+    .hero-box {
+        min-height: 400px;
+        padding: 24px 18px;
+    }
+    .hero-cta { padding-bottom: 8px; }
 
     .heroes-grid { grid-template-columns: 1fr; gap: 18px; }
 
@@ -1036,9 +954,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .element-card-label { font-size: 9px; min-height: 42px; padding: 6px; }
 
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-
-    .modal-body { padding: 32px 20px; }
-    .modal-image img { max-height: 200px; }
 
     .lightbox { padding: 20px; }
     .lightbox-nav { width: 44px; height: 44px; font-size: 28px; }
