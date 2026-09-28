@@ -173,7 +173,6 @@ function openElementModal(index) {
     emImage.alt = data.title;
     emBottom.textContent = data.bottom;
 
-    // список
     emList.innerHTML = '';
     data.list.forEach(item => {
         const li = document.createElement('li');
@@ -181,7 +180,6 @@ function openElementModal(index) {
         emList.appendChild(li);
     });
 
-    // проценты: верх + подпись снизу
     emPercent.innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
 
     elementModal.classList.add('active');
@@ -246,7 +244,6 @@ function showPrevImage() {
     lightboxImg.alt = galleryItems[currentGalleryIndex].alt;
 }
 
-// Открытие галереи
 galleryItems.forEach((img, idx) => {
     img.parentElement.addEventListener('click', () => {
         currentGalleryIndex = idx;
@@ -254,7 +251,6 @@ galleryItems.forEach((img, idx) => {
     });
 });
 
-// Открытие проектов
 document.querySelectorAll('.project-card').forEach((card, idx) => {
     card.addEventListener('click', () => {
         const data = projectsData[idx];
