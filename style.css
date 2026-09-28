@@ -114,7 +114,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     position: relative;
     background-color: #1A4B8C;
     /* Заменить картинку на свою */
-    background-image: url('images/hero-bg.jpg');
+    background-image: url('images/hero-bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
