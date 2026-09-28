@@ -9,17 +9,19 @@ window.addEventListener('scroll', () => {
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
 
-burger.addEventListener('click', () => {
-    nav.classList.toggle('nav-open');
-    burger.classList.toggle('active');
-});
-
-nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        nav.classList.remove('nav-open');
-        burger.classList.remove('active');
+if (burger && nav) {
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('nav-open');
+        burger.classList.toggle('active');
     });
-});
+
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('nav-open');
+            burger.classList.remove('active');
+        });
+    });
+}
 
 // ============ FAQ АККОРДЕОН ============
 const faqItems = document.querySelectorAll('.faq-item');
@@ -144,7 +146,7 @@ const elementsData = [
         percentTop: '100%',
         percentBottom: 'ЛЮБОПЫТСТВА',
         bottom: 'В этом возрасте спорт открывается через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких.',
-        img: 'images/preschool.png'
+        img: 'images/laska2.png'
     }
 ];
 
@@ -176,6 +178,13 @@ function openElementModal(index) {
 
     emPercent.innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
 
+    // Цвет карточки → цвет фона модального окна
+    const card = document.querySelector('.element-card[data-element="' + index + '"]');
+    if (card) {
+        const cardColor = card.style.getPropertyValue('--color') || '#0D2B5C';
+        elementModal.querySelector('.element-modal').style.setProperty('--modal-color', cardColor);
+    }
+
     elementModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -192,10 +201,14 @@ document.querySelectorAll('.element-card').forEach(card => {
     });
 });
 
-elementModalClose.addEventListener('click', closeElementModal);
-elementModal.addEventListener('click', (e) => {
-    if (e.target === elementModal) closeElementModal();
-});
+if (elementModalClose) {
+    elementModalClose.addEventListener('click', closeElementModal);
+}
+if (elementModal) {
+    elementModal.addEventListener('click', (e) => {
+        if (e.target === elementModal) closeElementModal();
+    });
+}
 
 // ============ НАШИ ПРОЕКТЫ: ДАННЫЕ ============
 const projectsData = [
@@ -213,18 +226,17 @@ const gallerySlider = document.getElementById('gallerySlider');
 const gallerySliderPrev = document.getElementById('gallerySliderPrev');
 const gallerySliderNext = document.getElementById('gallerySliderNext');
 
-// Прокрутка слайдера
 function scrollSlider(direction) {
+    if (!gallerySlider) return;
     const slide = gallerySlider.querySelector('.gallery-slide');
     if (!slide) return;
-    const slideWidth = slide.offsetWidth + 16; // 16 — gap
+    const slideWidth = slide.offsetWidth + 16;
     gallerySlider.scrollBy({ left: direction * slideWidth * 2, behavior: 'smooth' });
 }
 
-gallerySliderPrev.addEventListener('click', () => scrollSlider(-1));
-gallerySliderNext.addEventListener('click', () => scrollSlider(1));
+if (gallerySliderPrev) gallerySliderPrev.addEventListener('click', () => scrollSlider(-1));
+if (gallerySliderNext) gallerySliderNext.addEventListener('click', () => scrollSlider(1));
 
-// Лайтбокс
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
@@ -233,7 +245,9 @@ const lightboxNext = document.getElementById('lightboxNext');
 const lightboxCounter = document.getElementById('lightboxCounter');
 
 function updateCounter() {
-    lightboxCounter.textContent = (currentGalleryIndex + 1) + ' / ' + galleryImages.length;
+    if (lightboxCounter) {
+        lightboxCounter.textContent = (currentGalleryIndex + 1) + ' / ' + galleryImages.length;
+    }
 }
 
 function openLightbox(index) {
@@ -264,57 +278,56 @@ function showPrevImage() {
     updateCounter();
 }
 
-// Клик по слайду — открыть лайтбокс
 gallerySlides.forEach((slide, idx) => {
     slide.addEventListener('click', () => openLightbox(idx));
 });
 
-// Клик по карточке проекта — открыть проект в лайтбоксе
 document.querySelectorAll('.project-card').forEach((card, idx) => {
     card.addEventListener('click', () => {
         const data = projectsData[idx];
         if (data) {
             lightboxImg.src = data.img;
             lightboxImg.alt = data.title;
-            lightboxCounter.textContent = data.title;
+            if (lightboxCounter) lightboxCounter.textContent = data.title;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
     });
 });
 
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', showPrevImage);
-lightboxNext.addEventListener('click', showNextImage);
+if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
+if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
 
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-});
+if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
 
-// Свайпы для лайтбокса
-let touchStartX = 0;
-let touchEndX = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-lightbox.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
 
-lightbox.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchEndX - touchStartX;
-    if (Math.abs(diff) > 50) {
-        if (diff < 0) showNextImage();
-        else showPrevImage();
-    }
-});
+    lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > 50) {
+            if (diff < 0) showNextImage();
+            else showPrevImage();
+        }
+    });
+}
 
 // ============ КЛАВИАТУРА ============
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        if (elementModal.classList.contains('active')) closeElementModal();
-        if (lightbox.classList.contains('active')) closeLightbox();
+        if (elementModal && elementModal.classList.contains('active')) closeElementModal();
+        if (lightbox && lightbox.classList.contains('active')) closeLightbox();
     }
-    if (lightbox.classList.contains('active')) {
+    if (lightbox && lightbox.classList.contains('active')) {
         if (e.key === 'ArrowRight') showNextImage();
         if (e.key === 'ArrowLeft') showPrevImage();
     }
