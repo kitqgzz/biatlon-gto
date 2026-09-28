@@ -106,10 +106,18 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .btn-white:hover { background: var(--blue-dark); color: var(--white); transform: translateY(-2px); }
 
 /* ============ HERO ============ */
-.hero-section { background: #FFFFFF; padding: 120px 0 40px; }
+.hero-section {
+    background: #FFFFFF;
+    padding: 120px 0 40px;
+}
 .hero-box {
     position: relative;
-    background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 45%, #2E6BC4 100%);
+    background-color: #1A4B8C;
+    /* Заменить картинку на свою */
+    background-image: url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 40px;
     padding: 60px 60px 50px;
     overflow: hidden;
@@ -117,64 +125,28 @@ button { font-family: inherit; cursor: pointer; border: none; }
     min-height: 640px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    /* Внешняя тень */
+    box-shadow: 0 30px 60px rgba(13, 43, 92, 0.25), 0 10px 25px rgba(13, 43, 92, 0.15);
+    transition: box-shadow 0.3s ease;
 }
+.hero-box:hover {
+    box-shadow: 0 40px 80px rgba(13, 43, 92, 0.32), 0 15px 32px rgba(13, 43, 92, 0.2);
+}
+/* Лёгкое свечение внизу, чтобы кнопка читалась */
 .hero-box::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(circle at 80% 20%, rgba(74, 143, 224, 0.4), transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.18), transparent 45%);
+    background: radial-gradient(circle at 50% 100%, rgba(13, 43, 92, 0.35), transparent 60%);
     pointer-events: none;
     border-radius: 40px;
 }
-.hero-top { position: relative; z-index: 2; }
-.hero-title {
-    font-size: clamp(36px, 6vw, 84px);
-    font-weight: 900;
-    color: var(--white);
-    letter-spacing: -2px;
-    line-height: 1;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-}
-.hero-characters {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 8px;
-    flex-wrap: wrap;
-    min-height: 260px;
-    margin-bottom: 30px;
-}
-.hero-char {
-    height: 200px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.25));
-    transition: transform 0.4s ease;
-}
-.hero-char:hover { transform: translateY(-10px) scale(1.05); }
-.hero-char-1 { height: 160px; }
-.hero-char-2 { height: 200px; }
-.hero-char-3 { height: 190px; }
-.hero-char-4 { height: 210px; }
-.hero-char-5 { height: 200px; }
-.hero-char-6 { height: 220px; }
-.hero-char-7 { height: 205px; }
-
-.hero-note {
+.hero-cta {
     position: relative;
     z-index: 2;
-    font-size: 14px;
-    color: rgba(255,255,255,0.85);
-    max-width: 900px;
-    margin: 0 auto 28px;
-    line-height: 1.6;
+    margin-bottom: 20px;
 }
-.hero-cta { position: relative; z-index: 2; }
 
 /* ============ СЕКЦИИ ============ */
 .section { padding: 100px 0; }
@@ -446,6 +418,10 @@ button { font-family: inherit; cursor: pointer; border: none; }
     border-radius: 50%;
     z-index: -1;
     filter: blur(50px);
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
 }
 
 /* ============ НАШИ ПРОЕКТЫ ============ */
@@ -804,16 +780,20 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .element-card-label { font-size: 10px; }
     .video-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     .video-character img { max-height: 380px; }
-    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media (max-width: 900px) {
     .nav { display: none; }
     .burger { display: flex; }
+
     .hero-section { padding: 100px 0 30px; }
-    .hero-box { border-radius: 28px; padding: 40px 24px 32px; min-height: auto; }
-    .hero-characters { gap: 6px; min-height: 180px; }
-    .hero-char { height: 130px !important; }
+    .hero-box {
+        border-radius: 28px;
+        padding: 40px 24px 32px;
+        min-height: 480px;
+        background-position: center;
+    }
+
     .about-columns { grid-template-columns: 1fr; gap: 32px; }
     .stats-grid { grid-template-columns: 1fr; gap: 32px; }
     .heroes-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -831,7 +811,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .video-character img { max-height: 280px; }
 
     .projects-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; }
-
     .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
     .modal-body { grid-template-columns: 1fr; padding: 40px 24px; gap: 24px; text-align: center; }
@@ -845,9 +824,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .container { padding: 0 18px; }
     .section { padding: 60px 0; }
-    .hero-characters { min-height: 140px; }
-    .hero-char { height: 90px !important; }
-    .hero-title { letter-spacing: -1px; }
+
+    .hero-box {
+        min-height: 400px;
+        padding: 32px 18px 24px;
+        border-radius: 24px;
+    }
 
     .heroes-grid { grid-template-columns: 1fr; gap: 18px; }
 
