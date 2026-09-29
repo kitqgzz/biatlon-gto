@@ -1637,7 +1637,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .privacy-hero {
     background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 60%, #2E6BC4 100%);
-    padding: 160px 0 60px;
+    padding: 220px 0 80px;
     color: var(--white);
     position: relative;
     overflow: hidden;
