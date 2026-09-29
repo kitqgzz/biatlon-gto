@@ -1768,16 +1768,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
     text-align: center;
     letter-spacing: -1.5px;
     text-transform: uppercase;
-    margin-bottom: 48px;
+    margin-bottom: 56px;
     line-height: 1;
 }
 
 .apply-inner {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -1789,7 +1789,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 .apply-image img {
-    max-height: 400px;
+    max-height: 520px;
     width: auto;
     object-fit: contain;
     position: relative;
@@ -1799,11 +1799,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .apply-glow {
     position: absolute;
-    width: 340px;
-    height: 340px;
+    width: 440px;
+    height: 440px;
     background: radial-gradient(circle, rgba(74, 143, 224, 0.4), transparent 70%);
     border-radius: 50%;
-    filter: blur(60px);
+    filter: blur(70px);
     z-index: 1;
 }
 
@@ -1811,7 +1811,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .apply-lead {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--blue-dark);
     line-height: 1.5;
     margin-bottom: 24px;
@@ -1820,7 +1820,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .apply-steps {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 32px 0;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -1845,20 +1845,27 @@ button { font-family: inherit; cursor: pointer; border: none; }
     border-radius: 50%;
 }
 
+.apply-btn {
+    margin-top: 8px;
+}
+
 @media (max-width: 900px) {
     .apply-inner {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
     }
-    .apply-content { max-width: 100%; }
-    .apply-steps li { text-align: left; }
-    .apply-image img { max-height: 280px; }
-    .apply-title { margin-bottom: 32px; }
+    .apply-content {
+        max-width: 100%;
+        text-align: left;
+    }
+    .apply-image img { max-height: 320px; }
+    .apply-title { margin-bottom: 36px; }
+    .apply-btn { width: 100%; max-width: 320px; }
 }
 
 @media (max-width: 600px) {
-    .apply-image img { max-height: 200px; }
+    .apply-image img { max-height: 240px; }
     .apply-lead { font-size: 16px; }
     .apply-steps li { font-size: 15px; padding-left: 26px; }
 }
