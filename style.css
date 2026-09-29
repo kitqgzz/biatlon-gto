@@ -1736,3 +1736,20 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .privacy-table-label { font-size: 14px; }
     .privacy-table-value { font-size: 14px; }
 }
+
+/* ============ АНИМАЦИИ КАРТИНОК ============ */
+
+/* Военный в блоке «Хроника проекта» — плавное покачивание */
+.video-character img {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Картинки в модальных окнах — плавное покачивание */
+.element-modal-image {
+    animation: modalFloat 5s ease-in-out infinite;
+}
+
+/* Снайпер в модальном окне — БЕЗ анимации */
+.element-modal-shooter {
+    animation: none !important;
+}
