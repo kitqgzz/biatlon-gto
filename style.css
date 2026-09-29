@@ -1185,22 +1185,32 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ АДАПТИВ МОДАЛЬНОГО ОКНА (телефон) ============ */
 @media (max-width: 600px) {
-    /* Скрываем картинку-персонаж и правую колонку */
+    /* Скрываем картинку-персонаж, правую колонку и биатлониста */
     .element-modal-image { display: none; }
     .element-modal-right { display: none; }
+    .element-modal-shooter { display: none; }
 
-    /* Одна колонка — только текст */
+    /* Одна колонка — только текст, с прокруткой */
     .element-modal-inner {
         grid-template-columns: 1fr;
-        padding: 32px 18px 140px;
+        padding: 32px 18px 100px;
         gap: 0;
+        max-height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    .element-modal-inner::-webkit-scrollbar { width: 4px; }
+    .element-modal-inner::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.3);
+        border-radius: 4px;
     }
 
-    /* «100%» — под текстом, по центру */
+    /* «100%» — под текстом, по центру, без большого отступа снизу */
     .element-modal-percent {
         position: static;
         text-align: center;
-        margin: 20px auto 0;
+        margin: 16px auto 0;
         font-size: 42px;
         letter-spacing: -1px;
     }
@@ -1218,14 +1228,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
         padding: 10px 14px;
     }
 
-    /* Биатлонист — маленький, слева внизу */
-    .element-modal-shooter {
-        width: 90px;
-        left: -10px;
-    }
-    .element-modal-overlay { padding: 16px 16px 16px 30px; }
+    .element-modal-overlay { padding: 16px; }
 }
-
 /* ============ МОБИЛЬНОЕ МЕНЮ ============ */
 @media (max-width: 900px) {
     .nav.nav-open {
