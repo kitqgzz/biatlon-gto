@@ -1644,7 +1644,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ БИАТЛОШКА — ТАЛИСМАН (главная) ============ */
 .mascot-section {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F4F7FC 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, #EEF4FC 100%);
 }
 
 .mascot-inner {
