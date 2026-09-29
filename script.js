@@ -95,7 +95,7 @@ const elementsData = [
         percentTop: '100%',
         percentBottom: 'УВЕРЕННОСТИ',
         bottom: 'Присоединяйся к марафону «Биатлон ГТО» — стань частью самого масштабного спортивного движения страны!',
-        img: 'images/student.png'
+        img: 'images/biatlonguy.png'
     },
     {
         title: 'ПЕДАГОГИ И ТРЕНЕРЫ',
