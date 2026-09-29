@@ -1130,8 +1130,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .element-card-img img { max-height: 120px; }
 
     .video-grid { grid-template-columns: 1fr; gap: 32px; }
-    .video-character { order: -1; }
-    .video-character img { max-height: 280px; }
+    .video-character { display: none; }
 
     .projects-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; }
 
