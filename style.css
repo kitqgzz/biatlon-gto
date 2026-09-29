@@ -206,7 +206,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* ============ СЕКЦИИ ============ */
-.section { padding: 100px 0; }
+.section { padding: 50px 0 100px 0; }
 .section-gray { background: var(--gray); }
 .section-title {
     font-size: clamp(28px, 3.5vw, 44px);
