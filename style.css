@@ -1792,3 +1792,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
         animation: float 6s ease-in-out infinite !important;
     }
 }
+/* ============ ЗАЩИТА ОТ ГОРИЗОНТАЛЬНОГО СКРОЛЛА ============ */
+* {
+    box-sizing: border-box;
+}
+section, header, footer, .container, .hero-box, .video-wrapper,
+.projects-grid, .heroes-grid, .stats-grid, .elements-cards {
+    max-width: 100vw;
+}
