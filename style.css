@@ -1931,11 +1931,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    min-height: 320px;
+    min-height: 220px;
 }
 
 .contact-mascot img {
-    max-height: 320px;
+    max-height: 200px;
     width: auto;
     object-fit: contain;
     position: relative;
@@ -1961,8 +1961,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 320px;
-    height: 320px;
+    width: 240px;
+    height: 240px;
     background: radial-gradient(circle, rgba(74, 143, 224, 0.35), transparent 70%);
     border-radius: 50%;
     filter: blur(60px);
@@ -1972,15 +1972,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 @media (max-width: 900px) {
     .contact-mascot {
         justify-content: center;
-        min-height: 240px;
+        min-height: 180px;
         margin-top: 24px;
     }
-    .contact-mascot img { max-height: 240px; }
-    .contact-mascot-glow { width: 240px; height: 240px; left: 50%; transform: translateX(-50%); }
+    .contact-mascot img { max-height: 180px; }
+    .contact-mascot-glow { width: 180px; height: 180px; left: 50%; transform: translateX(-50%); }
 }
 
 @media (max-width: 600px) {
-    .contact-mascot { min-height: 180px; }
-    .contact-mascot img { max-height: 180px; }
-    .contact-mascot-glow { width: 180px; height: 180px; }
+    .contact-mascot { min-height: 140px; }
+    .contact-mascot img { max-height: 140px; }
+    .contact-mascot-glow { width: 140px; height: 140px; }
 }
