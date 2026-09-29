@@ -1151,23 +1151,26 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .projects-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; }
 
     .element-modal-inner {
-        grid-template-columns: 1fr;
-        padding: 60px 28px 140px;
+        grid-template-columns: 1.1fr 0.9fr;   /* две колонки — текст слева, картинка справа */
+        padding: 40px 24px 120px;
         min-height: auto;
+        gap: 20px;
     }
-    .element-modal-right { order: -1; }
-    .element-modal-image { max-height: 220px; }
+    .element-modal-right { order: 0; }    
+    .element-modal-image { max-height: 260px; }
     .element-modal-percent {
-        position: static;
-        text-align: center;
-        margin: 10px 0 0;
+        position: absolute;
+        right: 24px;
+        bottom: 90px;
+        margin: 0;                            
+        font-size: clamp(32px, 5vw, 48px);
     }
     .element-modal-bottom {
         left: 20px;
         right: 20px;
         bottom: 20px;
         font-size: 13px;
-        padding: 14px 18px;
+        padding: 12px 16px;
     }
 }
 
