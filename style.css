@@ -1753,3 +1753,174 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .element-modal-bottom { left: 14px; right: 14px; bottom: 14px; font-size: 12px; padding: 10px 14px; }
     .element-modal-overlay { padding: 16px; }
 }
+/* ============ БЛОК «СВЯЖИТЕСЬ С НАМИ» ============ */
+.contact-form-section {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F4F7FC 100%);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.contact-info {
+    padding-top: 10px;
+}
+
+.contact-title {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.contact-desc {
+    font-size: 16px;
+    color: #4A5A75;
+    line-height: 1.75;
+}
+
+.contact-desc a {
+    color: var(--orange);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.contact-desc a:hover { color: var(--orange-dark); }
+
+.contact-form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 12px 40px rgba(13, 43, 92, 0.08);
+    border: 1px solid #EDF1F7;
+}
+
+.contact-form-field {
+    margin-bottom: 18px;
+}
+
+.contact-form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+}
+
+.contact-form-field input,
+.contact-form-field textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #E3EAF4;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--blue-dark);
+    background: #FFFFFF;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    resize: vertical;
+}
+
+.contact-form-field input::placeholder,
+.contact-form-field textarea::placeholder {
+    color: #A0AEC0;
+}
+
+.contact-form-field input:focus,
+.contact-form-field textarea:focus {
+    outline: none;
+    border-color: var(--orange);
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+}
+
+.contact-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 20px 0 24px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #5A6B85;
+    cursor: pointer;
+}
+
+.contact-consent input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--orange);
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.contact-consent a {
+    color: var(--orange);
+    font-weight: 600;
+    text-decoration: underline;
+}
+.contact-consent a:hover { color: var(--orange-dark); }
+
+.contact-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 36px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.45);
+}
+
+.contact-submit:hover {
+    background: var(--orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(245, 158, 11, 0.6);
+}
+
+.contact-form-message {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: #D4EDDA;
+    color: #155724;
+    font-weight: 600;
+    text-align: center;
+    display: none;
+}
+.contact-form-message.show { display: block; }
+
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .contact-title {
+        text-align: center;
+        font-size: clamp(24px, 5vw, 36px);
+    }
+    .contact-desc { text-align: center; }
+    .contact-form { padding: 28px 24px; }
+}
+
+@media (max-width: 600px) {
+    .contact-form { padding: 24px 18px; border-radius: 20px; }
+    .contact-form-field input,
+    .contact-form-field textarea { padding: 12px 14px; font-size: 14px; }
+    .contact-submit { font-size: 14px; padding: 14px 24px; }
+}
