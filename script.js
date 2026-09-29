@@ -259,13 +259,19 @@ function openLightbox(index) {
     lightboxImg.alt = galleryImages[index].alt;
     updateCounter();
 
-    // Показываем стрелки и счётчик — это галерея
     lightboxPrev.style.display = '';
     lightboxNext.style.display = '';
     if (lightboxCounter) lightboxCounter.style.display = '';
 
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    if (lightbox) {
+        lightbox.classList.remove('active');
+    }
+    document.body.style.overflow = '';
 }
 
 function showNextImage() {
