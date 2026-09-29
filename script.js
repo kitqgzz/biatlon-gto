@@ -389,3 +389,41 @@ if (applySection) {
     }, { threshold: 0.2 });
     applyObserver.observe(applySection);
 }
+
+// ============ ФОРМА СВЯЗИ (Formspree) ============
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const message = document.getElementById('contactFormMessage');
+        const submitBtn = contactForm.querySelector('.contact-submit');
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = 'Отправка...';
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                contactForm.reset();
+                if (message) {
+                    message.classList.add('show');
+                    setTimeout(() => message.classList.remove('show'), 6000);
+                }
+            } else {
+                alert('Что-то пошло не так. Попробуйте ещё раз.');
+            }
+        } catch (err) {
+            alert('Ошибка соединения. Попробуйте ещё раз.');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+}
