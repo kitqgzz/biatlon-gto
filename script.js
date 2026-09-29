@@ -332,3 +332,31 @@ document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') showPrevImage();
     }
 });
+
+// ============ ВИДЕО-ФАСАД (RuTube) ============
+const videoFacade = document.querySelector('.video-facade');
+if (videoFacade) {
+    const loadVideo = () => {
+        const src = videoFacade.getAttribute('data-video-src');
+        if (!src) return;
+        const wrapper = videoFacade.parentElement;
+
+        const iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'clipboard-write; autoplay; fullscreen');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('title', 'Хроника проекта «Биатлон ГТО»');
+
+        wrapper.innerHTML = '';
+        wrapper.appendChild(iframe);
+    };
+
+    videoFacade.addEventListener('click', loadVideo);
+    videoFacade.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            loadVideo();
+        }
+    });
+}
