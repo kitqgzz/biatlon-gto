@@ -738,6 +738,28 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color: rgba(255,255,255,0.5);
 }
 
+.footer-requisites {
+    max-width: 900px;
+    margin: 0 auto 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.2px;
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 600px) {
+    .footer-requisites {
+        font-size: 11px;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+}
+
 /* ============ МОДАЛЬНОЕ ОКНО ЭЛЕМЕНТОВ ============ */
 .element-modal-overlay {
     position: fixed;
