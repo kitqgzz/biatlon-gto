@@ -1001,63 +1001,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     padding: 24px 24px 24px 70px;
 }
 
-@media (max-width: 900px) {
-    .element-modal-shooter {
-        width: 140px;
-        left: -20px;
-        opacity: 0.9;
-    }
-    .element-modal-overlay { padding: 24px 24px 24px 50px; }
-}
 
-@media (max-width: 600px) {
-    .element-modal-shooter {
-        width: 100px;
-        left: -15px;
-    }
-    .element-modal-overlay { padding: 16px 16px 16px 30px; }
-}
-
-@media (max-width: 600px) {
-    /* Скрываем картинку и правую колонку */
-    .element-modal-image { display: none; }
-    .element-modal-right { display: none; }
-
-    /* Одна колонка — только текст */
-    .element-modal-inner {
-        grid-template-columns: 1fr;
-        padding: 32px 18px 120px;
-        gap: 0;
-    }
-
-    /* «100%» — под текстом, по центру, без абсолютного позиционирования */
-    .element-modal-percent {
-        position: static;
-        text-align: center;
-        margin: 20px auto 0;
-        font-size: 42px;
-        letter-spacing: -1px;
-    }
-    .element-modal-percent small {
-        font-size: 16px;
-        margin-top: 2px;
-    }
-
-    /* Нижняя плашка с текстом */
-    .element-modal-bottom {
-        left: 14px;
-        right: 14px;
-        bottom: 14px;
-        font-size: 12px;
-        padding: 10px 14px;
-    }
-
-    /* Биатлонист — маленький, слева внизу */
-    .element-modal-shooter {
-        width: 90px;
-        left: -10px;
-    }
-}
 
 /* ============ ЛАЙТБОКС ============ */
 .lightbox {
@@ -1237,6 +1181,49 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .lightbox-nav { width: 44px; height: 44px; font-size: 28px; }
     .lightbox-prev { left: 8px; }
     .lightbox-next { right: 8px; }
+}
+
+/* ============ АДАПТИВ МОДАЛЬНОГО ОКНА (телефон) ============ */
+@media (max-width: 600px) {
+    /* Скрываем картинку-персонаж и правую колонку */
+    .element-modal-image { display: none; }
+    .element-modal-right { display: none; }
+
+    /* Одна колонка — только текст */
+    .element-modal-inner {
+        grid-template-columns: 1fr;
+        padding: 32px 18px 140px;
+        gap: 0;
+    }
+
+    /* «100%» — под текстом, по центру */
+    .element-modal-percent {
+        position: static;
+        text-align: center;
+        margin: 20px auto 0;
+        font-size: 42px;
+        letter-spacing: -1px;
+    }
+    .element-modal-percent small {
+        font-size: 16px;
+        margin-top: 2px;
+    }
+
+    /* Нижняя плашка с текстом */
+    .element-modal-bottom {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        font-size: 12px;
+        padding: 10px 14px;
+    }
+
+    /* Биатлонист — маленький, слева внизу */
+    .element-modal-shooter {
+        width: 90px;
+        left: -10px;
+    }
+    .element-modal-overlay { padding: 16px 16px 16px 30px; }
 }
 
 /* ============ МОБИЛЬНОЕ МЕНЮ ============ */
