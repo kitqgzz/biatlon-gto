@@ -715,9 +715,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .footer-logo-img {
     height: 44px;
     width: auto;
-    background: #FFFFFF;
-    padding: 6px 12px;
-    border-radius: 10px;
 }
 .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
 .footer-social {
