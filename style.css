@@ -868,8 +868,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .element-modal-left {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: flex-start;
+    gap: 16px;
     z-index: 2;
 }
 
