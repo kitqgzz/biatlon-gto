@@ -427,3 +427,17 @@ if (contactForm) {
         }
     });
 }
+// ============ ПОЯВЛЕНИЕ ЛАСКИ В БЛОКЕ «СВЯЖИТЕСЬ С НАМИ» ============
+const contactSection = document.querySelector('.contact-form-section');
+if (contactSection) {
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                contactObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    contactObserver.observe(contactSection);
+}
