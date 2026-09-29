@@ -104,7 +104,7 @@
 
             <div class="hero-card">
                 <div class="hero-card-img">
-                    <img src="images/laska.png" alt="Биатлоша ГТО">
+                    <img src="images/laska.png" alt="Биатлошка">
                 </div>
                 <h3>Биатлошка</h3>
                 <p>Первое знакомство со спортом через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких.</p>
@@ -209,7 +209,7 @@
 
                 <div class="element-card" data-element="4" style="--color:#29C5F6; --rot:4deg;">
                     <div class="element-card-img">
-                        <img src="images/worker.png" alt="Коллективы прдеприятий">
+                        <img src="images/worker.png" alt="Коллективы предприятий">
                     </div>
                     <div class="element-card-label">Коллективы предприятий</div>
                 </div>
@@ -241,10 +241,14 @@
                 </p>
 
                 <div class="video-wrapper">
-                    <video controls poster="images/video-poster.jpg">
-                        <source src="video/highlights.mp4" type="video/mp4">
-                        Ваш браузер не поддерживает видео.
-                    </video>
+                    <div class="video-facade"
+                         data-video-src="https://rutube.ru/play/embed/ВАШ_ID/"
+                         role="button"
+                         aria-label="Смотреть видео"
+                         tabindex="0">
+                        <img src="images/video-poster.jpg" alt="Хроника проекта «Биатлон ГТО»">
+                        <button class="video-play-btn" aria-hidden="true">▶</button>
+                    </div>
                 </div>
             </div>
 
@@ -285,16 +289,17 @@
 
             <div class="project-card" data-project="2">
                 <div class="project-img">
-                    <img src="images/urgpy.jpg" alt="Всероссийский мировой">
+                    <img src="images/urgpy.jpg" alt="Всероссийский мировой «Биатлон Готов к Труду и Обороне»">
                 </div>
                 <h3>Всероссийский мировой «Биатлон Готов к Труду и Обороне»</h3>
             </div>
+
             <div class="project-card" data-project="3">
                 <div class="project-img">
-                    <img src="images/project-4.jpg" alt="Название 4-го проекта">
+                    <img src="images/project-4.jpg" alt="Всероссийские спортивные соревнования школьников">
                 </div>
                 <h3>Всероссийские спортивные соревнования школьников</h3>
-                <p>«Президентские состязания» ( по зимним видам спорта)</p>
+                <p>«Президентские состязания» (по зимним видам спорта)</p>
             </div>
 
             <div class="project-card" data-project="4">
@@ -302,8 +307,9 @@
                     <img src="images/project-5.jpg" alt="Встреча студентов УРГПУ с олимпийским чемпионом">
                 </div>
                 <h3>Встреча студентов УРГПУ с олимпийским чемпионом по биатлону Александром Тихоновым.</h3>
-                <p>Идейный руководитель «Биатлон ГТО» Юрий Громыко подарил УРГПУ сертификат «Биатлон в школу. </p>
+                <p>Идейный руководитель «Биатлон ГТО» Юрий Громыко подарил УРГПУ сертификат «Биатлон в школу».</p>
             </div>
+
         </div>
     </div>
 </section>
@@ -497,7 +503,7 @@
 
             <div class="element-modal-bottom" id="emBottom">Текст внизу</div>
         </div>
-         <!-- Биатлонист в левом нижнем углу -->
+
         <img src="images/persongun.png" alt="Биатлонист" class="element-modal-shooter">
     </div>
 </div>
