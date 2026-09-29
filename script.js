@@ -258,13 +258,14 @@ function openLightbox(index) {
     lightboxImg.src = galleryImages[index].src;
     lightboxImg.alt = galleryImages[index].alt;
     updateCounter();
+
+    // Показываем стрелки и счётчик — это галерея
+    lightboxPrev.style.display = '';
+    lightboxNext.style.display = '';
+    if (lightboxCounter) lightboxCounter.style.display = '';
+
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
 }
 
 function showNextImage() {
@@ -292,6 +293,12 @@ document.querySelectorAll('.project-card').forEach((card, idx) => {
             lightboxImg.src = data.img;
             lightboxImg.alt = data.title;
             if (lightboxCounter) lightboxCounter.textContent = data.title;
+
+            // Скрываем стрелки и счётчик — в проектах только одно фото
+            lightboxPrev.style.display = 'none';
+            lightboxNext.style.display = 'none';
+            if (lightboxCounter) lightboxCounter.style.display = 'none';
+
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
