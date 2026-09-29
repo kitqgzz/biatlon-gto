@@ -1632,3 +1632,107 @@ button { font-family: inherit; cursor: pointer; border: none; }
         font-size: 24px;
     }
 }
+/* ============ СТРАНИЦА «ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ» ============ */
+.page-privacy { background: #FFFFFF; }
+
+.privacy-hero {
+    background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 60%, #2E6BC4 100%);
+    padding: 160px 0 60px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+.privacy-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 80% 20%, rgba(74, 143, 224, 0.5), transparent 55%),
+        radial-gradient(circle at 10% 90%, rgba(245, 158, 11, 0.2), transparent 45%);
+    pointer-events: none;
+}
+.privacy-hero-title {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(24px, 3.2vw, 40px);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    max-width: 900px;
+}
+
+.privacy-content { padding: 60px 0 100px; }
+.privacy-body {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #4A5A75;
+}
+.privacy-body h2 {
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin: 40px 0 16px;
+    letter-spacing: -0.3px;
+}
+.privacy-body h2:first-child { margin-top: 0; }
+.privacy-body p { margin-bottom: 14px; }
+.privacy-body ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 16px;
+}
+.privacy-body ul li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+}
+.privacy-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+}
+
+/* Таблица целей */
+.privacy-table {
+    background: var(--gray);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+.privacy-table-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #E3EAF4;
+}
+.privacy-table-row:last-child { border-bottom: none; }
+.privacy-table-label {
+    font-weight: 700;
+    color: var(--blue-dark);
+    font-size: 15px;
+}
+.privacy-table-value {
+    color: #4A5A75;
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+    .privacy-hero { padding: 120px 0 40px; }
+    .privacy-content { padding: 40px 0 80px; }
+    .privacy-table-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 14px 16px;
+    }
+    .privacy-table-label { font-size: 14px; }
+    .privacy-table-value { font-size: 14px; }
+}
