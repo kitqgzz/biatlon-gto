@@ -376,3 +376,16 @@ if (videoFacade) {
         }
     });
 }
+
+const applySection = document.querySelector('.apply-section');
+if (applySection) {
+    const applyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                applyObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    applyObserver.observe(applySection);
+}
