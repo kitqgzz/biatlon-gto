@@ -79,7 +79,7 @@ const elementsData = [
             'выполнить нормативы ГТО и выйти в финал'
         ],
         percentTop: '100%',
-        percentBottom: 'УВЕРЕННОСТИ',
+        percentBottom: 'ПЕРСПЕКТИВЫ',
         bottom: 'Победители марафона получают ценные призы и путёвки в ВДЦ «Смена» и ВДЦ «Океан».',
         img: 'images/schoolboy.png'
     },
