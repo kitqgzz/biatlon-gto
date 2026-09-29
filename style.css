@@ -1,12 +1,16 @@
 /* ============ БАЗА ============ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 body {
     font-family: 'Montserrat', sans-serif;
     color: #0D2B5C;
     background: #FFFFFF;
     line-height: 1.6;
-    overflow-x: hidden;
+    position: relative;
 }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
