@@ -215,7 +215,7 @@ if (elementModal) {
 const projectsData = [
     { img: 'images/project-1.jpg', title: 'Всероссийский финал «Биатлон ГТО» в ВДЦ «Смена»', desc: 'Стрельба из пневматической винтовки' },
     { img: 'images/project-2.jpg', title: 'Семинары-практикумы в школах и колледжах и патриотических организациях', desc: 'И патриотических организациях' },
-    { img: 'images/urgpy.jpg', title: 'Всероссийский марафон по биатлону', desc: 'При поддержке УрГПУ' }
+    { img: 'images/urgpy.jpg', title: 'Всероссийский мировой «Биатлон Готов к Труду и Обороне»'}
 ];
 // ============ ФОТОГАЛЕРЕЯ: СЛАЙДЕР + ЛАЙТБОКС ============
 const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
