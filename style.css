@@ -993,15 +993,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
     pointer-events: none;
     z-index: 4;
     filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.45));
-    /* Анимация убрана */
 }
 
 /* Сдвигаем модальное окно вправо, чтобы биатлонист не обрезался */
 .element-modal-overlay {
     padding: 24px 24px 24px 70px;
 }
-
-
 
 /* ============ ЛАЙТБОКС ============ */
 .lightbox {
@@ -1135,18 +1132,18 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .projects-grid { grid-template-columns: 1fr; gap: 20px; max-width: 480px; }
 
     .element-modal-inner {
-        grid-template-columns: 1.1fr 0.9fr;   /* две колонки — текст слева, картинка справа */
+        grid-template-columns: 1.1fr 0.9fr;
         padding: 40px 24px 120px;
         min-height: auto;
         gap: 20px;
     }
-    .element-modal-right { order: 0; }    
+    .element-modal-right { order: 0; }
     .element-modal-image { max-height: 260px; }
     .element-modal-percent {
         position: absolute;
         right: 24px;
         bottom: 90px;
-        margin: 0;                            
+        margin: 0;
         font-size: clamp(32px, 5vw, 48px);
     }
     .element-modal-bottom {
@@ -1184,12 +1181,10 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ АДАПТИВ МОДАЛЬНОГО ОКНА (телефон) ============ */
 @media (max-width: 600px) {
-    /* Скрываем картинку-персонаж, правую колонку и биатлониста */
     .element-modal-image { display: none; }
     .element-modal-right { display: none; }
     .element-modal-shooter { display: none; }
 
-    /* Одна колонка — только текст, с прокруткой */
     .element-modal-inner {
         grid-template-columns: 1fr;
         padding: 32px 18px 100px;
@@ -1205,7 +1200,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
         border-radius: 4px;
     }
 
-    /* «100%» — под текстом, по центру, без большого отступа снизу */
     .element-modal-percent {
         position: static;
         text-align: center;
@@ -1218,7 +1212,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
         margin-top: 2px;
     }
 
-    /* Нижняя плашка с текстом */
     .element-modal-bottom {
         left: 14px;
         right: 14px;
@@ -1229,6 +1222,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
     .element-modal-overlay { padding: 16px; }
 }
+
 /* ============ МОБИЛЬНОЕ МЕНЮ ============ */
 @media (max-width: 900px) {
     .nav.nav-open {
@@ -1632,6 +1626,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
         font-size: 24px;
     }
 }
+
 /* ============ СТРАНИЦА «ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ» ============ */
 .page-privacy { background: #FFFFFF; }
 
@@ -1700,7 +1695,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     border-radius: 50%;
 }
 
-/* Таблица целей */
 .privacy-table {
     background: var(--gray);
     border-radius: 16px;
@@ -1738,6 +1732,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* ============ АНИМАЦИИ КАРТИНОК ============ */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+@keyframes modalFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+}
 
 /* Военный в блоке «Хроника проекта» — плавное покачивание */
 .video-character img {
@@ -1749,42 +1752,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     animation: modalFloat 5s ease-in-out infinite;
 }
 
-/* Снайпер в модальном окне — БЕЗ анимации */
-.element-modal-shooter {
-    animation: none !important;
-}
-/* ============ АНИМАЦИИ — обход prefers-reduced-motion ============ */
-
-/* Военный в блоке «Хроника проекта» */
-.video-character img {
-    animation: float 6s ease-in-out infinite !important;
-}
-
-/* Картинки в модальных окнах */
-.element-modal-image {
-    animation: modalFloat 5s ease-in-out infinite !important;
-}
-
 /* Снайпер в модальном окне — без анимации */
 .element-modal-shooter {
     animation: none !important;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-14px); }
-}
-
-@keyframes modalFloat {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-12px); }
-}
-
-/* Принудительно включаем анимации, даже если система просит их отключить */
-@media (prefers-reduced-motion: reduce) {
-    .video-character img,
-    .element-modal-image,
-    .preschool-hero-image img {
-        animation: float 6s ease-in-out infinite !important;
-    }
 }
