@@ -214,10 +214,9 @@ if (elementModal) {
 // ============ НАШИ ПРОЕКТЫ: ДАННЫЕ ============
 const projectsData = [
     { img: 'images/project-1.jpg', title: 'Всероссийский финал «Биатлон ГТО» в ВДЦ «Смена»', desc: 'Стрельба из пневматической винтовки' },
-    { img: 'images/project-2.jpg', title: 'Семинары-практикумы в школах и колледжах и патриотических организациях', desc: 'Заменить текст на свой' },
-    { img: 'images/project-3.jpg', title: 'Встреча с легендой биатлона', desc: 'При поддержке УрГПУ' }
+    { img: 'images/project-2.jpg', title: 'Семинары-практикумы в школах и колледжах и патриотических организациях', desc: 'И патриотических организациях' },
+    { img: 'images/urgpy.jpg', title: 'Всероссийский марафон по биатлону', desc: 'При поддержке УрГПУ' }
 ];
-
 // ============ ФОТОГАЛЕРЕЯ: СЛАЙДЕР + ЛАЙТБОКС ============
 const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
 const galleryImages = gallerySlides.map(slide => slide.querySelector('img'));
