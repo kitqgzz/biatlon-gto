@@ -1641,3 +1641,121 @@ button { font-family: inherit; cursor: pointer; border: none; }
         height: 140px !important;
     }
 }
+
+/* ============ БИАТЛОШКА — ТАЛИСМАН (главная) ============ */
+.mascot-section {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F4F7FC 100%);
+}
+
+.mascot-inner {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.mascot-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mascot-image img {
+    max-height: 460px;
+    width: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 20px 50px rgba(13, 43, 92, 0.25));
+    animation: float 6s ease-in-out infinite;
+}
+
+.mascot-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.35), transparent 70%);
+    border-radius: 50%;
+    filter: blur(70px);
+    z-index: 1;
+}
+
+.mascot-content p {
+    font-size: 16px;
+    color: #4A5A75;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+.mascot-content p:last-child { margin-bottom: 0; }
+
+.mascot-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mascot-fact {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 32px 28px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.07);
+    border: 1px solid #EDF1F7;
+    transition: all 0.35s ease;
+}
+
+.mascot-fact:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 44px rgba(13, 43, 92, 0.14);
+    border-color: var(--blue-light);
+}
+
+.mascot-fact-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    color: var(--white);
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.mascot-fact h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mascot-fact p {
+    font-size: 14px;
+    color: #5A6B85;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .mascot-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    .mascot-image img { max-height: 320px; }
+    .mascot-content p { text-align: left; }
+    .mascot-facts { grid-template-columns: 1fr; gap: 20px; max-width: 480px; }
+}
+
+@media (max-width: 600px) {
+    .mascot-image img { max-height: 240px; }
+    .mascot-content p { font-size: 15px; }
+    .mascot-fact { padding: 24px 20px; }
+}
