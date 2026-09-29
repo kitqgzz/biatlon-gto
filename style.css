@@ -712,7 +712,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .footer ul li a { transition: color 0.2s; }
 .footer ul li a:hover { color: var(--orange); }
 .footer-logo { margin-bottom: 16px; }
-.footer-logo-img { height: 44px; width: auto; filter: brightness(0) invert(1); }
+.footer-logo-img { height: 44px; width: auto; }
 .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
 .footer-social {
     width: 42px; height: 42px;
