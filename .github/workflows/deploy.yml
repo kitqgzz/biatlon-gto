@@ -17,4 +17,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ru-central1
         run: |
-          aws s3 sync ./ s3://biatlon-gto.ru/ --delete --endpoint-url=https://storage.yandexcloud.net
+          aws s3 sync ./ s3://biatlon-gto.ru/ --delete --exclude ".git/*" --exclude ".github/*" --exclude "docs/*" --exclude "README.md" --cache-control "max-age=86400" --endpoint-url=https://storage.yandexcloud.net
