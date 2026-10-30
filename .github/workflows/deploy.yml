@@ -1,0 +1,20 @@
+name: Deploy to Yandex Cloud
+
+on:
+  push:
+    branches: [ "main" ] # Если твоя главная ветка называется master, поменяй на "master"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload to Yandex Object Storage
+        uses: yc-actions/yc-obj-storage-upload@v4
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          bucket: ${{ secrets.BUCKET }}
+          root: ./ # Здесь путь к папке с сайтом. Если сайт в корне, оставь ./
+          clear: true # Эта опция удаляет старые файлы в бакете перед загрузкой новых
