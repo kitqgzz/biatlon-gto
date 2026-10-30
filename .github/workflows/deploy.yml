@@ -2,7 +2,7 @@ name: Deploy to Yandex Cloud
 
 on:
   push:
-    branches: [ "main" ] # Если твоя главная ветка называется master, поменяй на "master"
+    branches: [ "main" ]
 
 jobs:
   deploy:
@@ -11,10 +11,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Upload to Yandex Object Storage
-        uses: yc-actions/yc-obj-storage-upload@v4
-        with:
-          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-          bucket: ${{ secrets.BUCKET }}
-          root: ./ # Здесь путь к папке с сайтом. Если сайт в корне, оставь ./
-          clear: true # Эта опция удаляет старые файлы в бакете перед загрузкой новых
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Configure AWS CLI
+        env:
+          YC_SA_JSON_CREDENTIALS: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+        run: |
+          echo "$YC_SA_JSON_CREDENTIALS" > /tmp/key.json
+          echo "AWS_ACCESS_KEY_ID=$(jq -r .id /tmp/key.json)" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=$(jq -r .private_key /tmp/key.json)" >> $GITHUB_ENV
+
+      - name: Deploy to Yandex Object Storage
+        env:
+          BUCKET: ${{ secrets.BUCKET }}
+        run: |
+          aws s3 sync ./ s3://$BUCKET/ --delete --endpoint-url=https://storage.yandexcloud.net
