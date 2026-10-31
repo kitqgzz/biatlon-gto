@@ -33,6 +33,11 @@
 
 <!-- ============ 1. HERO ============ -->
 <section class="aqua-hero-section">
+    <!-- Картинка на весь правый край -->
+    <div class="aqua-hero-bg-image">
+        <img src="images/aqua-hero.png" alt="Аква биатлон">
+    </div>
+    
     <div class="container aqua-hero-inner">
         <div class="aqua-hero-content">
             <h1 class="aqua-hero-title">Аква биатлон: летний биатлон, который взрывает мозг</h1>
@@ -43,9 +48,6 @@
                 <a href="https://forms.yandex.ru/u/6abb74a384227cf427d6c8b0" target="_blank" rel="noopener" class="btn btn-orange">Хочу попробовать</a>
                 <a href="#what-is-it" class="btn btn-outline-blue">Узнать больше</a>
             </div>
-        </div>
-        <div class="aqua-hero-image-container">
-            <img src="images/aqua-hero.png" alt="Аква биатлон" class="aqua-hero-img">
         </div>
     </div>
 </section>
@@ -107,69 +109,53 @@
     </div>
 </section>
 
-<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ЗМЕЙКА) ============ -->
-<section class="section" id="how-it-works">
+<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ВОЛНЫ-СЛАЙДЕР) ============ -->
+<section class="section" id="how-it-works" style="overflow: hidden;">
     <div class="container">
         <h2 class="section-title">Правила за 30 секунд</h2>
-        <p class="section-subtitle">Командный формат (эстафета): в команде 4 спортсмена (2 юноши и 2 девушки).</p>
-        
-        <div class="timeline-zigzag">
-            <!-- Шаг 1 -->
-            <div class="timeline-step step-left">
-                <div class="step-content">
-                    <h3>1. Плавание</h3>
-                    <p>Эстафета 4×50 метров в бассейне.</p>
-                </div>
-                <div class="step-icon">🏊‍♂️</div>
+        <p class="section-subtitle">Командный формат (эстафета). Скролль вправо, чтобы увидеть все этапы!</p>
+    </div>
+    
+    <div class="timeline-wave-wrapper">
+        <div class="timeline-wave-track" id="timelineWave">
+            <div class="wave-card">
+                <div class="wave-icon">🏊‍♂️</div>
+                <h3>1. Плавание</h3>
+                <p>Эстафета 4×50 метров в бассейне.</p>
             </div>
-            <!-- Шаг 2 -->
-            <div class="timeline-step step-right">
-                <div class="step-icon">🏃‍♂️</div>
-                <div class="step-content">
-                    <h3>2. Бег</h3>
-                    <p>300 метров до огневого рубежа.</p>
-                </div>
+            <div class="wave-card">
+                <div class="wave-icon">🏃‍♂️</div>
+                <h3>2. Бег</h3>
+                <p>300 метров до огневого рубежа.</p>
             </div>
-            <!-- Шаг 3 -->
-            <div class="timeline-step step-left">
-                <div class="step-content">
-                    <h3>3. Силовое</h3>
-                    <p>Упражнение на пресс перед стрельбой.</p>
-                </div>
-                <div class="step-icon">🧘‍♂️</div>
+            <div class="wave-card">
+                <div class="wave-icon">🧘‍♂️</div>
+                <h3>3. Силовое</h3>
+                <p>Упражнение на пресс перед стрельбой.</p>
             </div>
-            <!-- Шаг 4 -->
-            <div class="timeline-step step-right">
-                <div class="step-icon">🎯</div>
-                <div class="step-content">
-                    <h3>4. Стрельба</h3>
-                    <p>5 выстрелов из пневматической винтовки.</p>
-                </div>
+            <div class="wave-card">
+                <div class="wave-icon">🎯</div>
+                <h3>4. Стрельба</h3>
+                <p>5 выстрелов из пневматической винтовки.</p>
             </div>
-            <!-- Шаг 5 -->
-            <div class="timeline-step step-left">
-                <div class="step-content">
-                    <h3>5. Штраф</h3>
-                    <p>Отжимания за каждый промах.</p>
-                </div>
-                <div class="step-icon">🤸‍♂️</div>
+            <div class="wave-card">
+                <div class="wave-icon">🤸‍♂️</div>
+                <h3>5. Штраф</h3>
+                <p>Отжимания за каждый промах.</p>
             </div>
-            <!-- Шаг 6 -->
-            <div class="timeline-step step-right">
-                <div class="step-icon">🏁</div>
-                <div class="step-content">
-                    <h3>6. Финиш</h3>
-                    <p>Ускорение 100 метров и передача эстафеты.</p>
-                </div>
+            <div class="wave-card">
+                <div class="wave-icon">🏁</div>
+                <h3>6. Финиш</h3>
+                <p>Ускорение 100 метров.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (РЕФЕРЕНС) ============ -->
-<section class="section section-gray" id="benefits">
-    <div class="container">
-        <h2 class="section-title" style="text-align: left; padding-left: 50px;">Что ты получишь</h2>
+<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНИСТАЯ ПЛАШКА) ============ -->
+<section class="section benefits-fullscreen-section" id="benefits">
+    <div class="benefits-custom-container">
+        <h2 class="section-title" style="text-align: left; margin-left: 10%;">Что ты получишь</h2>
         
         <div class="benefits-ref-box">
             <div class="benefits-text-card">
@@ -184,7 +170,6 @@
             </div>
             <div class="benefits-blue-badge">
                 <div class="badge-inner">
-                    <!-- Убрали фильтр, логотип будет цветным -->
                     <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
                     <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
                 </div>
@@ -219,25 +204,6 @@
     </div>
 </section>
     
-<!-- ============ 6.5 ФОТОГАЛЕРЕЯ ============ -->
-<section class="section" id="aqua-gallery">
-    <div class="container">
-        <h2 class="section-title">Фотографии с соревнований</h2>
-        <p class="section-subtitle">Яркие моменты Аква биатлона</p>
-    </div>
-    <div class="gallery-slider-wrap">
-        <button class="gallery-slider-btn gallery-slider-prev" id="aquaGalleryPrev" aria-label="Назад">‹</button>
-        <div class="gallery-slider" id="aquaGallerySlider">
-            <!-- Сюда ты потом вставишь свои новые картинки -->
-            <div class="gallery-slide"><img src="images/gallery-01.jpg" alt="Фото 1"></div>
-            <div class="gallery-slide"><img src="images/gallery-02.jpg" alt="Фото 2"></div>
-            <div class="gallery-slide"><img src="images/gallery-03.jpg" alt="Фото 3"></div>
-            <div class="gallery-slide"><img src="images/gallery-04.jpg" alt="Фото 4"></div>
-            <div class="gallery-slide"><img src="images/gallery-05.jpg" alt="Фото 5"></div>
-        </div>
-        <button class="gallery-slider-btn gallery-slider-next" id="aquaGalleryNext" aria-label="Вперёд">›</button>
-    </div>
-</section>
     
 
 <!-- ============ 7. FAQ ============ -->
@@ -269,6 +235,32 @@
         </div>
     </div>
 </section>
+
+    <!-- ============ 6.5 ФОТОГАЛЕРЕЯ ============ -->
+<section class="section" id="aqua-gallery">
+    <div class="container">
+        <h2 class="section-title">Фотографии с соревнований</h2>
+        <p class="section-subtitle">Яркие моменты Аква биатлона</p>
+    </div>
+    <div class="gallery-slider-wrap">
+        <button class="gallery-slider-btn gallery-slider-prev" id="aquaGalPrev" aria-label="Назад">‹</button>
+        <div class="gallery-slider" id="aquaGalSlider">
+            <!-- Вставь сюда свои новые фотки (можно использовать те же классы) -->
+            <div class="gallery-slide"><img src="images/gallery-01.jpg" alt="Фото 1" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-02.jpg" alt="Фото 2" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-03.jpg" alt="Фото 3" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-04.jpg" alt="Фото 4" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-05.jpg" alt="Фото 5" class="aqua-lightbox-trigger"></div>
+        </div>
+        <button class="gallery-slider-btn gallery-slider-next" id="aquaGalNext" aria-label="Вперёд">›</button>
+    </div>
+</section>
+
+<!-- Лайтбокс для галереи -->
+<div class="lightbox" id="aquaLightbox">
+    <button class="lightbox-close" id="aquaLightboxClose" aria-label="Закрыть">×</button>
+    <img src="" alt="" id="aquaLightboxImg">
+</div>
 
 <!-- ============ 8. ПРИЗЫВ К ДЕЙСТВИЮ ============ -->
 <section class="cta" id="join-aqua">
