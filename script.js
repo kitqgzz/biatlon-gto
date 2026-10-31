@@ -563,3 +563,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// Скролл таймлайна кнопками
+document.addEventListener("DOMContentLoaded", function() {
+    const track = document.getElementById('timeTrack');
+    const prev = document.getElementById('timePrev');
+    const next = document.getElementById('timeNext');
+
+    if(track && prev && next) {
+        prev.addEventListener('click', () => {
+            track.scrollBy({ left: -280, behavior: 'smooth' });
+        });
+        next.addEventListener('click', () => {
+            track.scrollBy({ left: 280, behavior: 'smooth' });
+        });
+    }
+});
