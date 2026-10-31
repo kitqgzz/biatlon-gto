@@ -2199,7 +2199,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 .aqua-hero-content {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.75);
     padding: 30px;
     border-radius: 30px;
     max-width: 544px;
@@ -2233,14 +2233,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color: #FFF;
 }
 
-/* --- ПЕРСОНАЖИ (С твоими значениями) --- */
 
 /* ПЛОВЕЦ */
 .aqua-hero-swimmer {
     position: absolute;
-    bottom: 98px; /* Твоё значение */
-    right: 23%;   /* Твоё значение */
-    width: 71%;   /* Твоё значение */
+    bottom: 130px; 
+    right: 23%;  
+    width: 71%;   
     max-width: 700px;
     z-index: 3;
     pointer-events: none;
@@ -2249,19 +2248,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* ЛАСКА */
 .aqua-hero-weasel {
     position: absolute;
-    bottom: 178px; /* Твоё значение */
-    right: 1%;     /* Твоё значение */
-    width: 46%;    /* Твоё значение */
+    bottom: 178px; 
+    right: 1%;     
+    width: 46%;   
     max-width: 618px;
     z-index: 4;
     pointer-events: none;
-    animation: floatWeasel 4s ease-in-out infinite;
-}
-
-/* Анимация покачивания ласки (должна быть обязательно) */
-@keyframes floatWeasel {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
 }
 
 /* --- АДАПТИВ --- */
@@ -2317,6 +2309,10 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .btn-reset { background: var(--blue-dark); color: #fff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.2s; }
 .btn-reset:hover { background: var(--orange); }
 @media (max-width: 992px) { .aqua-about-grid { grid-template-columns: 1fr; } }
+
+#what-is-it {
+    padding-top: 60px !important; /* Убираем огромную дыру, ставим аккуратный отступ */
+}
 
 /* --- 3. Блок "Почему уникально" --- */
 #why-unique .preschool-elements { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
