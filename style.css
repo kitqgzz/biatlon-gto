@@ -1848,7 +1848,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .requisites-label { font-size: 11px; }
 }
 
-/* ============ СТРАНИЦА «СТУДЕНТАМ» (ОКОНЧАТЕЛЬНЫЙ ФИКС) ============ */
+/* ============ СТРАНИЦА «СТУДЕНТАМ» (С АДАПТИВОМ) ============ */
 
 /* Блок 1: Hero */
 .students-hero .preschool-hero-inner {
@@ -1875,23 +1875,63 @@ button { font-family: inherit; cursor: pointer; border: none; }
     width: auto;
     object-fit: contain;
 }
+
+/* Блок 1: Адаптив (с 992px картинка слева, обрезана по воротник) */
 @media (max-width: 992px) {
-    .students-hero .preschool-hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .students-hero .preschool-hero-inner {
+        display: flex;
+        flex-direction: row; /* Картинка слева, текст справа */
+        align-items: center;
+        text-align: left;
+        gap: 20px;
+    }
+    .students-hero .preschool-hero-image {
+        flex: 0 0 40%; /* Картинка занимает 40% ширины */
+        order: -1; /* Ставим её первой (слева) */
+        max-height: 350px;
+        overflow: hidden;
+        border-radius: 20px; /* Скругление, чтобы обрезка смотрелась аккуратно */
+    }
+    .students-hero .preschool-hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top; /* Обрезаем так, чтобы осталась голова и воротник */
+    }
+    .students-hero .preschool-hero-content {
+        flex: 1;
+    }
+    .students-hero .preschool-hero-buttons {
+        justify-content: flex-start;
+    }
+}
+/* На мобильных (до 600px) возвращаем картинку наверх, чтобы не было тесно */
+@media (max-width: 600px) {
+    .students-hero .preschool-hero-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .students-hero .preschool-hero-image {
+        order: 0;
+        flex: none;
+        width: 100%;
+        max-height: 250px;
+    }
     .students-hero .preschool-hero-buttons { justify-content: center; }
 }
 
-/* Блок 3: Наши цифры (Фикс центрирования) */
+/* Блок 3: Наши цифры */
 .student-stats-wrap {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Выравниваем всё по центру */
+    justify-content: center;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
 .student-stats-wrap .stat-item {
-    flex: 0 1 250px; /* Ширина карточки, чтобы 4 шт не влезали в один ряд на узком экране */
+    flex: 0 1 250px;
 }
 
 /* Блок 4: Слайдер */
@@ -1946,13 +1986,23 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .student-slider-btn:hover { background: var(--orange); color: white; }
 .student-slider-btn.prev { left: -10px; }
 .student-slider-btn.next { right: -10px; }
+
 @media (max-width: 1100px) {
-    .student-card { flex: 0 0 calc(50% - 12px); }
+    .student-card { flex: 0 0 calc(50% - 12px); } /* 2 карточки на планшетах */
 }
+/* Блок 4: Адаптив (с 768px оставляем стрелочки, но делаем меньше) */
 @media (max-width: 768px) {
     .student-card { flex: 0 0 100%; }
     .student-slider-wrap { padding: 0 20px; }
-    .student-slider-btn { display: none; }
+    
+    .student-slider-btn {
+        display: flex; /* Показываем стрелки */
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+    }
+    .student-slider-btn.prev { left: -5px; }
+    .student-slider-btn.next { right: -5px; }
 }
 
 /* Блок 6: Связь с ГТО */
@@ -1980,10 +2030,22 @@ button { font-family: inherit; cursor: pointer; border: none; }
     max-width: 100%; height: auto; max-height: 400px; object-fit: contain;
     filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.2));
 }
-@media (max-width: 900px) {
-    .gto-grid { grid-template-columns: 1fr; padding: 32px 24px; text-align: center; }
-    .gto-image { order: -1; }
-    .gto-image img { max-height: 250px; }
+/* Блок 6: Адаптив */
+@media (max-width: 900px) and (min-width: 772px) {
+    .gto-grid {
+        grid-template-columns: 1fr 0.5fr; /* Оставляем картинку справа, но текст шире */
+        padding: 30px;
+        text-align: left;
+    }
+    .gto-image img { max-height: 250px; } /* Уменьшаем картинку */
+}
+@media (max-width: 771px) {
+    .gto-grid { 
+        grid-template-columns: 1fr; 
+        padding: 32px 24px; 
+        text-align: center; 
+    }
+    .gto-image { display: none; } /* Полностью убираем картинку на мобильных */
 }
 
 /* Блок 7: Почему это круто */
@@ -2009,7 +2071,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     gap: 16px;
     box-shadow: 0 8px 24px rgba(13, 43, 92, 0.06);
     border: 1px solid #EDF1F7;
-    transform: rotate(var(--rot, 0deg));
+    transform: rotate(var(--rot, 0deg)); /* Оставляем наклон всегда */
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .cool-badge-item:hover {
@@ -2027,32 +2089,51 @@ button { font-family: inherit; cursor: pointer; border: none; }
     filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.2));
     animation: float 5s ease-in-out infinite;
 }
+/* Блок 7: Адаптив */
 @media (max-width: 1100px) {
-    .cool-grid-fixed { flex-direction: column-reverse; }
-    .cool-badges { grid-template-columns: 1fr; width: 100%; }
-    .cool-badge-item { transform: rotate(0deg); }
+    .cool-mascot-fixed { display: none; } /* Убираем ласку */
+    .cool-grid-fixed { display: block; } /* Отменяем flex, чтобы сетка заняла всю ширину */
+    .cool-badges { 
+        grid-template-columns: 1fr 1fr; /* По 2 карточки в ряд на планшетах */
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    /* Убрали обнуление transform, карточки остаются кривыми! */
+}
+@media (max-width: 768px) {
+    .cool-badges {
+        grid-template-columns: 1fr; /* По 1 карточке в ряд на мобильных */
+    }
+    .cool-badge-item {
+        padding: 16px; /* Уменьшаем блоки */
+    }
+    .cool-badge-item span {
+        font-size: 24px; /* Уменьшаем иконки */
+    }
+    .cool-badge-item p {
+        font-size: 14px; /* Уменьшаем текст */
+    }
 }
 
-/* Блок 8: Как присоединиться (Исправленный) */
+/* Блок 8: Как присоединиться */
 .join-section {
     background: linear-gradient(180deg, #FFFFFF 0%, #EEF4FC 100%);
 }
 .join-box {
     display: grid;
-    /* Даем тексту 1.3 часть ширины, а картинке 0.7 - так текст будет дышать */
     grid-template-columns: 1.3fr 0.7fr; 
-    gap: 20px; /* Уменьшаем зазор между текстом и картинкой */
+    gap: 20px; 
     background: var(--white);
     border-radius: 32px;
-    padding: 50px 60px; /* Делаем отступы более сбалансированными */
+    padding: 50px 60px; 
     box-shadow: 0 20px 50px rgba(13, 43, 92, 0.1);
     border: 1px solid #D6E4F5;
-    max-width: 1100px; /* Сужаем саму коробку, чтобы она не растягивалась на весь экран */
+    max-width: 1100px; 
     margin: 0 auto;
     align-items: center;
 }
 .join-title {
-    font-size: clamp(20px, 2.2vw, 28px); /* Чуть уменьшили заголовок для аккуратности */
+    font-size: clamp(20px, 2.2vw, 28px);
     font-weight: 900;
     color: var(--blue-dark);
     line-height: 1.3;
@@ -2083,7 +2164,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .join-image img {
     max-width: 100%;
     height: auto;
-    max-height: 400px; /* Уменьшили студента, чтобы не давил */
+    max-height: 400px; 
     filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.2));
     animation: float 6s ease-in-out infinite;
 }
