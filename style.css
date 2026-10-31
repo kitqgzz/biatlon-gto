@@ -2180,24 +2180,20 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ СТРАНИЦА «АКВА БИАТЛОН» (ФИНАЛ) ============ */
 
-/* --- 1. Блок Hero --- */
+/* --- 1. Блок Hero (С прозрачными картинками) --- */
 .aqua-hero-section {
     position: relative;
-    /* Градиент: светлое небо сверху, синяя вода снизу */
-    background: linear-gradient(180deg, #E1ECF9 0%, #B3D4F5 60%, #2E6BC4 100%);
-    
-    margin-top: 80px; /* Отступ под шапку */
-    padding: 120px 0 200px 0; /* Снизу большой отступ, чтобы волна не накрыла кнопки */
-    min-height: 750px;
-    
-    /* ВАЖНО: разрешаем волне вылезать за пределы блока */
-    overflow: visible; 
-    z-index: 2; 
+    background: linear-gradient(180deg, #E1ECF9 0%, #A2C8F2 50%, #2E6BC4 100%);
+    margin-top: 80px;
+    padding: 120px 0 180px 0; /* Оставляем место внизу под волну */
+    min-height: 700px;
+    overflow: hidden; /* Прячем всё лишнее за краями */
 }
 
+/* Контейнер с текстом */
 .aqua-hero-inner {
     position: relative;
-    z-index: 10; /* Текст всегда поверх картинок */
+    z-index: 10; /* Текст поверх всех картинок */
     display: flex;
     justify-content: flex-start; /* Текст слева */
 }
@@ -2210,7 +2206,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     box-shadow: 0 20px 40px rgba(13, 43, 92, 0.15);
 }
 
-/* Кнопка "Узнать больше" */
+/* Кнопки */
 .btn-outline-blue {
     background: transparent;
     color: var(--blue-dark);
@@ -2219,30 +2215,38 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .btn-outline-blue:hover {
     background: var(--blue-dark);
     color: #FFF;
-    transform: translateY(-2px);
 }
 
-/* Пловец (слева внизу) */
+/* ПЛОВЕЦ */
 .aqua-hero-swimmer {
     position: absolute;
-    bottom: 0;
-    left: -5%; /* Немного вылезает влево */
-    width: 55%;
-    max-width: 850px;
-    z-index: 2;
-    mix-blend-mode: multiply; /* Убирает белый фон */
+    bottom: 40px; /* Чуть выше волны */
+    left: -2%; 
+    width: 45%;
+    max-width: 700px;
+    z-index: 2; /* Самый нижний слой */
     pointer-events: none;
 }
 
-/* Ласка (справа внизу) */
+/* ВОЛНА */
+.aqua-hero-wave-img {
+    position: absolute;
+    bottom: -5px; /* Прижимаем к низу */
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 3; /* Волна перекрывает низ пловца */
+    pointer-events: none;
+}
+
+/* ЛАСКА */
 .aqua-hero-weasel {
     position: absolute;
-    bottom: 20px;
+    bottom: 60px; /* Стоит поверх волны */
     right: 5%;
-    width: 30%;
-    max-width: 450px;
-    z-index: 3;
-    mix-blend-mode: multiply; /* Убирает белый фон */
+    width: 25%;
+    max-width: 350px;
+    z-index: 4; /* Поверх волны */
     pointer-events: none;
     animation: floatWeasel 4s ease-in-out infinite;
 }
@@ -2252,23 +2256,10 @@ button { font-family: inherit; cursor: pointer; border: none; }
     50% { transform: translateY(-15px); }
 }
 
-/* ВОЛНА (картинка) */
-.aqua-hero-wave-img {
-    position: absolute;
-    bottom: -2px; /* Прижимаем к низу и чуть опускаем */
-    left: 0;
-    width: 100%;
-    height: auto;
-    z-index: 4; /* Волна поверх персонажей */
-    pointer-events: none;
-    /* Если у волны белый фон, это сделает его прозрачным */
-    mix-blend-mode: multiply; 
-}
-
 /* --- Адаптив для мобильных --- */
 @media (max-width: 992px) {
     .aqua-hero-section {
-        padding: 80px 0 250px 0; /* Увеличиваем отступ снизу под волну */
+        padding: 80px 0 200px 0;
         min-height: auto;
     }
     .aqua-hero-inner {
@@ -2282,17 +2273,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
         justify-content: center;
     }
     
-    /* На телефонах уменьшаем пловца и прячем ласку, чтобы не мешали тексту */
-    .aqua-hero-swimmer {
-        width: 90%;
-        left: -10%;
-        opacity: 0.3; /* Делаем полупрозрачным, уходит на фон */
-    }
-    .aqua-hero-weasel {
+    /* На телефонах прячем персонажей, чтобы не мешали читать */
+    .aqua-hero-swimmer, .aqua-hero-weasel {
         display: none; 
     }
 }
-
 /* --- 2. Блок про мишень --- */
 .aqua-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .aqua-about-text p { font-size: 16px; color: #4A5A75; line-height: 1.75; margin-bottom: 16px; }
