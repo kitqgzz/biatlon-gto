@@ -485,8 +485,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Игра "Мишень" для страницы Аква биатлон
 document.addEventListener("DOMContentLoaded", function() {
+    // === МИШЕНЬ ===
     const target = document.getElementById('aquaTarget');
     const hitCounter = document.getElementById('hitCounter');
     const resetBtn = document.getElementById('resetTargetBtn');
@@ -494,65 +494,72 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (target && hitCounter && resetBtn) {
         target.addEventListener('click', function(e) {
-            if (hits >= 5) return; // Если 5 выстрелов сделано, дальше не стреляем
-
+            if (hits >= 5) return;
             const rect = target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
             const hole = document.createElement('div');
             hole.classList.add('bullet-hole');
-            hole.style.left = `${x}px`;
-            hole.style.top = `${y}px`;
+            hole.style.left = `${e.clientX - rect.left}px`;
+            hole.style.top = `${e.clientY - rect.top}px`;
             target.appendChild(hole);
-
             hits++;
             hitCounter.textContent = hits;
-
-            if (hits === 5) {
-                setTimeout(() => { alert("Отличная стрельба! Ты готов к Аква биатлону! 🎯"); }, 300);
-            }
+            if (hits === 5) setTimeout(() => alert("Отличная стрельба! 🎯"), 300);
         });
-
         resetBtn.addEventListener('click', function() {
             hits = 0;
             hitCounter.textContent = hits;
-            const holes = target.querySelectorAll('.bullet-hole');
-            holes.forEach(h => h.remove());
+            target.querySelectorAll('.bullet-hole').forEach(h => h.remove());
         });
     }
-});
 
-// Скрипт для галереи на странице Аква биатлон
-document.addEventListener("DOMContentLoaded", function() {
+    // === ГАЛЕРЕЯ (Скролл + Лайтбокс с листанием) ===
     const slider = document.getElementById('aquaGalSlider');
     const prevBtn = document.getElementById('aquaGalPrev');
     const nextBtn = document.getElementById('aquaGalNext');
-    
-    // Лайтбокс
     const lightbox = document.getElementById('aquaLightbox');
     const lightboxImg = document.getElementById('aquaLightboxImg');
     const lightboxClose = document.getElementById('aquaLightboxClose');
+    const lightboxPrev = document.getElementById('aquaLightboxPrev');
+    const lightboxNext = document.getElementById('aquaLightboxNext');
+    
+    let currentIndex = 0;
+    let galleryImages = [];
 
     if (slider && prevBtn && nextBtn) {
-        // Скролл
-        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -340, behavior: 'smooth' }));
-        nextBtn.addEventListener('click', () => slider.scrollBy({ left: 340, behavior: 'smooth' }));
+        // Скролл стрелками
+        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -320, behavior: 'smooth' }));
+        nextBtn.addEventListener('click', () => slider.scrollBy({ left: 320, behavior: 'smooth' }));
 
-        // Открытие лайтбокса
+        // Собираем все картинки
         const triggers = slider.querySelectorAll('.aqua-lightbox-trigger');
-        triggers.forEach(img => {
+        triggers.forEach((img, index) => {
+            galleryImages.push(img.src);
             img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
-                lightbox.classList.add('active');
+                currentIndex = index;
+                openLightbox(currentIndex);
             });
         });
     }
 
-    if (lightboxClose && lightbox) {
+    function openLightbox(index) {
+        lightboxImg.src = galleryImages[index];
+        lightbox.classList.add('active');
+    }
+
+    if (lightboxClose) {
         lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) lightbox.classList.remove('active');
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+        
+        // Листание в лайтбоксе
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex];
+        });
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentIndex];
         });
     }
 });
