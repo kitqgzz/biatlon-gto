@@ -522,3 +522,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// Скрипт для галереи на странице Аква биатлон
+document.addEventListener("DOMContentLoaded", function() {
+    const slider = document.getElementById('aquaGallerySlider');
+    const prevBtn = document.getElementById('aquaGalleryPrev');
+    const nextBtn = document.getElementById('aquaGalleryNext');
+
+    if (slider && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -340, behavior: 'smooth' }); // 320px картинка + 20px отступ
+        });
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: 340, behavior: 'smooth' });
+        });
+    }
+});
