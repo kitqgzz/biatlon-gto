@@ -2181,7 +2181,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* --- 1. Блок Hero --- */
 .aqua-hero-section {
     position: relative;
-    background: url('images/herobg.jpg') no-repeat center bottom / cover;
+    background: url('images/herobg.jpg') no-repeat center bottom -64px / cover;
     
     /* Оставил твои 98px, но добавил нижний отступ, чтобы было куда расти */
     padding: 98px 0 150px 0; 
