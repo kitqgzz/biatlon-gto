@@ -2248,8 +2248,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* ЛАСКА */
 .aqua-hero-weasel {
     position: absolute;
-    bottom: 178px; 
-    right: 1%;     
+    bottom: 142px; 
+    right: 2%;     
     width: 46%;   
     max-width: 618px;
     z-index: 4;
