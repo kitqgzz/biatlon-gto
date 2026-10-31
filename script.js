@@ -485,8 +485,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+
+// ==========================================
+// СКРИПТЫ ДЛЯ СТРАНИЦЫ "АКВА БИАТЛОН"
+// ==========================================
 document.addEventListener("DOMContentLoaded", function() {
-    // === МИШЕНЬ ===
+    
+    // --- 1. Интерактивная мишень ---
     const target = document.getElementById('aquaTarget');
     const hitCounter = document.getElementById('hitCounter');
     const resetBtn = document.getElementById('resetTargetBtn');
@@ -494,28 +499,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (target && hitCounter && resetBtn) {
         target.addEventListener('click', function(e) {
-            if (hits >= 5) return;
+            if (hits >= 5) return; // Максимум 5 выстрелов
+
             const rect = target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
             const hole = document.createElement('div');
             hole.classList.add('bullet-hole');
-            hole.style.left = `${e.clientX - rect.left}px`;
-            hole.style.top = `${e.clientY - rect.top}px`;
+            hole.style.left = `${x}px`;
+            hole.style.top = `${y}px`;
+            
             target.appendChild(hole);
+
             hits++;
             hitCounter.textContent = hits;
-            if (hits === 5) setTimeout(() => alert("Отличная стрельба! 🎯"), 300);
+
+            if (hits === 5) {
+                setTimeout(() => { alert("Отличная стрельба! Ты готов к Аква биатлону! 🎯"); }, 300);
+            }
         });
+
         resetBtn.addEventListener('click', function() {
             hits = 0;
             hitCounter.textContent = hits;
-            target.querySelectorAll('.bullet-hole').forEach(h => h.remove());
+            const holes = target.querySelectorAll('.bullet-hole');
+            holes.forEach(h => h.remove());
         });
     }
 
-    // === ГАЛЕРЕЯ (Скролл + Лайтбокс с листанием) ===
+    // --- 2. Скролл Таймлайна (Правила за 30 секунд) ---
+    const timeTrack = document.getElementById('timeTrack');
+    const timePrev = document.getElementById('timePrev');
+    const timeNext = document.getElementById('timeNext');
+
+    if (timeTrack && timePrev && timeNext) {
+        timePrev.addEventListener('click', () => {
+            timeTrack.scrollBy({ left: -280, behavior: 'smooth' });
+        });
+        timeNext.addEventListener('click', () => {
+            timeTrack.scrollBy({ left: 280, behavior: 'smooth' });
+        });
+    }
+
+    // --- 3. Галерея (Слайдер и Лайтбокс) ---
     const slider = document.getElementById('aquaGalSlider');
     const prevBtn = document.getElementById('aquaGalPrev');
     const nextBtn = document.getElementById('aquaGalNext');
+    
     const lightbox = document.getElementById('aquaLightbox');
     const lightboxImg = document.getElementById('aquaLightboxImg');
     const lightboxClose = document.getElementById('aquaLightboxClose');
@@ -530,7 +561,7 @@ document.addEventListener("DOMContentLoaded", function() {
         prevBtn.addEventListener('click', () => slider.scrollBy({ left: -320, behavior: 'smooth' }));
         nextBtn.addEventListener('click', () => slider.scrollBy({ left: 320, behavior: 'smooth' }));
 
-        // Собираем все картинки
+        // Сбор картинок для лайтбокса
         const triggers = slider.querySelectorAll('.aqua-lightbox-trigger');
         triggers.forEach((img, index) => {
             galleryImages.push(img.src);
@@ -542,40 +573,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function openLightbox(index) {
-        lightboxImg.src = galleryImages[index];
-        lightbox.classList.add('active');
+        if(lightboxImg && lightbox) {
+            lightboxImg.src = galleryImages[index];
+            lightbox.classList.add('active');
+        }
     }
 
-    if (lightboxClose) {
+    if (lightboxClose && lightbox) {
         lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+        lightbox.addEventListener('click', (e) => { 
+            if (e.target === lightbox) lightbox.classList.remove('active'); 
+        });
         
         // Листание в лайтбоксе
-        lightboxPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-            lightboxImg.src = galleryImages[currentIndex];
-        });
-        lightboxNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentIndex = (currentIndex + 1) % galleryImages.length;
-            lightboxImg.src = galleryImages[currentIndex];
-        });
-    }
-});
-
-// Скролл таймлайна кнопками
-document.addEventListener("DOMContentLoaded", function() {
-    const track = document.getElementById('timeTrack');
-    const prev = document.getElementById('timePrev');
-    const next = document.getElementById('timeNext');
-
-    if(track && prev && next) {
-        prev.addEventListener('click', () => {
-            track.scrollBy({ left: -280, behavior: 'smooth' });
-        });
-        next.addEventListener('click', () => {
-            track.scrollBy({ left: 280, behavior: 'smooth' });
-        });
+        if (lightboxPrev && lightboxNext) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                lightboxImg.src = galleryImages[currentIndex];
+            });
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                lightboxImg.src = galleryImages[currentIndex];
+            });
+        }
     }
 });
