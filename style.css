@@ -2279,7 +2279,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     }
 }
 /* --- 2. Блок про мишень --- */
-.aqua-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 130px; }
+.aqua-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: -130px; }
 .aqua-about-text p { font-size: 16px; color: #4A5A75; line-height: 1.75; margin-bottom: 16px; }
 .target-game-container {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -2308,9 +2308,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .btn-reset:hover { background: var(--orange); }
 @media (max-width: 992px) { .aqua-about-grid { grid-template-columns: 1fr; } }
 
-#what-is-it {
-    padding-top: 60px !important; /* Убираем огромную дыру, ставим аккуратный отступ */
-}
 
 /* --- 3. Блок "Почему уникально" --- */
 #why-unique .preschool-elements { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
