@@ -2177,26 +2177,26 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .join-steps { text-align: left; display: inline-block; }
     .join-content .preschool-hero-buttons { justify-content: center !important; }
 }
-/* ============ СТРАНИЦА «АКВА БИАТЛОН» (ИСПРАВЛЕННЫЙ) ============ */
+/* ============ СТРАНИЦА «АКВА БИАТЛОН» (ФИНАЛЬНЫЙ ДИЗАЙН) ============ */
 
-/* --- Блок 1: Hero --- */
+/* --- Блок 1: Hero (Full Screen Right Image) --- */
 .aqua-hero-section {
     background: linear-gradient(180deg, #E1ECF9 0%, #FFFFFF 100%);
-    padding-top: 140px;
-    padding-bottom: 80px;
-    overflow: hidden; /* Обрезаем всё, что вылезает за края */
+    padding-top: 160px;
+    padding-bottom: 100px;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
 }
 .aqua-hero-inner {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    position: relative;
 }
 .aqua-hero-content {
-    flex: 1 1 45%;
-    max-width: 600px;
-    z-index: 2;
+    flex: 0 1 55%;
+    max-width: 650px;
 }
 .aqua-hero-title {
     font-size: clamp(32px, 4vw, 52px);
@@ -2211,38 +2211,34 @@ button { font-family: inherit; cursor: pointer; border: none; }
     line-height: 1.7;
     margin-bottom: 30px;
 }
-.aqua-hero-image-container {
-    flex: 1 1 55%;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
+/* Картинка абсолютом */
+.aqua-hero-bg-image {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 60%; /* Занимает 60% экрана */
+    max-width: 1100px;
     z-index: 1;
+    pointer-events: none;
 }
-.aqua-hero-img {
-    width: 120%; /* Делаем картинку чуть больше контейнера, чтобы она красиво уходила вправо */
-    max-width: 900px;
+.aqua-hero-bg-image img {
+    width: 100%;
     height: auto;
     object-fit: contain;
-    margin-right: -10%; /* Выдвигаем за край экрана */
-    margin-bottom: -80px; /* Опускаем вниз (эффект заплывания) */
-    mix-blend-mode: multiply; 
+    mix-blend-mode: multiply; /* Убирает белый фон */
 }
 @media (max-width: 992px) {
+    .aqua-hero-section { padding-top: 120px; padding-bottom: 50px; min-height: auto; }
     .aqua-hero-inner { flex-direction: column; text-align: center; }
-    .aqua-hero-content { max-width: 100%; }
-    .aqua-hero-image-container { margin-top: 40px; width: 100%; justify-content: center; }
-    .aqua-hero-img { width: 100%; margin-right: 0; margin-bottom: 0; }
+    .aqua-hero-content { flex: 0 1 100%; max-width: 100%; }
+    .aqua-hero-bg-image { position: static; transform: none; width: 100%; margin-top: 30px; }
 }
 
-/* --- Блок 2: Мишень (Оставляем как было) --- */
-.aqua-about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
+/* --- Блок 2: Мишень --- */
+.aqua-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .aqua-about-text p { font-size: 16px; color: #4A5A75; line-height: 1.75; margin-bottom: 16px; }
-.target-game-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; background: #EEF4FC; border-radius: 30px; box-shadow: inset 0 0 20px rgba(13, 43, 92, 0.05); }
+.target-game-container { display: flex; flex-direction: column; align-items: center; padding: 30px; background: #EEF4FC; border-radius: 30px; box-shadow: inset 0 0 20px rgba(13, 43, 92, 0.05); }
 .target-game-title { font-weight: 800; color: var(--blue-dark); margin-bottom: 20px; font-size: 20px;}
 .target-wrapper { position: relative; margin-bottom: 20px; }
 .target { width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, #F59E0B 0%, #F59E0B 15%, #0D2B5C 15%, #0D2B5C 30%, #FFFFFF 30%, #FFFFFF 45%, #0D2B5C 45%, #0D2B5C 60%, #FFFFFF 60%, #FFFFFF 75%, #0D2B5C 75%, #0D2B5C 90%, #FFFFFF 90%, #FFFFFF 100%); border: 8px solid #081C3D; box-shadow: 0 15px 30px rgba(13, 43, 92, 0.3), inset 0 0 20px rgba(0,0,0,0.2); cursor: crosshair; position: relative; transition: transform 0.1s; }
@@ -2255,99 +2251,99 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .btn-reset:hover { background: var(--orange); }
 @media (max-width: 992px) { .aqua-about-grid { grid-template-columns: 1fr; } }
 
-/* --- Блок 3: Почему уникально (ФИКС: Карточка по центру) --- */
-/* Перебиваем grid на flex для этой конкретной секции */
-#why-unique .preschool-elements {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px;
-}
-#why-unique .preschool-element {
-    flex: 0 1 calc(33.333% - 28px);
-    min-width: 280px;
-}
-@media (max-width: 992px) {
-    #why-unique .preschool-element { flex: 0 1 calc(50% - 28px); }
-}
-@media (max-width: 768px) {
-    #why-unique .preschool-element { flex: 0 1 100%; }
-}
+/* --- Блок 3: Почему уникально --- */
+#why-unique .preschool-elements { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
+#why-unique .preschool-element { flex: 0 1 calc(33.333% - 28px); min-width: 280px; }
+@media (max-width: 992px) { #why-unique .preschool-element { flex: 0 1 calc(50% - 28px); } }
+@media (max-width: 768px) { #why-unique .preschool-element { flex: 0 1 100%; } }
 
-/* --- Блок 4: Змейка (Timeline) --- */
-.timeline-zigzag {
-    max-width: 800px;
-    margin: 40px auto 0;
+/* --- Блок 4: Таймлайн (Волны-Слайдер) --- */
+.timeline-wave-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 40px 0 60px;
+    scrollbar-width: none; /* Убираем скроллбар */
+    cursor: grab;
+}
+.timeline-wave-wrapper::-webkit-scrollbar { display: none; }
+.timeline-wave-wrapper:active { cursor: grabbing; }
+
+.timeline-wave-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 0 10vw; /* Отступы по бокам */
+    width: max-content;
     position: relative;
 }
-/* Центральная линия */
-.timeline-zigzag::before {
+/* Волнистая линия на фоне (эмулируем через SVG паттерн или тени) */
+.timeline-wave-track::before {
     content: '';
     position: absolute;
-    top: 0; bottom: 0; left: 50%;
-    width: 4px;
-    background: #D6E4F5;
-    transform: translateX(-50%);
-    border-radius: 4px;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='100' viewBox='0 0 200 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 50 C 50 0, 150 100, 200 50' stroke='%23D6E4F5' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: center;
     z-index: 1;
-}
-.timeline-step {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 2;
-}
-.timeline-step:nth-child(odd) { flex-direction: row-reverse; } /* Четные шаги слева, нечетные справа */
-.step-content {
-    width: calc(50% - 40px);
-    background: #FFFFFF;
-    padding: 24px;
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.08);
-    border: 1px solid #EDF1F7;
-}
-.timeline-step:nth-child(odd) .step-content { text-align: right; }
-.step-content h3 { font-size: 18px; font-weight: 800; color: var(--blue-dark); margin-bottom: 8px; }
-.step-content p { font-size: 15px; color: #5A6B85; line-height: 1.5; margin: 0; }
-.step-icon {
-    width: 60px; height: 60px;
-    background: var(--blue-dark);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    border: 4px solid #FFFFFF;
-    box-shadow: 0 4px 12px rgba(13, 43, 92, 0.2);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-@media (max-width: 768px) {
-    .timeline-zigzag::before { left: 20px; }
-    .timeline-step, .timeline-step:nth-child(odd) { flex-direction: row; justify-content: flex-start; margin-bottom: 24px; }
-    .step-icon { left: 20px; width: 44px; height: 44px; font-size: 20px; }
-    .step-content { width: calc(100% - 60px); margin-left: 60px; text-align: left !important; }
+    transform: translateY(-50%);
+    opacity: 0.8;
 }
 
-/* --- Блок 5: Референс (Фигурная плашка) --- */
+.wave-card {
+    flex: 0 0 260px;
+    background: #FFFFFF;
+    padding: 30px 24px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.08);
+    border: 1px solid #EDF1F7;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transform: rotate(-3deg); /* Легкий наклон */
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* Чередуем наклон вверх и вниз */
+.wave-card:nth-child(even) { transform: rotate(3deg) translateY(20px); }
+.wave-card:hover {
+    transform: rotate(0deg) translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(13, 43, 92, 0.15);
+    border-color: var(--orange);
+    z-index: 10;
+}
+.wave-icon { font-size: 36px; margin-bottom: 12px; }
+.wave-card h3 { font-size: 18px; font-weight: 800; color: var(--blue-dark); margin-bottom: 8px; }
+.wave-card p { font-size: 14px; color: #5A6B85; margin: 0; line-height: 1.4; }
+
+/* --- Блок 5: Что ты получишь (Волнистая плашка на весь экран) --- */
+.benefits-fullscreen-section {
+    background: #EEF4FC; /* Светлый фон */
+    padding: 80px 0;
+    overflow: hidden;
+}
+.benefits-custom-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 .benefits-ref-box {
     display: flex;
-    align-items: stretch; /* Растягиваем по высоте */
-    max-width: 1100px;
-    margin: 0 auto;
+    align-items: center;
+    justify-content: flex-start; /* Прижимаем влево */
     position: relative;
+    width: 100%;
 }
 .benefits-text-card {
     background: #FFFFFF;
-    border-radius: 24px;
+    border-radius: 30px;
     padding: 40px;
-    flex: 1 1 45%;
-    box-shadow: 0 8px 30px rgba(13, 43, 92, 0.08);
-    z-index: 2;
+    width: 400px;
+    flex-shrink: 0;
+    box-shadow: 0 15px 40px rgba(13, 43, 92, 0.08);
+    z-index: 3;
+    margin-left: 5%; /* Сдвигаем чуть вправо от края */
 }
 .benefits-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px; }
 .benefits-list li { display: flex; align-items: flex-start; gap: 16px; }
@@ -2356,30 +2352,29 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .benefit-text p { font-size: 14px; color: #5A6B85; margin: 0; }
 
 .benefits-trophy {
-    flex: 0 0 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3; /* Кубок поверх плашек */
-    margin: 0 -30px; /* Накладываем на стыки */
+    position: absolute;
+    left: 420px; /* Позиционируем кубок между карточкой и плашкой */
+    z-index: 4;
+    margin-left: 5%;
 }
 .benefits-trophy img {
-    width: 100%;
-    max-width: 180px;
+    width: 160px;
     filter: drop-shadow(0 15px 25px rgba(13, 43, 92, 0.3));
 }
 
+/* Синяя волнистая плашка */
 .benefits-blue-badge {
-    flex: 1 1 50%;
     background: var(--blue-dark);
-    /* Форма "фигурного прямоугольника" */
-    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
-    padding: 40px 40px 40px 80px; /* Больший отступ слева из-за среза */
+    height: 350px;
+    width: 100%; /* Растягиваем */
+    margin-left: -200px; /* Заводим под кубок и карточку */
+    padding-left: 350px; /* Внутренний отступ, чтобы текст не налезал */
     display: flex;
     align-items: center;
+    /* Создаем эффект волны через clip-path */
+    clip-path: ellipse(120% 100% at 80% 50%);
     position: relative;
     z-index: 1;
-    margin-left: -20px; /* Заводим под текстовую карточку */
 }
 .benefits-blue-badge::before {
     content: '';
@@ -2393,25 +2388,17 @@ button { font-family: inherit; cursor: pointer; border: none; }
     gap: 24px;
     position: relative;
     z-index: 2;
+    margin-left: 50px;
 }
-.badge-logo {
-    width: 100px;
-    height: auto;
-    /* Убрали фильтр, логотип оригинального цвета */
-}
-.benefits-blue-badge p {
-    color: #FFFFFF;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.4;
-    margin: 0;
-}
-@media (max-width: 992px) {
-    .benefits-ref-box { flex-direction: column; }
-    .benefits-text-card, .benefits-blue-badge { width: 100%; flex: none; clip-path: none; margin: 0; padding: 30px; }
-    .benefits-trophy { margin: -30px auto; order: 2; } /* Кубок между карточками */
-    .benefits-blue-badge { order: 3; border-radius: 24px; }
-    .badge-inner { flex-direction: column; text-align: center; }
+.badge-logo { width: 120px; height: auto; }
+.benefits-blue-badge p { color: #FFFFFF; font-size: 20px; font-weight: 700; line-height: 1.4; margin: 0; max-width: 400px; }
+
+@media (max-width: 1200px) {
+    .benefits-ref-box { flex-direction: column; align-items: center; gap: 30px; }
+    .benefits-text-card { margin-left: 0; width: 100%; max-width: 500px; }
+    .benefits-trophy { position: static; margin: -80px 0 -80px 0; }
+    .benefits-blue-badge { margin-left: 0; padding: 40px; clip-path: none; border-radius: 30px; width: 100%; max-width: 600px; height: auto; }
+    .badge-inner { flex-direction: column; text-align: center; margin-left: 0; }
 }
 
 /* --- Блок 6: Истории успеха --- */
