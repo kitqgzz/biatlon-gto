@@ -62,9 +62,7 @@
             <div class="target-game-container">
                 <p class="target-game-title">Проверь свою меткость!</p>
                 <div class="target-wrapper">
-                    <div class="target" id="aquaTarget">
-                        <div class="target-center"></div>
-                    </div>
+                    <div class="target" id="aquaTarget"></div>
                 </div>
                 <div class="target-stats">
                     <p>Попадания: <span id="hitCounter">0</span> / 5</p>
@@ -104,71 +102,62 @@
     </div>
 </section>
 
-<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ЗМЕЙКА) ============ -->
+<!-- ============ 4. КАК ЭТО РАБОТАЕТ ============ -->
 <section class="section" id="how-it-works">
-    <div class="container">
-        <h2 class="section-title">Правила за 30 секунд</h2>
-        <p class="section-subtitle">Командный формат. Скролль вправо, чтобы увидеть все этапы!</p>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+        <div>
+            <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">Правила за 30 секунд</h2>
+            <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">Скролль вправо, чтобы увидеть все этапы.</p>
+        </div>
+        <div class="timeline-nav">
+            <button id="timePrev" class="btn-nav">‹</button>
+            <button id="timeNext" class="btn-nav">›</button>
+        </div>
     </div>
     
     <div class="timeline-scroll-wrapper">
-        <div class="timeline-track">
-            <!-- Карточки -->
+        <div class="timeline-track" id="timeTrack">
             <div class="timeline-node">
                 <div class="node-icon">🏊‍♂️</div>
-                <div class="node-card">
-                    <h3>1. Плавание</h3>
-                    <p>Эстафета 4×50 метров в бассейне.</p>
-                </div>
+                <div class="node-card"><h3>1. Плавание</h3><p>Эстафета 4×50 метров.</p></div>
             </div>
             <div class="timeline-node">
                 <div class="node-icon">🏃‍♂️</div>
-                <div class="node-card">
-                    <h3>2. Бег</h3>
-                    <p>300 метров до огневого рубежа.</p>
-                </div>
+                <div class="node-card"><h3>2. Бег</h3><p>300 метров до рубежа.</p></div>
             </div>
             <div class="timeline-node">
                 <div class="node-icon">🧘‍♂️</div>
-                <div class="node-card">
-                    <h3>3. Силовое</h3>
-                    <p>Упражнение на пресс перед стрельбой.</p>
-                </div>
+                <div class="node-card"><h3>3. Силовое</h3><p>Упражнение на пресс.</p></div>
             </div>
             <div class="timeline-node">
                 <div class="node-icon">🎯</div>
-                <div class="node-card">
-                    <h3>4. Стрельба</h3>
-                    <p>5 выстрелов из винтовки.</p>
-                </div>
+                <div class="node-card"><h3>4. Стрельба</h3><p>5 выстрелов из винтовки.</p></div>
             </div>
             <div class="timeline-node">
                 <div class="node-icon">🤸‍♂️</div>
-                <div class="node-card">
-                    <h3>5. Штраф</h3>
-                    <p>Отжимания за каждый промах.</p>
-                </div>
+                <div class="node-card"><h3>5. Штраф</h3><p>Отжимания за промах.</p></div>
             </div>
             <div class="timeline-node">
                 <div class="node-icon">🏁</div>
-                <div class="node-card">
-                    <h3>6. Финиш</h3>
-                    <p>Ускорение 100 метров.</p>
-                </div>
+                <div class="node-card"><h3>6. Финиш</h3><p>Ускорение 100 метров.</p></div>
             </div>
-            <!-- SVG Волна на фоне -->
-            <svg class="timeline-wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
-                <path d="M0,50 Q100,0 200,50 T400,50 T600,50 T800,50 T1000,50 T1200,50" fill="none" stroke="#D6E4F5" stroke-width="8"/>
-            </svg>
         </div>
     </div>
 </section>
 
 <!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНА) ============ -->
 <section class="section benefits-wave-section" id="benefits">
-    <div class="benefits-wave-container">
-        <div class="benefits-inner-flex">
-            <!-- Белая карточка -->
+    <!-- ВОЛНА: Абсолютно позиционирована от левого края экрана -->
+    <div class="benefits-blue-wave">
+        <div class="badge-inner">
+            <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
+            <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="benefits-layout">
+            <!-- Белая карточка поверх волны -->
             <div class="benefits-white-card">
                 <h2 class="section-title" style="text-align: left; font-size: 32px; margin-bottom: 30px;">Что ты получишь</h2>
                 <ul class="benefits-list">
@@ -177,18 +166,10 @@
                     <li><span class="benefit-icon">🤝</span><div class="benefit-text"><strong>Для команды</strong><p>Чувство плеча</p></div></li>
                 </ul>
             </div>
-
+            
             <!-- Кубок -->
-            <div class="benefits-trophy-new">
+            <div class="benefits-trophy-img">
                 <img src="images/aqua-trophy.png" alt="Кубок">
-            </div>
-
-            <!-- Синяя волнистая плашка (уходит вправо) -->
-            <div class="benefits-blue-wave">
-                <div class="badge-inner">
-                    <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
-                    <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
-                </div>
             </div>
         </div>
     </div>
