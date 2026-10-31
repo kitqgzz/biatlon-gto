@@ -2183,17 +2183,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* --- 1. Блок Hero (Фон herobg.jpg, заходит на следующий блок) --- */
 .aqua-hero-section {
     position: relative;
-    /* Твой новый фон */
-    background: url('images/herobg.jpg') no-repeat bottom center / cover;
-    margin-top: 80px;
+    /* Фон на всю ширину, прижимаем к верху */
+    background: url('images/herobg.jpg') no-repeat top center / cover;
     
-    /* Отступы: сверху для красоты, снизу большой, чтобы волна перекрыла текст */
-    padding: 100px 0 220px 0; 
-    min-height: 700px;
+    /* Убрали margin-top. Теперь отступ делаем через padding, чтобы фон начинался прямо под шапкой */
+    padding: 160px 0 200px 0; 
     
-    /* МАГИЯ: отрицательный отступ снизу заставляет блок налезть на следующий */
-    margin-bottom: -80px; 
-    z-index: 2; /* Блок Hero поверх следующего */
+    min-height: 800px;
+    overflow: visible; /* Разрешаем волне (если она на фоне) заходить на следующий блок */
+    z-index: 2;
 }
 
 /* Текстовая плашка (слева) */
@@ -2260,20 +2258,14 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* --- Адаптив --- */
+/* На телефонах настройки сбрасываются */
 @media (max-width: 992px) {
     .aqua-hero-section {
-        padding: 80px 0 150px 0;
-        min-height: auto;
-        margin-bottom: 0; /* На телефонах отключаем наложение */
+        padding: 120px 0 150px 0; /* Чуть меньше отступ на мобилках */
+        background-position: center top; /* Центрируем фон */
     }
-    .aqua-hero-inner { justify-content: center; }
-    .aqua-hero-content { text-align: center; padding: 30px; max-width: 100%; }
-    .preschool-hero-buttons { justify-content: center; }
-    
-    /* На телефонах персонажей прячем, чтобы не мешали */
-    .aqua-hero-swimmer, .aqua-hero-weasel {
-        display: none; 
-    }
+    /* ... */
+}
     
     /* На телефонах возвращаем обычный отступ следующему блоку */
     #what-is-it { padding-top: 50px; }
