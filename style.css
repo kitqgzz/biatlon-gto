@@ -2249,7 +2249,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .aqua-hero-weasel {
     position: absolute;
     bottom: 142px; 
-    right: 2%;     
+    right: -3%;     
     width: 46%;   
     max-width: 618px;
     z-index: 4;
