@@ -2183,29 +2183,30 @@ button { font-family: inherit; cursor: pointer; border: none; }
     position: relative;
     background: url('images/herobg.jpg') no-repeat center bottom / cover;
     
-    /* Отступы: сверху под шапку, снизу - чтобы персонажи поместились */
-    padding: 120px 0 150px 0; 
-    min-height: 800px; /* Увеличили высоту, чтобы картинкам было где разгуляться */
-    overflow: hidden; /* Лишнее обрезаем */
+    /* Оставил твои 98px, но добавил нижний отступ, чтобы было куда расти */
+    padding: 98px 0 150px 0; 
+    min-height: 800px;
+    overflow: hidden;
     z-index: 2;
 }
 
 /* Левая часть: текст */
 .aqua-hero-inner {
     position: relative;
-    z-index: 10; /* Текст поверх всего */
+    z-index: 10; /* Текст всегда поверх картинок */
     display: flex;
     justify-content: flex-start;
 }
 
 .aqua-hero-content {
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
+    padding: 30px;
     border-radius: 30px;
-    max-width: 550px;
+    max-width: 544px;
     box-shadow: 0 20px 40px rgba(13, 43, 92, 0.15);
 }
 
+/* Текст внутри плашки (чтобы не потерялся) */
 .aqua-hero-title {
     font-size: clamp(32px, 4vw, 46px);
     font-weight: 900;
@@ -2213,7 +2214,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     line-height: 1.1;
     margin-bottom: 20px;
 }
-
 .aqua-hero-subtitle {
     font-size: 17px;
     color: #2A3B5C;
@@ -2233,56 +2233,57 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color: #FFF;
 }
 
-/* --- ПЕРСОНАЖИ СПРАВА --- */
+/* --- ПЕРСОНАЖИ (С твоими значениями) --- */
 
-/* ПЛОВЕЦ (Большой, опущен вниз) */
+/* ПЛОВЕЦ */
 .aqua-hero-swimmer {
     position: absolute;
-    bottom: -50px; /* Опускаем ниже края, чтобы он "плыл" по волне фона */
-    right: 28%; /* Сдвигаем правее */
-    width: 45%; /* Сделал большим */
+    bottom: 98px; /* Твоё значение */
+    right: 23%;   /* Твоё значение */
+    width: 71%;   /* Твоё значение */
     max-width: 700px;
-    z-index: 3; /* Поверх фона, под лаской */
+    z-index: 3;
     pointer-events: none;
 }
 
-/* ЛАСКА (Вплотную к пловцу, без отступа) */
+/* ЛАСКА */
 .aqua-hero-weasel {
     position: absolute;
-    bottom: 0; /* Стоит прямо на волне */
-    right: 0%; /* Прижата к самому правому краю */
-    width: 22%; /* Пропорционально пловцу */
-    max-width: 350px;
-    z-index: 4; /* Поверх пловца, чтобы не перекрывать её */
+    bottom: 178px; /* Твоё значение */
+    right: 1%;     /* Твоё значение */
+    width: 46%;    /* Твоё значение */
+    max-width: 618px;
+    z-index: 4;
     pointer-events: none;
     animation: floatWeasel 4s ease-in-out infinite;
 }
 
+/* Анимация покачивания ласки (должна быть обязательно) */
 @keyframes floatWeasel {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
 }
 
-/* --- АДАПТИВ (Для мобильных) --- */
+/* --- АДАПТИВ --- */
 @media (max-width: 992px) {
     .aqua-hero-section {
-        padding: 80px 0 150px 0;
+        padding: 60px 0 100px 0;
         min-height: auto;
-        background-position: center bottom; /* Держим волну внизу */
+        background-position: center bottom;
     }
     .aqua-hero-inner {
         justify-content: center;
     }
     .aqua-hero-content {
         text-align: center;
-        padding: 30px;
         max-width: 100%;
+        padding: 24px;
     }
     .preschool-hero-buttons {
         justify-content: center;
     }
     
-    /* На мобильных прячем персонажей, чтобы они не мешали читать текст */
+    /* На телефонах прячем персонажей, иначе они закроют весь экран */
     .aqua-hero-swimmer, .aqua-hero-weasel {
         display: none; 
     }
