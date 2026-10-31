@@ -442,18 +442,21 @@ if (contactSection) {
     contactObserver.observe(contactSection);
 }
 
+
 // Скрипт для слайдера на странице студентов
 document.addEventListener("DOMContentLoaded", function() {
-    const studentSlider = document.getElementById('studentSlider');
-    const studentPrev = document.getElementById('studentSliderPrev');
-    const studentNext = document.getElementById('studentSliderNext');
+    const slider = document.getElementById('studentSlider');
+    const prevBtn = document.getElementById('studentSliderPrev');
+    const nextBtn = document.getElementById('studentSliderNext');
 
-    if (studentSlider && studentPrev && studentNext) {
-        studentPrev.addEventListener('click', () => {
-            studentSlider.scrollBy({ left: -360, behavior: 'smooth' });
+    if (slider && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            // Скроллим влево на ширину одной карточки
+            slider.scrollBy({ left: -360, behavior: 'smooth' });
         });
-        studentNext.addEventListener('click', () => {
-            studentSlider.scrollBy({ left: 360, behavior: 'smooth' });
+        nextBtn.addEventListener('click', () => {
+            // Скроллим вправо на ширину одной карточки
+            slider.scrollBy({ left: 360, behavior: 'smooth' });
         });
     }
 });
