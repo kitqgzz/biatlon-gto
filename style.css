@@ -2180,49 +2180,37 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ СТРАНИЦА «АКВА БИАТЛОН» (ФИНАЛ) ============ */
 
-/* --- 1. Блок Hero (Текст слева, картинка не обрезается) --- */
+/* --- 1. Блок Hero --- */
 .aqua-hero-section {
     position: relative;
+    /* Градиент: светлое небо сверху, синяя вода снизу */
+    background: linear-gradient(180deg, #E1ECF9 0%, #B3D4F5 60%, #2E6BC4 100%);
+    
     margin-top: 80px; /* Отступ под шапку */
-    background: url('images/aqua-hero.png') no-repeat center center / cover;
+    padding: 120px 0 200px 0; /* Снизу большой отступ, чтобы волна не накрыла кнопки */
+    min-height: 750px;
     
-    /* Увеличиваем отступы сверху и особенно снизу */
-    padding: 150px 0 200px 0; 
-    
-    /* Принудительно задаем большую высоту */
-    min-height: 850px; 
-    
-    display: flex;
-    align-items: center;
+    /* ВАЖНО: разрешаем волне вылезать за пределы блока */
+    overflow: visible; 
+    z-index: 2; 
 }
+
 .aqua-hero-inner {
+    position: relative;
+    z-index: 10; /* Текст всегда поверх картинок */
     display: flex;
-    justify-content: flex-start; /* Прижимаем к левому краю */
-    width: 100%;
+    justify-content: flex-start; /* Текст слева */
 }
+
 .aqua-hero-content {
-    background: rgba(255, 255, 255, 0.95); /* Белая плашка */
+    background: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 30px;
     max-width: 550px;
     box-shadow: 0 20px 40px rgba(13, 43, 92, 0.15);
 }
-.aqua-hero-title {
-    font-size: clamp(32px, 4vw, 46px);
-    font-weight: 900;
-    color: var(--blue-dark);
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-.aqua-hero-subtitle {
-    font-size: 17px;
-    color: #2A3B5C;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    font-weight: 500;
-}
 
-/* Кнопка "Узнать больше" (синяя обводка) */
+/* Кнопка "Узнать больше" */
 .btn-outline-blue {
     background: transparent;
     color: var(--blue-dark);
@@ -2234,15 +2222,75 @@ button { font-family: inherit; cursor: pointer; border: none; }
     transform: translateY(-2px);
 }
 
+/* Пловец (слева внизу) */
+.aqua-hero-swimmer {
+    position: absolute;
+    bottom: 0;
+    left: -5%; /* Немного вылезает влево */
+    width: 55%;
+    max-width: 850px;
+    z-index: 2;
+    mix-blend-mode: multiply; /* Убирает белый фон */
+    pointer-events: none;
+}
+
+/* Ласка (справа внизу) */
+.aqua-hero-weasel {
+    position: absolute;
+    bottom: 20px;
+    right: 5%;
+    width: 30%;
+    max-width: 450px;
+    z-index: 3;
+    mix-blend-mode: multiply; /* Убирает белый фон */
+    pointer-events: none;
+    animation: floatWeasel 4s ease-in-out infinite;
+}
+
+@keyframes floatWeasel {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* ВОЛНА (картинка) */
+.aqua-hero-wave-img {
+    position: absolute;
+    bottom: -2px; /* Прижимаем к низу и чуть опускаем */
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 4; /* Волна поверх персонажей */
+    pointer-events: none;
+    /* Если у волны белый фон, это сделает его прозрачным */
+    mix-blend-mode: multiply; 
+}
+
+/* --- Адаптив для мобильных --- */
 @media (max-width: 992px) {
     .aqua-hero-section {
-        background-position: center bottom;
-        padding: 80px 0 300px 0;
-        align-items: flex-start;
+        padding: 80px 0 250px 0; /* Увеличиваем отступ снизу под волну */
+        min-height: auto;
     }
-    .aqua-hero-inner { justify-content: center; }
-    .aqua-hero-content { text-align: center; max-width: 100%; padding: 30px; }
-    .preschool-hero-buttons { justify-content: center; }
+    .aqua-hero-inner {
+        justify-content: center;
+    }
+    .aqua-hero-content {
+        text-align: center;
+        padding: 30px;
+    }
+    .preschool-hero-buttons {
+        justify-content: center;
+    }
+    
+    /* На телефонах уменьшаем пловца и прячем ласку, чтобы не мешали тексту */
+    .aqua-hero-swimmer {
+        width: 90%;
+        left: -10%;
+        opacity: 0.3; /* Делаем полупрозрачным, уходит на фон */
+    }
+    .aqua-hero-weasel {
+        display: none; 
+    }
 }
 
 /* --- 2. Блок про мишень --- */
