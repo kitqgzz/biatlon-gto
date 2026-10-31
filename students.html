@@ -106,32 +106,32 @@
     <div class="container">
         <h2 class="section-title">Как проходят занятия</h2>
         <p class="section-subtitle">Каждое занятие — это мини-соревнование, где ты проверяешь себя в беге и стрельбе.</p>
-        
-        <div class="gallery-slider-wrap">
-                <button class="gallery-slider-btn gallery-slider-prev" id="studentSliderPrev" aria-label="Назад">‹</button>
-            <div class="gallery-slider student-slider" id="studentSlider">
-                <div class="preschool-element gallery-slide">
+
+        <div class="student-slider-wrap">
+            <button class="student-slider-btn prev" id="studentSliderPrev" aria-label="Назад">‹</button>
+            <div class="student-slider-container" id="studentSlider">
+                <div class="student-card">
                     <div class="preschool-element-num">01</div>
-                        <h3>Беговая подготовка</h3>
-                        <p>Вместо лыжной гонки — челночный бег, короткие дистанции (30, 60, 100 метров), эстафеты или круговая тренировка. Это развивает скорость, выносливость и взрывную силу — те качества, которые нужны настоящему биатлонисту.</p>
+                    <h3>Беговая подготовка</h3>
+                    <p>Вместо лыжной гонки — челночный бег, короткие дистанции (30, 60, 100 метров), эстафеты или круговая тренировка. Это развивает скорость, выносливость и взрывную силу — те качества, которые нужны настоящему биатлонисту.</p>
                 </div>
-                <div class="preschool-element gallery-slide">
+                <div class="student-card">
                     <div class="preschool-element-num">02</div>
-                        <h3>Огневой рубеж</h3>
-                        <p>После физической нагрузки ты выходишь на огневой рубеж. Стрельба ведётся из положения лёжа с упора или стоя. Винтовка лёгкая и безопасная, созданная на базе МР-61. Никакого специального тира не нужно — подойдёт любой спортзал или стадион.</p>
+                    <h3>Огневой рубеж</h3>
+                    <p>После физической нагрузки ты выходишь на огневой рубеж. Стрельба ведётся из положения лёжа с упора или стоя. Винтовка лёгкая и безопасная, созданная на базе МР-61. Никакого специального тира не нужно — подойдёт любой спортзал или стадион.</p>
                 </div>
-                <div class="preschool-element gallery-slide">
+                <div class="student-card">
                     <div class="preschool-element-num">03</div>
-                        <h3>Штрафные задания</h3>
-                        <p>Промахнулся? Не страшно! Вместо штрафного круга — силовое испытание: 10 приседаний, 5 отжиманий или короткий спринт. Это добавляет азарта и помогает стать сильнее.</p>
+                    <h3>Штрафные задания</h3>
+                    <p>Промахнулся? Не страшно! Вместо штрафного круга — силовое испытание: 10 приседаний, 5 отжиманий или короткий спринт. Это добавляет азарта и помогает стать сильнее.</p>
                 </div>
-                <div class="preschool-element gallery-slide">
+                <div class="student-card">
                     <div class="preschool-element-num">04</div>
-                        <h3>Соревнования и лиги</h3>
-                        <p>Регулярно проводятся соревнования внутри учебного заведения, на уровне города и региона. Лучшие команды выезжают на всероссийские финалы. А самые сильные студенты могут войти в студенческую спортивную лигу по биатлону.</p>
+                    <h3>Соревнования и лиги</h3>
+                    <p>Регулярно проводятся соревнования внутри учебного заведения, на уровне города и региона. Лучшие команды выезжают на всероссийские финалы. А самые сильные студенты могут войти в студенческую спортивную лигу по биатлону.</p>
                 </div>
             </div>
-        <button class="gallery-slider-btn gallery-slider-next" id="studentSliderNext" aria-label="Вперёд">›</button>
+            <button class="student-slider-btn next" id="studentSliderNext" aria-label="Вперёд">›</button>
         </div>
     </div>
 </section>
@@ -168,15 +168,15 @@
 </section>
 
 <!-- ============ 6. СВЯЗЬ С РЕАЛЬНЫМ ГТО ============ -->
-<section class="section" style="background: #FFFFFF;">
+<section class="section" id="gto-connection">
     <div class="container">
-        <div class="gto-box-new">
-            <div class="gto-text-new">
+        <div class="gto-grid">
+            <div class="gto-text">
                 <h2>Связь с реальным ГТО</h2>
                 <p>«Биатлон ГТО» — это не просто игра. Это тренировочный элемент, который напрямую готовит тебя к сдаче официальных тестов ГТО. Элементы биатлона тренируют меткость, координацию и стрессоустойчивость, которые проверяются в нормативах: «Стрельба из пневматической винтовки» и «Метание мяча в цель». Сдав нормы ГТО, ты получишь знак отличия — золотой, серебряный или бронзовый. А это — гордость для тебя, твоего учебного заведения и твоей семьи!</p>
                 <p>А ещё — это прямая дорога к допризывной подготовке. Навыки стрельбы и работы с оружием пригодятся тебе в армии и в жизни.</p>
             </div>
-            <div class="gto-img-new">
+            <div class="gto-image">
                 <img src="images/military.png" alt="Военный">
             </div>
         </div>
@@ -188,17 +188,17 @@
     <div class="container">
         <h2 class="section-title">Почему это круто?</h2>
         
-        <div class="cool-badges-wrap">
-            <div class="cool-badges-grid">
-                <div class="cool-badge" style="--rot: -3deg;"><span>💪</span><p>Ты становишься сильнее и выносливее — регулярные тренировки укрепляют тело и дух.</p></div>
-                <div class="cool-badge" style="--rot: 2deg;"><span>🎯</span><p>Ты учишься стрелять — навык, который пригодится в спорте, жизни и армии.</p></div>
-                <div class="cool-badge" style="--rot: -2deg;"><span>🏆</span><p>Ты участвуешь в соревнованиях — от внутривузовских до всероссийских.</p></div>
-                <div class="cool-badge" style="--rot: 3deg;"><span>🤝</span><p>Ты находишь друзей и команду — в студенческом спортивном клубе всегда веселее.</p></div>
-                <div class="cool-badge" style="--rot: -4deg;"><span>🏅</span><p>Ты готовишься к ГТО — и можешь получить знак отличия.</p></div>
-                <div class="cool-badge" style="--rot: 2deg;"><span>🔥</span><p>Ты становишься частью большого проекта — более 1 миллиона студентов уже с нами!</p></div>
-                <div class="cool-badge" style="--rot: -1deg;"><span>⭐</span><p>Ты можешь войти в студенческую лигу по биатлону — и представлять свой регион.</p></div>
+        <div class="cool-grid-fixed">
+            <div class="cool-badges">
+                <div class="cool-badge-item" style="--rot: -3deg;"><span>💪</span><p>Ты становишься сильнее и выносливее — регулярные тренировки укрепляют тело и дух.</p></div>
+                <div class="cool-badge-item" style="--rot: 2deg;"><span>🎯</span><p>Ты учишься стрелять — навык, который пригодится в спорте, жизни и армии.</p></div>
+                <div class="cool-badge-item" style="--rot: -2deg;"><span>🏆</span><p>Ты участвуешь в соревнованиях — от внутривузовских до всероссийских.</p></div>
+                <div class="cool-badge-item" style="--rot: 3deg;"><span>🤝</span><p>Ты находишь друзей и команду — в студенческом спортивном клубе всегда веселее.</p></div>
+                <div class="cool-badge-item" style="--rot: -4deg;"><span>🏅</span><p>Ты готовишься к ГТО — и можешь получить знак отличия.</p></div>
+                <div class="cool-badge-item" style="--rot: 2deg;"><span>🔥</span><p>Ты становишься частью большого проекта — более 1 миллиона студентов уже с нами!</p></div>
+                <div class="cool-badge-item" style="--rot: -1deg;"><span>⭐</span><p>Ты можешь войти в студенческую лигу по биатлону — и представлять свой регион.</p></div>
             </div>
-            <div class="cool-mascot">
+            <div class="cool-mascot-fixed">
                 <img src="images/laska.png" alt="Биатлошка">
             </div>
         </div>
