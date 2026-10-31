@@ -2180,22 +2180,28 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ СТРАНИЦА «АКВА БИАТЛОН» (ФИНАЛ) ============ */
 
-/* --- 1. Блок Hero (С прозрачными картинками) --- */
+/* --- 1. Блок Hero (Фон herobg.jpg, заходит на следующий блок) --- */
 .aqua-hero-section {
     position: relative;
-    background: linear-gradient(180deg, #E1ECF9 0%, #A2C8F2 50%, #2E6BC4 100%);
+    /* Твой новый фон */
+    background: url('images/herobg.jpg') no-repeat bottom center / cover;
     margin-top: 80px;
-    padding: 120px 0 180px 0; /* Оставляем место внизу под волну */
+    
+    /* Отступы: сверху для красоты, снизу большой, чтобы волна перекрыла текст */
+    padding: 100px 0 220px 0; 
     min-height: 700px;
-    overflow: hidden; /* Прячем всё лишнее за краями */
+    
+    /* МАГИЯ: отрицательный отступ снизу заставляет блок налезть на следующий */
+    margin-bottom: -80px; 
+    z-index: 2; /* Блок Hero поверх следующего */
 }
 
-/* Контейнер с текстом */
+/* Текстовая плашка (слева) */
 .aqua-hero-inner {
     position: relative;
-    z-index: 10; /* Текст поверх всех картинок */
+    z-index: 10; 
     display: flex;
-    justify-content: flex-start; /* Текст слева */
+    justify-content: flex-start;
 }
 
 .aqua-hero-content {
@@ -2206,7 +2212,35 @@ button { font-family: inherit; cursor: pointer; border: none; }
     box-shadow: 0 20px 40px rgba(13, 43, 92, 0.15);
 }
 
-/* Кнопки */
+/* ПЛОВЕЦ (Справа, но левее ласки) */
+.aqua-hero-swimmer {
+    position: absolute;
+    bottom: 60px; /* Чуть выше волны на фоне */
+    right: 25%; 
+    width: 35%;
+    max-width: 600px;
+    z-index: 2; /* Под текстом */
+    pointer-events: none;
+}
+
+/* ЛАСКА (Справа, у самого края) */
+.aqua-hero-weasel {
+    position: absolute;
+    bottom: 80px; 
+    right: 2%; 
+    width: 20%;
+    max-width: 320px;
+    z-index: 4; 
+    pointer-events: none;
+    animation: floatWeasel 4s ease-in-out infinite;
+}
+
+@keyframes floatWeasel {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Кнопка "Узнать больше" */
 .btn-outline-blue {
     background: transparent;
     color: var(--blue-dark);
@@ -2217,66 +2251,32 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color: #FFF;
 }
 
-/* ПЛОВЕЦ */
-.aqua-hero-swimmer {
-    position: absolute;
-    bottom: 40px; /* Чуть выше волны */
-    left: -2%; 
-    width: 45%;
-    max-width: 700px;
-    z-index: 2; /* Самый нижний слой */
-    pointer-events: none;
+/* --- ОЧЕНЬ ВАЖНО: стили для следующего блока (Что это такое) --- */
+/* Чтобы волна зашла на него, а текст не перекрылся, нужно добавить отступ сверху */
+#what-is-it {
+    position: relative;
+    z-index: 1;
+    padding-top: 120px; /* Отталкиваем текст вниз от волны */
 }
 
-/* ВОЛНА */
-.aqua-hero-wave-img {
-    position: absolute;
-    bottom: -5px; /* Прижимаем к низу */
-    left: 0;
-    width: 100%;
-    height: auto;
-    z-index: 3; /* Волна перекрывает низ пловца */
-    pointer-events: none;
-}
-
-/* ЛАСКА */
-.aqua-hero-weasel {
-    position: absolute;
-    bottom: 60px; /* Стоит поверх волны */
-    right: 5%;
-    width: 25%;
-    max-width: 350px;
-    z-index: 4; /* Поверх волны */
-    pointer-events: none;
-    animation: floatWeasel 4s ease-in-out infinite;
-}
-
-@keyframes floatWeasel {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
-
-/* --- Адаптив для мобильных --- */
+/* --- Адаптив --- */
 @media (max-width: 992px) {
     .aqua-hero-section {
-        padding: 80px 0 200px 0;
+        padding: 80px 0 150px 0;
         min-height: auto;
+        margin-bottom: 0; /* На телефонах отключаем наложение */
     }
-    .aqua-hero-inner {
-        justify-content: center;
-    }
-    .aqua-hero-content {
-        text-align: center;
-        padding: 30px;
-    }
-    .preschool-hero-buttons {
-        justify-content: center;
-    }
+    .aqua-hero-inner { justify-content: center; }
+    .aqua-hero-content { text-align: center; padding: 30px; max-width: 100%; }
+    .preschool-hero-buttons { justify-content: center; }
     
-    /* На телефонах прячем персонажей, чтобы не мешали читать */
+    /* На телефонах персонажей прячем, чтобы не мешали */
     .aqua-hero-swimmer, .aqua-hero-weasel {
         display: none; 
     }
+    
+    /* На телефонах возвращаем обычный отступ следующему блоку */
+    #what-is-it { padding-top: 50px; }
 }
 /* --- 2. Блок про мишень --- */
 .aqua-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
