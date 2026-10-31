@@ -2306,7 +2306,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .target-stats p { margin: 0; font-size: 18px; font-weight: 800; color: var(--blue-dark); }
 .btn-reset { background: var(--blue-dark); color: #fff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.2s; }
 .btn-reset:hover { background: var(--orange); }
-@media (max-width: 992px) { .aqua-about-grid { grid-template-columns: 1fr; margin-top: 50px; }
+@media (max-width: 992px) { .aqua-about-grid { grid-template-columns: 1fr; margin-top: -50px; }
 
 
 /* --- 3. Блок "Почему уникально" --- */
