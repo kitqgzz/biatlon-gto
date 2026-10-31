@@ -2287,21 +2287,57 @@ button { font-family: inherit; cursor: pointer; border: none; }
     box-shadow: inset 0 0 20px rgba(13, 43, 92, 0.05); width: 100%;
 }
 .target-game-title { font-weight: 800; color: var(--blue-dark); margin-bottom: 20px; font-size: 20px; }
-.target-wrapper { position: relative; margin-bottom: 20px; }
+/* Контейнер для мишени */
+.target-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+/* Контейнер для кликов */
 .target {
-    width: 250px; height: 250px; border-radius: 50%;
-    background: radial-gradient(circle, #F59E0B 0%, #F59E0B 15%, #0D2B5C 15%, #0D2B5C 30%, #FFFFFF 30%, #FFFFFF 45%, #0D2B5C 45%, #0D2B5C 60%, #FFFFFF 60%, #FFFFFF 75%, #0D2B5C 75%, #0D2B5C 90%, #FFFFFF 90%, #FFFFFF 100%);
-    border: 8px solid #081C3D;
-    box-shadow: 0 15px 30px rgba(13, 43, 92, 0.3), inset 0 0 20px rgba(0,0,0,0.2);
-    cursor: crosshair; position: relative; transition: transform 0.1s;
+    width: 250px; 
+    height: 250px;
+    position: relative; 
+    cursor: crosshair;
+    
+    /* Убираем старый фон, рамку и тени */
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
-.target:active { transform: scale(0.98); }
+
+/* Сама 3D картинка */
+.target-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* ВАЖНО: это свойство заставляет клик проходить сквозь картинку прямо в контейнер */
+    pointer-events: none; 
+    filter: drop-shadow(0 15px 30px rgba(13, 43, 92, 0.2));
+    transition: transform 0.1s;
+}
+/* Эффект нажатия (немного уменьшаем картинку) */
+.target:active .target-img {
+    transform: scale(0.98);
+}
+/* Пули (пробоины) */
 .bullet-hole {
-    position: absolute; width: 16px; height: 16px; background: #000; border-radius: 50%;
-    transform: translate(-50%, -50%); box-shadow: 0 0 10px 4px rgba(245, 158, 11, 0.8), inset 2px 2px 4px rgba(255,255,255,0.4);
-    pointer-events: none; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    position: absolute; 
+    width: 16px; 
+    height: 16px; 
+    background: #000; 
+    border-radius: 50%;
+    transform: translate(-50%, -50%); 
+    box-shadow: 0 0 10px 4px rgba(245, 158, 11, 0.8), inset 2px 2px 4px rgba(255,255,255,0.4);
+    pointer-events: none; 
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    z-index: 10; /* Пули всегда поверх картинки */
 }
-@keyframes popIn { 0% { transform: translate(-50%, -50%) scale(3); opacity: 0; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+
+@keyframes popIn { 
+    0% { transform: translate(-50%, -50%) scale(3); opacity: 0; } 
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 
+}
 .target-stats { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .target-stats p { margin: 0; font-size: 18px; font-weight: 800; color: var(--blue-dark); }
 .btn-reset { background: var(--blue-dark); color: #fff; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.2s; }
