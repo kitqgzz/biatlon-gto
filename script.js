@@ -443,20 +443,44 @@ if (contactSection) {
 }
 
 
-// Скрипт для слайдера на странице студентов
+// Скрипт для слайдера на странице студентов (с зацикливанием)
 document.addEventListener("DOMContentLoaded", function() {
     const slider = document.getElementById('studentSlider');
     const prevBtn = document.getElementById('studentSliderPrev');
     const nextBtn = document.getElementById('studentSliderNext');
 
     if (slider && prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            // Скроллим влево на ширину одной карточки
-            slider.scrollBy({ left: -360, behavior: 'smooth' });
-        });
+        
+        // Функция для вычисления ширины одной карточки + отступа (gap)
+        const getScrollAmount = () => {
+            const card = slider.querySelector('.student-card');
+            if (!card) return 360; // Запасное значение
+            // Ширина карточки + 24px (значение gap из CSS)
+            return card.offsetWidth + 24; 
+        };
+
+        // Клик вперед
         nextBtn.addEventListener('click', () => {
-            // Скроллим вправо на ширину одной карточки
-            slider.scrollBy({ left: 360, behavior: 'smooth' });
+            const scrollAmount = getScrollAmount();
+            
+            // Если мы у самого конца (погрешность 10px), крутим в начало
+            if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        });
+
+        // Клик назад
+        prevBtn.addEventListener('click', () => {
+            const scrollAmount = getScrollAmount();
+            
+            // Если мы в самом начале, крутим в конец
+            if (slider.scrollLeft <= 10) {
+                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
         });
     }
 });
