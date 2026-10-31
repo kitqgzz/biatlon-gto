@@ -33,11 +33,6 @@
 
 <!-- ============ 1. HERO ============ -->
 <section class="aqua-hero-section">
-    <!-- Картинка на весь правый край -->
-    <div class="aqua-hero-bg-image">
-        <img src="images/aqua-hero.png" alt="Аква биатлон">
-    </div>
-    
     <div class="container aqua-hero-inner">
         <div class="aqua-hero-content">
             <h1 class="aqua-hero-title">Аква биатлон: летний биатлон, который взрывает мозг</h1>
@@ -109,66 +104,87 @@
     </div>
 </section>
 
-<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ВОЛНЫ-СЛАЙДЕР) ============ -->
-<section class="section" id="how-it-works" style="overflow: hidden;">
+<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ЗМЕЙКА) ============ -->
+<section class="section" id="how-it-works">
     <div class="container">
         <h2 class="section-title">Правила за 30 секунд</h2>
-        <p class="section-subtitle">Командный формат (эстафета). Скролль вправо, чтобы увидеть все этапы!</p>
+        <p class="section-subtitle">Командный формат. Скролль вправо, чтобы увидеть все этапы!</p>
     </div>
     
-    <div class="timeline-wave-wrapper">
-        <div class="timeline-wave-track" id="timelineWave">
-            <div class="wave-card">
-                <div class="wave-icon">🏊‍♂️</div>
-                <h3>1. Плавание</h3>
-                <p>Эстафета 4×50 метров в бассейне.</p>
+    <div class="timeline-scroll-wrapper">
+        <div class="timeline-track">
+            <!-- Карточки -->
+            <div class="timeline-node">
+                <div class="node-icon">🏊‍♂️</div>
+                <div class="node-card">
+                    <h3>1. Плавание</h3>
+                    <p>Эстафета 4×50 метров в бассейне.</p>
+                </div>
             </div>
-            <div class="wave-card">
-                <div class="wave-icon">🏃‍♂️</div>
-                <h3>2. Бег</h3>
-                <p>300 метров до огневого рубежа.</p>
+            <div class="timeline-node">
+                <div class="node-icon">🏃‍♂️</div>
+                <div class="node-card">
+                    <h3>2. Бег</h3>
+                    <p>300 метров до огневого рубежа.</p>
+                </div>
             </div>
-            <div class="wave-card">
-                <div class="wave-icon">🧘‍♂️</div>
-                <h3>3. Силовое</h3>
-                <p>Упражнение на пресс перед стрельбой.</p>
+            <div class="timeline-node">
+                <div class="node-icon">🧘‍♂️</div>
+                <div class="node-card">
+                    <h3>3. Силовое</h3>
+                    <p>Упражнение на пресс перед стрельбой.</p>
+                </div>
             </div>
-            <div class="wave-card">
-                <div class="wave-icon">🎯</div>
-                <h3>4. Стрельба</h3>
-                <p>5 выстрелов из пневматической винтовки.</p>
+            <div class="timeline-node">
+                <div class="node-icon">🎯</div>
+                <div class="node-card">
+                    <h3>4. Стрельба</h3>
+                    <p>5 выстрелов из винтовки.</p>
+                </div>
             </div>
-            <div class="wave-card">
-                <div class="wave-icon">🤸‍♂️</div>
-                <h3>5. Штраф</h3>
-                <p>Отжимания за каждый промах.</p>
+            <div class="timeline-node">
+                <div class="node-icon">🤸‍♂️</div>
+                <div class="node-card">
+                    <h3>5. Штраф</h3>
+                    <p>Отжимания за каждый промах.</p>
+                </div>
             </div>
-            <div class="wave-card">
-                <div class="wave-icon">🏁</div>
-                <h3>6. Финиш</h3>
-                <p>Ускорение 100 метров.</p>
+            <div class="timeline-node">
+                <div class="node-icon">🏁</div>
+                <div class="node-card">
+                    <h3>6. Финиш</h3>
+                    <p>Ускорение 100 метров.</p>
+                </div>
             </div>
+            <!-- SVG Волна на фоне -->
+            <svg class="timeline-wave-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+                <path d="M0,50 Q100,0 200,50 T400,50 T600,50 T800,50 T1000,50 T1200,50" fill="none" stroke="#D6E4F5" stroke-width="8"/>
+            </svg>
         </div>
     </div>
 </section>
 
-<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНИСТАЯ ПЛАШКА) ============ -->
-<section class="section benefits-fullscreen-section" id="benefits">
-    <div class="benefits-custom-container">
-        <h2 class="section-title" style="text-align: left; margin-left: 10%;">Что ты получишь</h2>
-        
-        <div class="benefits-ref-box">
-            <div class="benefits-text-card">
+<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНА) ============ -->
+<section class="section benefits-wave-section" id="benefits">
+    <div class="benefits-wave-container">
+        <div class="benefits-inner-flex">
+            <!-- Белая карточка -->
+            <div class="benefits-white-card">
+                <h2 class="section-title" style="text-align: left; font-size: 32px; margin-bottom: 30px;">Что ты получишь</h2>
                 <ul class="benefits-list">
                     <li><span class="benefit-icon">❤️</span><div class="benefit-text"><strong>Для тела</strong><p>Кардио, суставы, осанка</p></div></li>
                     <li><span class="benefit-icon">🧠</span><div class="benefit-text"><strong>Для головы</strong><p>Стрессоустойчивость, уверенность</p></div></li>
                     <li><span class="benefit-icon">🤝</span><div class="benefit-text"><strong>Для команды</strong><p>Чувство плеча</p></div></li>
                 </ul>
             </div>
-            <div class="benefits-trophy">
+
+            <!-- Кубок -->
+            <div class="benefits-trophy-new">
                 <img src="images/aqua-trophy.png" alt="Кубок">
             </div>
-            <div class="benefits-blue-badge">
+
+            <!-- Синяя волнистая плашка (уходит вправо) -->
+            <div class="benefits-blue-wave">
                 <div class="badge-inner">
                     <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
                     <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
@@ -236,7 +252,7 @@
     </div>
 </section>
 
-    <!-- ============ 6.5 ФОТОГАЛЕРЕЯ ============ -->
+<!-- ============ 6.5 ФОТОГАЛЕРЕЯ ============ -->
 <section class="section" id="aqua-gallery">
     <div class="container">
         <h2 class="section-title">Фотографии с соревнований</h2>
@@ -245,7 +261,6 @@
     <div class="gallery-slider-wrap">
         <button class="gallery-slider-btn gallery-slider-prev" id="aquaGalPrev" aria-label="Назад">‹</button>
         <div class="gallery-slider" id="aquaGalSlider">
-            <!-- Вставь сюда свои новые фотки (можно использовать те же классы) -->
             <div class="gallery-slide"><img src="images/gallery-01.jpg" alt="Фото 1" class="aqua-lightbox-trigger"></div>
             <div class="gallery-slide"><img src="images/gallery-02.jpg" alt="Фото 2" class="aqua-lightbox-trigger"></div>
             <div class="gallery-slide"><img src="images/gallery-03.jpg" alt="Фото 3" class="aqua-lightbox-trigger"></div>
@@ -255,6 +270,14 @@
         <button class="gallery-slider-btn gallery-slider-next" id="aquaGalNext" aria-label="Вперёд">›</button>
     </div>
 </section>
+
+<!-- Лайтбокс -->
+<div class="lightbox" id="aquaLightbox">
+    <button class="lightbox-close" id="aquaLightboxClose" aria-label="Закрыть">×</button>
+    <button class="lightbox-nav lightbox-prev" id="aquaLightboxPrev" aria-label="Назад">‹</button>
+    <img src="" alt="" id="aquaLightboxImg">
+    <button class="lightbox-nav lightbox-next" id="aquaLightboxNext" aria-label="Вперёд">›</button>
+</div>
 
 <!-- Лайтбокс для галереи -->
 <div class="lightbox" id="aquaLightbox">
