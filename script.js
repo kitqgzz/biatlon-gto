@@ -441,3 +441,19 @@ if (contactSection) {
 
     contactObserver.observe(contactSection);
 }
+
+// Скрипт для слайдера на странице студентов
+document.addEventListener("DOMContentLoaded", function() {
+    const studentSlider = document.getElementById('studentSlider');
+    const studentPrev = document.getElementById('studentSliderPrev');
+    const studentNext = document.getElementById('studentSliderNext');
+
+    if (studentSlider && studentPrev && studentNext) {
+        studentPrev.addEventListener('click', () => {
+            studentSlider.scrollBy({ left: -360, behavior: 'smooth' });
+        });
+        studentNext.addEventListener('click', () => {
+            studentSlider.scrollBy({ left: 360, behavior: 'smooth' });
+        });
+    }
+});
