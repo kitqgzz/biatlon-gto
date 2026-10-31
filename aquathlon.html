@@ -102,22 +102,22 @@
     </div>
 </section>
 
-<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ТАЙМЛАЙН) ============ -->
+<!-- ============ 4. КАК ЭТО РАБОТАЕТ ============ -->
 <section class="section" id="how-it-works">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 20px;">
         <div>
             <h2 class="section-title" style="text-align: left; margin-bottom: 10px;">Правила за 30 секунд</h2>
             <p class="section-subtitle" style="text-align: left; margin-bottom: 0;">Скролль вправо, чтобы увидеть все этапы.</p>
         </div>
         <div class="timeline-nav">
-            <button id="timePrev" class="btn-nav">‹</button>
-            <button id="timeNext" class="btn-nav">›</button>
+            <button id="timePrev" class="btn-nav" type="button">‹</button>
+            <button id="timeNext" class="btn-nav" type="button">›</button>
         </div>
     </div>
     
     <div class="timeline-scroll-wrapper">
         <div class="timeline-track" id="timeTrack">
-            <!-- Кривая линия -->
+            <!-- Линия -->
             <div class="timeline-bg-line"></div>
             
             <div class="timeline-node">
@@ -148,18 +148,9 @@
     </div>
 </section>
 
-<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНА СПРАВА) ============ -->
+<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ ============ -->
 <section class="section benefits-wave-section" id="benefits">
-    
-    <!-- Синяя волна, выезжающая справа -->
-    <div class="benefits-blue-wave">
-        <div class="badge-inner">
-            <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
-            <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
-        </div>
-    </div>
-
-    <div class="container">
+    <div class="container" style="position: relative; z-index: 2;">
         <div class="benefits-layout">
             <!-- Белая карточка слева -->
             <div class="benefits-white-card">
@@ -175,6 +166,14 @@
             <div class="benefits-trophy-img">
                 <img src="images/aqua-trophy.png" alt="Кубок">
             </div>
+        </div>
+    </div>
+
+    <!-- Синяя волна СПРАВА -->
+    <div class="benefits-blue-wave">
+        <div class="badge-inner">
+            <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
+            <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
         </div>
     </div>
 </section>
