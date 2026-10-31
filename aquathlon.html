@@ -1,1 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Аква биатлон — Биатлон ГТО</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-aquathlon">
 
+<!-- ============ ХЕДЕР ============ -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logogto.png" alt="Биатлон ГТО" class="logo-img">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="index.html#about">О проекте</a>
+            <a href="preschool.html">Биатлошка</a>
+            <a href="students.html">Студентам</a>
+            <a href="aquathlon.html" style="background: var(--orange); color: var(--white);">Аква биатлон</a>
+            <a href="index.html#contacts">Связаться с нами</a>
+        </nav>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- ============ 1. HERO (С ЭФФЕКТОМ ЗАПЛЫВАНИЯ) ============ -->
+<section class="aqua-hero-section">
+    <div class="container aqua-hero-inner">
+        <div class="aqua-hero-content">
+            <h1 class="aqua-hero-title">Аква биатлон: летний биатлон, который взрывает мозг</h1>
+            <p class="aqua-hero-subtitle">
+                Попробуй то, что меняет правила игры! Представь: ты плывёшь по дорожке бассейна, выходишь на бортик, бежишь к огневому рубежу, сердце колотится, дыхание сбито — и прямо с ходу нужно попасть в мишень.
+            </p>
+            <div class="preschool-hero-buttons">
+                <a href="https://forms.yandex.ru/u/6abb74a384227cf427d6c8b0" target="_blank" rel="noopener" class="btn btn-orange">Хочу попробовать</a>
+                <a href="#what-is-it" class="btn btn-outline-blue">Узнать больше</a>
+            </div>
+        </div>
+    </div>
+    <!-- Картинка, которая свисает вниз -->
+    <div class="aqua-hero-image-wrap">
+        <img src="images/aqua-hero.png" alt="Аква биатлон" class="aqua-hero-img">
+    </div>
+</section>
+
+<!-- ============ 2. ЧТО ЭТО ТАКОЕ + ИНТЕРАКТИВНАЯ МИШЕНЬ ============ -->
+<section class="section" id="what-is-it" style="padding-top: 150px;">
+    <div class="container">
+        <div class="aqua-about-grid">
+            <div class="aqua-about-text">
+                <h2 class="section-title" style="text-align: left;">Что это такое?</h2>
+                <p><strong>Аква биатлон</strong> — это уникальный гибридный вид спорта, который объединяет <strong>плавание</strong>, <strong>бег</strong> и <strong>стрельбу из пневматической винтовки</strong>.</p>
+                <p>Он был создан как летняя альтернатива классическому биатлону для участников проекта «Биатлон в школу, Биатлон в ГТО, Биатлон в колледж» и быстро стал самостоятельным, зрелищным и невероятно увлекательным направлением.</p>
+                <p>В отличие от традиционного биатлона, здесь не нужен снег, лыжи и специальная трасса. Достаточно бассейна или открытого водоёма, беговой дорожки и огневого рубежа с мишенями.</p>
+            </div>
+            
+            <!-- Игра "Мишень" -->
+            <div class="target-game-container">
+                <p class="target-game-title">Проверь свою меткость!</p>
+                <div class="target-wrapper">
+                    <div class="target" id="aquaTarget">
+                        <div class="target-center"></div>
+                    </div>
+                </div>
+                <div class="target-stats">
+                    <p>Попадания: <span id="hitCounter">0</span> / 5</p>
+                    <button id="resetTargetBtn" class="btn-reset">Сбросить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 3. ПОЧЕМУ ЭТО УНИКАЛЬНО ============ -->
+<section class="section section-gray" id="why-unique">
+    <div class="container">
+        <h2 class="section-title">Почему это уникально?</h2>
+        <div class="preschool-elements">
+            <div class="preschool-element">
+                <div class="preschool-element-num">01</div>
+                <h3>Три стихии</h3>
+                <p>Ты не просто бежишь — ты плывёшь, бежишь и стреляешь. Аква биатлон заставляет тело работать в трёх режимах одновременно. Это вызов самому себе.</p>
+            </div>
+            <div class="preschool-element">
+                <div class="preschool-element-num">02</div>
+                <h3>Стрельба «с ходу»</h3>
+                <p>Выходишь из воды и сразу бежишь к винтовке. Сердце колотится, руки дрожат — и именно в этот момент нужно попасть в цель. Это тренирует стрессоустойчивость.</p>
+            </div>
+            <div class="preschool-element">
+                <div class="preschool-element-num">03</div>
+                <h3>Промах — испытание</h3>
+                <p>Промахнулся? Вместо штрафного круга — отжимания (3 для девушек, 5 для юношей). Это добавляет азарта и превращает ошибку в возможность стать сильнее.</p>
+            </div>
+            <div class="preschool-element">
+                <div class="preschool-element-num">04</div>
+                <h3>Доступно каждому</h3>
+                <p>Не нужно быть мастером спорта. Стартуем с простых дистанций: эстафета 4×50 м, бег 300 м и 5 выстрелов. Постепенно нагрузка растёт.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ТАЙМЛАЙН) ============ -->
+<section class="section" id="how-it-works">
+    <div class="container">
+        <h2 class="section-title">Правила за 30 секунд</h2>
+        <p class="section-subtitle">Командный формат (эстафета): в команде 4 спортсмена (2 юноши и 2 девушки).</p>
+        
+        <div class="aqua-timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">🏊‍♂️</div>
+                <div class="timeline-text"><strong>1. Плавание</strong><br>Эстафета 4×50 метров.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🏃‍♂️</div>
+                <div class="timeline-text"><strong>2. Бег</strong><br>300 метров до рубежа.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🧘‍♂️</div>
+                <div class="timeline-text"><strong>3. Силовое</strong><br>Упражнение на пресс.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🎯</div>
+                <div class="timeline-text"><strong>4. Стрельба</strong><br>5 выстрелов по мишеням.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🤸‍♂️</div>
+                <div class="timeline-text"><strong>5. Штраф</strong><br>Отжимания за промах.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🏁</div>
+                <div class="timeline-text"><strong>6. Финиш</strong><br>Спринт 100 метров.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (РЕФЕРЕНС) ============ -->
+<section class="section section-gray" id="benefits">
+    <div class="container">
+        <h2 class="section-title">Что ты получишь</h2>
+        
+        <div class="benefits-ref-box">
+            <div class="benefits-text-card">
+                <ul class="benefits-list">
+                    <li><span class="benefit-icon">❤️</span><div class="benefit-text"><strong>Для тела</strong><p>Кардио, суставы, осанка</p></div></li>
+                    <li><span class="benefit-icon">🧠</span><div class="benefit-text"><strong>Для головы</strong><p>Стрессоустойчивость, уверенность</p></div></li>
+                    <li><span class="benefit-icon">🤝</span><div class="benefit-text"><strong>Для команды</strong><p>Чувство плеча</p></div></li>
+                </ul>
+            </div>
+            <div class="benefits-trophy">
+                <img src="images/aqua-trophy.png" alt="Кубок" style="max-height: 180px; filter: drop-shadow(0 15px 20px rgba(13, 43, 92, 0.25));">
+            </div>
+            <div class="benefits-blue-badge">
+                <div class="badge-inner">
+                    <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
+                    <p>Аквабиатлон — один из видов испытаний комплекса ГТО</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 6. ИСТОРИИ УСПЕХА ============ -->
+<section class="section" id="success-stories">
+    <div class="container">
+        <h2 class="section-title">Истории успеха</h2>
+        <div class="aqua-stories-grid">
+            <div class="aqua-stories-text">
+                <div class="stat-item" style="text-align: left; margin-bottom: 30px;">
+                    <div class="stat-num"><span class="stat-sign">&gt;</span>600</div>
+                    <div class="stat-label">школьников и студентов соревновались в финале на стадионе «Калининец» в Екатеринбурге.</div>
+                </div>
+                <div class="stat-item" style="text-align: left; margin-bottom: 30px;">
+                    <div class="stat-num">2020</div>
+                    <div class="stat-label">Команда Верхнесинячихинской школы №3 выиграла чемпионат Свердловской области по Аква биатлону.</div>
+                </div>
+                <div class="stat-item" style="text-align: left;">
+                    <div class="stat-num"><span class="stat-sign">&gt;</span>1400</div>
+                    <div class="stat-label">участников ежегодно собирают региональные этапы Всероссийского марафона.</div>
+                </div>
+            </div>
+            <div class="aqua-stories-image">
+                <img src="images/aqua-podium.png" alt="Ласка на пьедестале">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 7. FAQ ============ -->
+<section class="section section-gray" id="faq">
+    <div class="container">
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <div class="faq-grid-layout">
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">Нужно ли уметь плавать?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Да, базовые навыки плавания необходимы. Но дистанции адаптированы под возраст и подготовку.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">А если я никогда не стрелял?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Всё впервые когда-то случается. Винтовка «Биатлон ГТО» лёгкая и безопасная. Тренер покажет всё с нуля.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Это опасно?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Нет. Стрельба ведётся под контролем инструктора. Винтовки сертифицированы для использования в образовательных организациях.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">С какого возраста можно участвовать?<span class="faq-toggle">+</span></button>
+                    <div class="faq-answer"><p>Соревнования проводятся среди школьников (5-11 классы), студентов, педагогов и производственных коллективов.</p></div>
+                </div>
+            </div>
+            <div class="faq-image">
+                <img src="images/aqua-sign.png" alt="Ласка с табличкой">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 8. ПРИЗЫВ К ДЕЙСТВИЮ ============ -->
+<section class="cta" id="join-aqua">
+    <div class="container cta-inner">
+        <h2>Не нужно быть особенным, чтобы начать.<br>Нужно просто начать — и ты станешь особенным.</h2>
+        <p>Узнай, участвует ли твоё учебное заведение в проекте, запишись в секцию и приходи на первое занятие!</p>
+        <a href="https://forms.yandex.ru/u/6abb74a384227cf427d6c8b0" target="_blank" rel="noopener" class="btn btn-white">Хочу попробовать</a>
+    </div>
+</section>
+
+<!-- ============ 9. ФУТЕР ============ -->
+<footer class="footer" id="contacts">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="images/logogto.png" alt="Биатлон ГТО" class="footer-logo-img"></div>
+                <p>Благотворительный фонд поддержки и развития физкультурно-спортивных многоборий «Биатлон Готов к Труду и Обороне».</p>
+                <div class="footer-socials">
+                    <a href="https://vk.ru/biatlonv_gto" target="_blank" class="footer-social">VK</a>
+                    <a href="https://t.me/unostrus96" target="_blank" class="footer-social">TG</a>
+                    <a href="https://max.ru/join/y0WsVsxAyvVWuQJE02IU4ZRLbYFkY3nSQubuzBuzwjU" target="_blank" class="footer-social">MAX</a>
+                </div>
+            </div>
+            <div>
+                <h4>Проект</h4>
+                <ul>
+                    <li><a href="index.html#about">О проекте</a></li>
+                    <li><a href="index.html#heroes">Герои проекта</a></li>
+                    <li><a href="index.html#elements">Элементы проекта</a></li>
+                    <li><a href="index.html#video">Хроника проекта</a></li>
+                    <li><a href="index.html#projects">Наши проекты</a></li>
+                    <li><a href="index.html#gallery">Фотогалерея</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Информация</h4>
+                <ul>
+                    <li><a href="docs/rabochaya-programma.pdf" target="_blank">Примерная рабочая программа</a></li>
+                    <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                    <li><a href="https://biatlonvgto.ru/" target="_blank">Основной сайт</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Контакты</h4>
+                <p>Email: gromykollila@yandex.ru</p>
+                <p>Телефон: +7 982 672 23 32</p>
+                <p>Контактное лицо: Громыко Лилия Ивановна</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-requisites">
+                ПОЛНОЕ НАИМЕНОВАНИЕ: Благотворительный Фонд поддержки и развития физкультурно-спортивных многоборий «Биатлон Готов к Труду и Обороне» · ИНН 9703152613 · КПП 770301001 · ОГРН 1237700527855
+            </div>
+            <div class="footer-partners" style="margin-top: 15px; margin-bottom: 15px; font-weight: 600; color: rgba(255,255,255,0.7);">
+                Проект реализуется Благотворительным фондом «Биатлон — Готов к Труду и Обороне» при поддержке Министерства спорта РФ, Министерства просвещения РФ и Союза биатлонистов России.
+            </div>
+            <div class="footer-copy">
+                © Благотворительный фонд «Биатлон Готов к Труду и Обороне», 2019–2026. Все права защищены.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
