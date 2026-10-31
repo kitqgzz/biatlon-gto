@@ -522,21 +522,47 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 2. Скролл Таймлайна (Правила за 30 секунд) ---
-    // ВАЖНО: Ищем обертку timeline-scroll-wrapper, так как именно она скроллится
+    // --- 2. Скролл Таймлайна (Стрелки + Перетаскивание мышкой) ---
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     const timePrev = document.getElementById('timePrev');
     const timeNext = document.getElementById('timeNext');
 
     if (timeWrapper && timePrev && timeNext) {
+        // Скролл по стрелкам
         timePrev.addEventListener('click', () => {
             timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
         });
         timeNext.addEventListener('click', () => {
             timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
         });
-    }
 
+        // Перетаскивание мышкой (Drag to scroll)
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        timeWrapper.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - timeWrapper.offsetLeft;
+            scrollLeft = timeWrapper.scrollLeft;
+        });
+
+        timeWrapper.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        timeWrapper.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        timeWrapper.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - timeWrapper.offsetLeft;
+            const walk = (x - startX) * 2; // Скорость прокрутки
+            timeWrapper.scrollLeft = scrollLeft - walk;
+        });
+    }
     // --- 3. Галерея (Слайдер и Лайтбокс) ---
     const galSlider = document.getElementById('aquaGalSlider');
     const galPrev = document.getElementById('aquaGalPrev');
