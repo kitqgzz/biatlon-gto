@@ -485,7 +485,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-
 // ==========================================
 // СКРИПТЫ ДЛЯ СТРАНИЦЫ "АКВА БИАТЛОН"
 // ==========================================
@@ -499,19 +498,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (target && hitCounter && resetBtn) {
         target.addEventListener('click', function(e) {
-            if (hits >= 5) return; // Максимум 5 выстрелов
+            if (hits >= 5) return;
 
             const rect = target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
             const hole = document.createElement('div');
             hole.classList.add('bullet-hole');
-            hole.style.left = `${x}px`;
-            hole.style.top = `${y}px`;
+            hole.style.left = `${e.clientX - rect.left}px`;
+            hole.style.top = `${e.clientY - rect.top}px`;
             
             target.appendChild(hole);
-
             hits++;
             hitCounter.textContent = hits;
 
@@ -523,29 +518,29 @@ document.addEventListener("DOMContentLoaded", function() {
         resetBtn.addEventListener('click', function() {
             hits = 0;
             hitCounter.textContent = hits;
-            const holes = target.querySelectorAll('.bullet-hole');
-            holes.forEach(h => h.remove());
+            target.querySelectorAll('.bullet-hole').forEach(h => h.remove());
         });
     }
 
     // --- 2. Скролл Таймлайна (Правила за 30 секунд) ---
-    const timeTrack = document.getElementById('timeTrack');
+    // ВАЖНО: Ищем обертку timeline-scroll-wrapper, так как именно она скроллится
+    const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     const timePrev = document.getElementById('timePrev');
     const timeNext = document.getElementById('timeNext');
 
-    if (timeTrack && timePrev && timeNext) {
+    if (timeWrapper && timePrev && timeNext) {
         timePrev.addEventListener('click', () => {
-            timeTrack.scrollBy({ left: -280, behavior: 'smooth' });
+            timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
         });
         timeNext.addEventListener('click', () => {
-            timeTrack.scrollBy({ left: 280, behavior: 'smooth' });
+            timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
         });
     }
 
     // --- 3. Галерея (Слайдер и Лайтбокс) ---
-    const slider = document.getElementById('aquaGalSlider');
-    const prevBtn = document.getElementById('aquaGalPrev');
-    const nextBtn = document.getElementById('aquaGalNext');
+    const galSlider = document.getElementById('aquaGalSlider');
+    const galPrev = document.getElementById('aquaGalPrev');
+    const galNext = document.getElementById('aquaGalNext');
     
     const lightbox = document.getElementById('aquaLightbox');
     const lightboxImg = document.getElementById('aquaLightboxImg');
@@ -556,13 +551,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentIndex = 0;
     let galleryImages = [];
 
-    if (slider && prevBtn && nextBtn) {
-        // Скролл стрелками
-        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -320, behavior: 'smooth' }));
-        nextBtn.addEventListener('click', () => slider.scrollBy({ left: 320, behavior: 'smooth' }));
+    if (galSlider && galPrev && galNext) {
+        galPrev.addEventListener('click', () => galSlider.scrollBy({ left: -320, behavior: 'smooth' }));
+        galNext.addEventListener('click', () => galSlider.scrollBy({ left: 320, behavior: 'smooth' }));
 
-        // Сбор картинок для лайтбокса
-        const triggers = slider.querySelectorAll('.aqua-lightbox-trigger');
+        const triggers = galSlider.querySelectorAll('.aqua-lightbox-trigger');
         triggers.forEach((img, index) => {
             galleryImages.push(img.src);
             img.addEventListener('click', () => {
@@ -576,16 +569,24 @@ document.addEventListener("DOMContentLoaded", function() {
         if(lightboxImg && lightbox) {
             lightboxImg.src = galleryImages[index];
             lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Блокируем фон
         }
     }
 
     if (lightboxClose && lightbox) {
-        lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
-        lightbox.addEventListener('click', (e) => { 
-            if (e.target === lightbox) lightbox.classList.remove('active'); 
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Возвращаем скролл
         });
         
-        // Листание в лайтбоксе
+        lightbox.addEventListener('click', (e) => { 
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active'); 
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Листание фото в лайтбоксе
         if (lightboxPrev && lightboxNext) {
             lightboxPrev.addEventListener('click', (e) => {
                 e.stopPropagation();
