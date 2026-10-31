@@ -2183,12 +2183,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* --- 1. Блок Hero (Текст слева, картинка не обрезается) --- */
 .aqua-hero-section {
     position: relative;
-    /* Отступаем сверху ровно на высоту фиксированной шапки (примерно 80px) */
-    margin-top: 80px; 
-    /* Смещаем фокус картинки на центр, чтобы ничего не обрезалось */
+    margin-top: 80px; /* Отступ под шапку */
     background: url('images/aqua-hero.png') no-repeat center center / cover;
-    padding: 100px 0;
-    min-height: 650px;
+    
+    /* Увеличиваем отступы сверху и особенно снизу */
+    padding: 150px 0 200px 0; 
+    
+    /* Принудительно задаем большую высоту */
+    min-height: 850px; 
+    
     display: flex;
     align-items: center;
 }
