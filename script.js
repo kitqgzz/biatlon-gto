@@ -525,16 +525,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Скрипт для галереи на странице Аква биатлон
 document.addEventListener("DOMContentLoaded", function() {
-    const slider = document.getElementById('aquaGallerySlider');
-    const prevBtn = document.getElementById('aquaGalleryPrev');
-    const nextBtn = document.getElementById('aquaGalleryNext');
+    const slider = document.getElementById('aquaGalSlider');
+    const prevBtn = document.getElementById('aquaGalPrev');
+    const nextBtn = document.getElementById('aquaGalNext');
+    
+    // Лайтбокс
+    const lightbox = document.getElementById('aquaLightbox');
+    const lightboxImg = document.getElementById('aquaLightboxImg');
+    const lightboxClose = document.getElementById('aquaLightboxClose');
 
     if (slider && prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -340, behavior: 'smooth' }); // 320px картинка + 20px отступ
+        // Скролл
+        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -340, behavior: 'smooth' }));
+        nextBtn.addEventListener('click', () => slider.scrollBy({ left: 340, behavior: 'smooth' }));
+
+        // Открытие лайтбокса
+        const triggers = slider.querySelectorAll('.aqua-lightbox-trigger');
+        triggers.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
         });
-        nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: 340, behavior: 'smooth' });
+    }
+
+    if (lightboxClose && lightbox) {
+        lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) lightbox.classList.remove('active');
         });
     }
 });
