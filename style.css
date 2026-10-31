@@ -2283,8 +2283,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .aqua-about-text p { font-size: 16px; color: #4A5A75; line-height: 1.75; margin-bottom: 16px; }
 .target-game-container {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 40px; background: #EEF4FC; border-radius: 30px;
-    box-shadow: inset 0 0 20px rgba(13, 43, 92, 0.05); width: 100%;
+    text-align: center; padding: 40px; border-radius: 30px;
 }
 .target-game-title { font-weight: 800; color: var(--blue-dark); margin-bottom: 20px; font-size: 20px; }
 /* Контейнер для мишени */
