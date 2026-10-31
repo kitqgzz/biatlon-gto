@@ -21,8 +21,8 @@
         <nav class="nav" id="nav">
             <a href="index.html#about">О проекте</a>
             <a href="preschool.html">Биатлошка</a>
-            <a href="aquathlon.html" style="background: var(--orange); color: var(--white);">Аква биатлон</a>
             <a href="students.html">Студентам</a>
+            <a href="aquathlon.html" style="background: var(--orange); color: var(--white);">Аква биатлон</a>
             <a href="index.html#contacts">Связаться с нами</a>
         </nav>
         <button class="burger" id="burger" aria-label="Меню">
@@ -47,8 +47,8 @@
     </div>
 </section>
 
-<!-- ============ 2. ЧТО ЭТО ТАКОЕ + ИНТЕРАКТИВНАЯ МИШЕНЬ ============ -->
-<section class="section" id="what-is-it" style="padding-top: 150px;">
+<!-- ============ 2. ЧТО ЭТО ТАКОЕ + МИШЕНЬ ============ -->
+<section class="section" id="what-is-it">
     <div class="container">
         <div class="aqua-about-grid">
             <div class="aqua-about-text">
@@ -58,7 +58,7 @@
                 <p>В отличие от традиционного биатлона, здесь не нужен снег, лыжи и специальная трасса. Достаточно бассейна или открытого водоёма, беговой дорожки и огневого рубежа с мишенями.</p>
             </div>
             
-            <!-- Игра "Мишень" -->
+            <!-- Мишень -->
             <div class="target-game-container">
                 <p class="target-game-title">Проверь свою меткость!</p>
                 <div class="target-wrapper">
@@ -102,7 +102,7 @@
     </div>
 </section>
 
-<!-- ============ 4. КАК ЭТО РАБОТАЕТ ============ -->
+<!-- ============ 4. КАК ЭТО РАБОТАЕТ (ТАЙМЛАЙН) ============ -->
 <section class="section" id="how-it-works">
     <div class="container" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
         <div>
@@ -117,6 +117,9 @@
     
     <div class="timeline-scroll-wrapper">
         <div class="timeline-track" id="timeTrack">
+            <!-- Кривая линия -->
+            <div class="timeline-bg-line"></div>
+            
             <div class="timeline-node">
                 <div class="node-icon">🏊‍♂️</div>
                 <div class="node-card"><h3>1. Плавание</h3><p>Эстафета 4×50 метров.</p></div>
@@ -145,9 +148,10 @@
     </div>
 </section>
 
-<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНА) ============ -->
+<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ (ВОЛНА СПРАВА) ============ -->
 <section class="section benefits-wave-section" id="benefits">
-    <!-- ВОЛНА: Абсолютно позиционирована от левого края экрана -->
+    
+    <!-- Синяя волна, выезжающая справа -->
     <div class="benefits-blue-wave">
         <div class="badge-inner">
             <img src="images/logogto.png" alt="Биатлон ГТО" class="badge-logo">
@@ -157,7 +161,7 @@
 
     <div class="container">
         <div class="benefits-layout">
-            <!-- Белая карточка поверх волны -->
+            <!-- Белая карточка слева -->
             <div class="benefits-white-card">
                 <h2 class="section-title" style="text-align: left; font-size: 32px; margin-bottom: 30px;">Что ты получишь</h2>
                 <ul class="benefits-list">
@@ -200,8 +204,26 @@
         </div>
     </div>
 </section>
-    
-    
+
+<!-- ============ 6.5 ФОТОГАЛЕРЕЯ ============ -->
+<section class="section" id="aqua-gallery">
+    <div class="container">
+        <h2 class="section-title">Фотографии с соревнований</h2>
+        <p class="section-subtitle">Яркие моменты Аква биатлона</p>
+    </div>
+    <div class="gallery-slider-wrap">
+        <button class="gallery-slider-btn gallery-slider-prev" id="aquaGalPrev" aria-label="Назад">‹</button>
+        <div class="gallery-slider" id="aquaGalSlider">
+            <!-- Не забудь заменить эти картинки на реальные фото с соревнований -->
+            <div class="gallery-slide"><img src="images/gallery-01.jpg" alt="Фото 1" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-02.jpg" alt="Фото 2" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-03.jpg" alt="Фото 3" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-04.jpg" alt="Фото 4" class="aqua-lightbox-trigger"></div>
+            <div class="gallery-slide"><img src="images/gallery-05.jpg" alt="Фото 5" class="aqua-lightbox-trigger"></div>
+        </div>
+        <button class="gallery-slider-btn gallery-slider-next" id="aquaGalNext" aria-label="Вперёд">›</button>
+    </div>
+</section>
 
 <!-- ============ 7. FAQ ============ -->
 <section class="section section-gray" id="faq">
@@ -233,39 +255,6 @@
     </div>
 </section>
 
-<!-- ============ 6.5 ФОТОГАЛЕРЕЯ ============ -->
-<section class="section" id="aqua-gallery">
-    <div class="container">
-        <h2 class="section-title">Фотографии с соревнований</h2>
-        <p class="section-subtitle">Яркие моменты Аква биатлона</p>
-    </div>
-    <div class="gallery-slider-wrap">
-        <button class="gallery-slider-btn gallery-slider-prev" id="aquaGalPrev" aria-label="Назад">‹</button>
-        <div class="gallery-slider" id="aquaGalSlider">
-            <div class="gallery-slide"><img src="images/gallery-01.jpg" alt="Фото 1" class="aqua-lightbox-trigger"></div>
-            <div class="gallery-slide"><img src="images/gallery-02.jpg" alt="Фото 2" class="aqua-lightbox-trigger"></div>
-            <div class="gallery-slide"><img src="images/gallery-03.jpg" alt="Фото 3" class="aqua-lightbox-trigger"></div>
-            <div class="gallery-slide"><img src="images/gallery-04.jpg" alt="Фото 4" class="aqua-lightbox-trigger"></div>
-            <div class="gallery-slide"><img src="images/gallery-05.jpg" alt="Фото 5" class="aqua-lightbox-trigger"></div>
-        </div>
-        <button class="gallery-slider-btn gallery-slider-next" id="aquaGalNext" aria-label="Вперёд">›</button>
-    </div>
-</section>
-
-<!-- Лайтбокс -->
-<div class="lightbox" id="aquaLightbox">
-    <button class="lightbox-close" id="aquaLightboxClose" aria-label="Закрыть">×</button>
-    <button class="lightbox-nav lightbox-prev" id="aquaLightboxPrev" aria-label="Назад">‹</button>
-    <img src="" alt="" id="aquaLightboxImg">
-    <button class="lightbox-nav lightbox-next" id="aquaLightboxNext" aria-label="Вперёд">›</button>
-</div>
-
-<!-- Лайтбокс для галереи -->
-<div class="lightbox" id="aquaLightbox">
-    <button class="lightbox-close" id="aquaLightboxClose" aria-label="Закрыть">×</button>
-    <img src="" alt="" id="aquaLightboxImg">
-</div>
-
 <!-- ============ 8. ПРИЗЫВ К ДЕЙСТВИЮ ============ -->
 <section class="cta" id="join-aqua">
     <div class="container cta-inner">
@@ -283,9 +272,9 @@
                 <div class="footer-logo"><img src="images/logogto.png" alt="Биатлон ГТО" class="footer-logo-img"></div>
                 <p>Благотворительный фонд поддержки и развития физкультурно-спортивных многоборий «Биатлон Готов к Труду и Обороне».</p>
                 <div class="footer-socials">
-                    <a href="https://vk.ru/biatlonv_gto" target="_blank" class="footer-social">VK</a>
-                    <a href="https://t.me/unostrus96" target="_blank" class="footer-social">TG</a>
-                    <a href="https://max.ru/join/y0WsVsxAyvVWuQJE02IU4ZRLbYFkY3nSQubuzBuzwjU" target="_blank" class="footer-social">MAX</a>
+                    <a href="https://vk.ru/biatlonv_gto" target="_blank" rel="noopener" class="footer-social" aria-label="ВКонтакте">VK</a>
+                    <a href="https://t.me/unostrus96" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram">TG</a>
+                    <a href="https://max.ru/join/y0WsVsxAyvVWuQJE02IU4ZRLbYFkY3nSQubuzBuzwjU" target="_blank" rel="noopener" class="footer-social" aria-label="MAX">MAX</a>
                 </div>
             </div>
             <div>
@@ -302,9 +291,10 @@
             <div>
                 <h4>Информация</h4>
                 <ul>
-                    <li><a href="docs/rabochaya-programma.pdf" target="_blank">Примерная рабочая программа</a></li>
+                    <li><a href="docs/rabochaya-programma.pdf" target="_blank" rel="noopener">Примерная рабочая программа</a></li>
                     <li><a href="privacy.html">Политика конфиденциальности</a></li>
-                    <li><a href="https://biatlonvgto.ru/" target="_blank">Основной сайт</a></li>
+                    <li><a href="https://biatlonvgto.ru/" target="_blank" rel="noopener">Основной сайт</a></li>
+                    <li><a href="https://t.me/unostrus96" target="_blank" rel="noopener">Telegram-канал</a></li>
                 </ul>
             </div>
             <div>
@@ -327,6 +317,14 @@
         </div>
     </div>
 </footer>
+
+<!-- ============ ЛАЙТБОКС ДЛЯ ГАЛЕРЕИ ============ -->
+<div class="lightbox" id="aquaLightbox">
+    <button class="lightbox-close" id="aquaLightboxClose" aria-label="Закрыть">×</button>
+    <button class="lightbox-nav lightbox-prev" id="aquaLightboxPrev" aria-label="Назад">‹</button>
+    <img src="" alt="" id="aquaLightboxImg">
+    <button class="lightbox-nav lightbox-next" id="aquaLightboxNext" aria-label="Вперёд">›</button>
+</div>
 
 <script src="script.js"></script>
 </body>
