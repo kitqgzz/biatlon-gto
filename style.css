@@ -1876,27 +1876,26 @@ button { font-family: inherit; cursor: pointer; border: none; }
     object-fit: contain;
 }
 
-/* Блок 1: Адаптив (с 992px картинка слева, обрезана по воротник) */
+/* Блок 1: Адаптив (с 992px картинка слева, в полный рост) */
 @media (max-width: 992px) {
     .students-hero .preschool-hero-inner {
         display: flex;
-        flex-direction: row; /* Картинка слева, текст справа */
+        flex-direction: row;
         align-items: center;
         text-align: left;
-        gap: 20px;
+        gap: 30px;
     }
     .students-hero .preschool-hero-image {
         flex: 0 0 40%; /* Картинка занимает 40% ширины */
-        order: -1; /* Ставим её первой (слева) */
-        max-height: 350px;
-        overflow: hidden;
-        border-radius: 20px; /* Скругление, чтобы обрезка смотрелась аккуратно */
+        order: -1; /* Ставим её слева */
+        display: flex;
+        justify-content: center;
     }
     .students-hero .preschool-hero-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: top; /* Обрезаем так, чтобы осталась голова и воротник */
+        max-height: 400px; /* Ограничиваем высоту, чтобы влезло */
+        width: auto;       /* Пропорции сохраняются */
+        object-fit: contain; /* В полный рост, без обрезки */
+        border-radius: 0;  /* Убираем скругление, так как больше не обрезаем */
     }
     .students-hero .preschool-hero-content {
         flex: 1;
@@ -1905,19 +1904,19 @@ button { font-family: inherit; cursor: pointer; border: none; }
         justify-content: flex-start;
     }
 }
-/* На мобильных (до 600px) возвращаем картинку наверх, чтобы не было тесно */
-@media (max-width: 600px) {
+
+/* На мобильных (до 772px) полностью убираем картинку */
+@media (max-width: 772px) {
     .students-hero .preschool-hero-inner {
         flex-direction: column;
         text-align: center;
     }
     .students-hero .preschool-hero-image {
-        order: 0;
-        flex: none;
-        width: 100%;
-        max-height: 250px;
+        display: none; /* Полностью убираем картинку */
     }
-    .students-hero .preschool-hero-buttons { justify-content: center; }
+    .students-hero .preschool-hero-buttons {
+        justify-content: center;
+    }
 }
 
 /* Блок 3: Наши цифры */
