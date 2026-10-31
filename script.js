@@ -484,3 +484,41 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// Игра "Мишень" для страницы Аква биатлон
+document.addEventListener("DOMContentLoaded", function() {
+    const target = document.getElementById('aquaTarget');
+    const hitCounter = document.getElementById('hitCounter');
+    const resetBtn = document.getElementById('resetTargetBtn');
+    let hits = 0;
+
+    if (target && hitCounter && resetBtn) {
+        target.addEventListener('click', function(e) {
+            if (hits >= 5) return; // Если 5 выстрелов сделано, дальше не стреляем
+
+            const rect = target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const hole = document.createElement('div');
+            hole.classList.add('bullet-hole');
+            hole.style.left = `${x}px`;
+            hole.style.top = `${y}px`;
+            target.appendChild(hole);
+
+            hits++;
+            hitCounter.textContent = hits;
+
+            if (hits === 5) {
+                setTimeout(() => { alert("Отличная стрельба! Ты готов к Аква биатлону! 🎯"); }, 300);
+            }
+        });
+
+        resetBtn.addEventListener('click', function() {
+            hits = 0;
+            hitCounter.textContent = hits;
+            const holes = target.querySelectorAll('.bullet-hole');
+            holes.forEach(h => h.remove());
+        });
+    }
+});
