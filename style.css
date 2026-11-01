@@ -2517,16 +2517,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* --- 5. Блок "Что ты получишь" (ИНФОГРАФИКА) --- */
 .info-section {
-    background: #F4F7FC; /* Легкий фоновый цвет */
+    background: #F4F7FC; 
     padding: 100px 0;
-    overflow: hidden;
 }
 
 /* Красивый заголовок-плашка сверху */
 .info-header-wrap {
     display: flex;
     justify-content: center;
-    margin-bottom: 50px; /* Увеличили отступ, так как плашки карточек будут наезжать */
+    margin-bottom: 50px;
 }
 .info-main-title {
     background: var(--blue-dark);
@@ -2542,31 +2541,50 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 .info-main-title span { color: var(--orange); }
 
-/* Сетка */
+/* Сетка (ГЛАВНОЕ: align-items: stretch делает колонки одинаковой высоты) */
 .info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px; /* Отступ между колонками */
+    gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: start; /* Карточки не растягиваются на одну высоту */
+    align-items: stretch; 
 }
 
 .info-right-col {
     display: flex;
     flex-direction: column;
-    gap: 50px; /* Отступ между верхней и нижней карточкой справа */
+    gap: 40px;
 }
 
-/* Карточки */
+/* Общие стили карточек */
 .info-card {
     background: #fff;
     border-radius: 30px;
-    padding: 50px 30px 30px 30px; /* Большой отступ сверху под плашку */
+    padding: 50px 30px 30px 30px; 
     position: relative;
     box-shadow: 0 10px 30px rgba(13, 43, 92, 0.05);
     border: 2px solid #E1ECF9;
-    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Растягиваем на всю доступную высоту */
+}
+
+/* Левая карточка: текст сверху, картинка снизу */
+.card-left {
+    justify-content: space-between;
+}
+
+/* Правые карточки: текст и картинка в ряд */
+.card-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+}
+.card-right {
+    justify-content: center;
 }
 
 /* Цветные плашки-заголовки */
@@ -2589,11 +2607,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .blue-badge { background: var(--blue); }
 .badge-icon { font-size: 26px; }
 
-/* Контент карточек */
-.card-content {
-    position: relative;
-    z-index: 2; /* Текст поверх картинок */
-}
+/* Контент */
 .info-list {
     list-style: none;
     padding: 0;
@@ -2627,53 +2641,53 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 .info-list li strong { color: var(--blue-dark); }
 
-/* --- ДЕКОРАТИВНЫЕ КАРТИНКИ (ПЕРСОНАЖИ) --- */
-.decor-img {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
+/* --- КАРТИНКИ ВНУТРИ БЛОКОВ --- */
+.card-image-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 30px;
+}
+.card-image-bottom img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
     object-fit: contain;
 }
 
-/* Настройки для пловца */
-.swimmer-img {
-    bottom: -10px;
-    right: 10px;
-    max-width: 250px;
+.card-image-side {
+    flex-shrink: 0;
 }
-
-/* Настройки для ласки */
-.weasel-img {
-    bottom: -10px;
-    right: 10px;
-    max-width: 180px;
+.card-image-side img {
+    max-width: 140px;
+    height: auto;
+    object-fit: contain;
 }
-
-/* Настройки для команды */
-.team-img {
-    bottom: -20px;
-    right: 10px;
+/* Для команды картинка чуть шире, так как там люди */
+.team-side img {
     max-width: 220px;
 }
 
 /* --- АДАПТИВ --- */
 @media (max-width: 1100px) {
-    .info-grid { grid-template-columns: 1fr; } /* В одну колонку */
-    .info-right-col { gap: 40px; }
+    .info-grid { grid-template-columns: 1fr; } 
 }
 
 @media (max-width: 768px) {
     .info-main-title { padding: 15px 30px; font-size: 22px; }
     .card-title-badge { font-size: 18px; padding: 10px 20px; top: -20px; left: 15px; }
-    .info-card { padding: 40px 20px 20px 20px; }
     
-    /* На телефонах делаем картинки полупрозрачным фоном, чтобы текст было удобно читать */
-    .decor-img { 
-        max-width: 120px; 
-        opacity: 0.15; 
-        right: 0; 
-        bottom: 0; 
-    } 
+    /* На мобильных перестраиваем правые блоки вертикально */
+    .card-content-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .card-image-side {
+        margin-top: 20px;
+        align-self: center;
+    }
+    .card-image-side img { max-width: 120px; }
+    .team-side img { max-width: 180px; }
 }
 /* --- 6. Истории успеха --- */
 .aqua-stories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
