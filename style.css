@@ -3079,6 +3079,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .teach-tabs-container { grid-template-columns: 1fr; padding: 20px; }
     .teach-tabs-menu { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
     .teach-tab-btn { padding: 12px 20px; white-space: nowrap; }
+    
+    /* СКРЫВАЕМ КАРТИНКИ НА МОБИЛЬНЫХ */
+    .teach-pane-img {
+        display: none;
+    }
 }
 
 /* --- 6. Связь с ГТО --- */
