@@ -2998,31 +2998,109 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .teach-gto-card p { font-size: 15px; color: #4A5A75; line-height: 1.6; }
 @media (max-width: 900px) { .teach-gto-grid { grid-template-columns: 1fr; } }
 
-/* --- 7. Masonry Галерея --- */
+/* --- 7. Masonry Галерея (Жесткая сетка) --- */
 .teach-masonry-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+    grid-auto-rows: 200px; /* Высота одной ячейки 200px */
     gap: 20px;
     max-width: 1100px;
     margin: 0 auto;
 }
+
 .teach-masonry-item {
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
 }
-.teach-masonry-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.teach-masonry-item:hover img { transform: scale(1.05); }
-.teach-masonry-item.big { grid-column: span 2; grid-row: span 2; }
-.teach-masonry-item.wide { grid-column: span 2; }
-@media (max-width: 900px) {
-    .teach-masonry-grid { grid-template-columns: repeat(2, 1fr); }
-    .teach-masonry-item.big { grid-column: span 2; grid-row: span 1; }
-    .teach-masonry-item.wide { grid-column: span 1; }
+.teach-masonry-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+.teach-masonry-item:hover img {
+    transform: scale(1.05);
 }
 
+/* --- ЯВНОЕ РАСПОЛОЖЕНИЕ ЯЧЕЕК (Десктоп) --- */
+
+/* Левая часть */
+.item-big { 
+    grid-column: 1 / 3; /* Занимает 2 колонки */
+    grid-row: 1 / 3;    /* Занимает 2 строки по высоте */
+}
+.item-small-l1 { 
+    grid-column: 1 / 2; /* 1 колонка */
+    grid-row: 3 / 4;    /* 3-й ряд */
+}
+.item-small-l2 { 
+    grid-column: 2 / 3; 
+    grid-row: 3 / 4; 
+}
+.item-wide { 
+    grid-column: 1 / 3; /* Широкая - 2 колонки */
+    grid-row: 4 / 5;    /* 4-й ряд */
+}
+
+/* Правая часть */
+.item-r1 { 
+    grid-column: 3 / 4; 
+    grid-row: 1 / 3;    /* Высокая - 2 строки */
+}
+.item-r2 { 
+    grid-column: 4 / 5; 
+    grid-row: 1 / 2; 
+}
+.item-r3 { 
+    grid-column: 4 / 5; 
+    grid-row: 2 / 3; 
+}
+.item-r4 { 
+    grid-column: 3 / 5; /* Новая ячейка внизу справа - 2 колонки */
+    grid-row: 3 / 4; 
+}
+
+/* --- АДАПТИВ (с 900px) --- */
+@media (max-width: 900px) {
+    .teach-masonry-grid { 
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на мобильных */
+        grid-auto-rows: 150px; /* Уменьшаем высоту ячеек */
+    }
+    
+    /* Сбрасываем жесткие координаты для всех элементов */
+    .teach-masonry-item {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    /* Настраиваем элементы для мобильной сетки */
+    .item-big { 
+        grid-column: span 2 !important; 
+        grid-row: span 2 !important; 
+    }
+    .item-small-l1, .item-small-l2, 
+    .item-r2, .item-r3 { 
+        grid-column: span 1 !important; 
+        grid-row: span 1 !important; 
+    }
+    .item-r1 { 
+        grid-column: span 2 !important; 
+        grid-row: span 1 !important; 
+    }
+    
+    /* Твоя просьба: внизу широкая картинка */
+    .item-wide { 
+        grid-column: span 2 !important; 
+        grid-row: span 1 !important; 
+    }
+    /* Новая правая ячейка тоже становится широкой внизу */
+    .item-r4 { 
+        grid-column: span 2 !important; 
+        grid-row: span 1 !important; 
+    }
+}
 /* --- 8. Почему стоит участвовать --- */
 .teach-why-grid {
     display: grid;
