@@ -628,3 +628,76 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+// ==========================================
+// СКРИПТЫ ДЛЯ СТРАНИЦЫ "ДЛЯ ПЕДАГОГОВ"
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // --- 1. Интерактивная методика (Табы) ---
+    const tabBtns = document.querySelectorAll('.teach-tab-btn');
+    const tabPanes = document.querySelectorAll('.teach-tab-pane');
+
+    if (tabBtns.length > 0) {
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetIndex = btn.getAttribute('data-tab');
+                const targetPane = document.querySelector(`.teach-tab-pane[data-pane="${targetIndex}"]`);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // --- 2. Дорожка участника (Аккордеон) ---
+    const stepItems = document.querySelectorAll('.teach-step-item');
+
+    if (stepItems.length > 0) {
+        stepItems.forEach(item => {
+            const header = item.querySelector('.teach-step-header');
+            if (header) {
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    stepItems.forEach(i => i.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // --- 3. Лайтбокс для Masonry Галереи ---
+    const teachLightbox = document.getElementById('teachLightbox');
+    const teachLightboxImg = document.getElementById('teachLightboxImg');
+    const teachLightboxClose = document.getElementById('teachLightboxClose');
+    const teachTriggers = document.querySelectorAll('.teach-lightbox-trigger');
+
+    if (teachTriggers.length > 0 && teachLightbox) {
+        teachTriggers.forEach(img => {
+            img.addEventListener('click', () => {
+                teachLightboxImg.src = img.src;
+                teachLightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        if (teachLightboxClose) {
+            teachLightboxClose.addEventListener('click', () => {
+                teachLightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        teachLightbox.addEventListener('click', (e) => {
+            if (e.target === teachLightbox) {
+                teachLightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
