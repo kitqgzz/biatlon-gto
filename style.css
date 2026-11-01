@@ -3329,16 +3329,30 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* --- АДАПТИВ --- */
 @media (max-width: 900px) {
-    .route-compact-svg { display: none; } /* Убираем SVG на мобильных */
+    .route-compact-svg { display: none; } /* Убираем фоновую линию на мобильных */
     
     .route-compact-grid {
-        grid-template-columns: 1fr; /* В одну колонку */
-        gap: 40px;
+        grid-template-columns: 1fr; /* Выстраиваем в одну колонку */
+        gap: 30px;
+        padding: 20px 0;
     }
     
     .route-node-card {
-        transform: none !important; /* Убираем наклон */
-        margin: 0 20px;
+        margin: 0 15px; /* Небольшие отступы по бокам */
+        transform: none; /* Сбрасываем десктопный наклон */
+    }
+
+    /* Задаем чередующийся наклон для мобильных карточек */
+    .node-1, .node-3, .node-5 {
+        transform: rotate(-2deg) !important;
+    }
+    .node-2, .node-4, .node-6 {
+        transform: rotate(2deg) !important;
+    }
+
+    /* При нажатии/наведении на мобильном карточка выпрямляется */
+    .route-node-card:hover, .route-node-card:active {
+        transform: rotate(0) scale(1.02) !important;
     }
     
     .route-flag {
@@ -3346,71 +3360,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
         display: block;
         width: max-content;
         margin: 20px auto;
+        transform: rotate(-2deg); /* Тоже добавляем легкий наклон для стиля */
     }
     .route-flag.start { margin-top: 0; }
-    .route-flag.finish { margin-bottom: 0; }
+    .route-flag.finish { margin-bottom: 0; transform: rotate(2deg); }
 }
-
-/* --- 9. Дорожка участника (Аккордеон) --- */
-.teach-accordion {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    position: relative;
-}
-.teach-accordion::before {
-    content: '';
-    position: absolute;
-    top: 20px; bottom: 20px; left: 30px;
-    width: 4px;
-    background: #D6E4F5;
-    z-index: 1;
-    border-radius: 4px;
-}
-.teach-step-item {
-    background: #FFF;
-    border-radius: 20px;
-    box-shadow: 0 4px 16px rgba(13, 43, 92, 0.06);
-    border: 1px solid #EDF1F7;
-    position: relative;
-    z-index: 2;
-    overflow: hidden;
-}
-.teach-step-header {
-    display: flex;
-    align-items: center;
-    padding: 20px 24px;
-    cursor: pointer;
-    background: #FFF;
-}
-.teach-step-num {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: var(--blue-dark);
-    color: #FFF;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 900;
-    font-size: 18px;
-    margin-right: 20px;
-    flex-shrink: 0;
-    border: 4px solid #FFF;
-}
-.teach-step-item.active .teach-step-num { background: var(--orange); }
-.teach-step-title { font-size: 18px; font-weight: 800; color: var(--blue-dark); flex-grow: 1; }
-.teach-step-icon { font-size: 24px; color: var(--orange); transition: transform 0.3s; }
-.teach-step-item.active .teach-step-icon { transform: rotate(45deg); }
-
-.teach-step-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    padding: 0 24px 0 84px;
-    background: #F4F7FC;
-}
-.teach-step-item.active .teach-step-body { max-height: 200px; padding: 0 24px 24px 84px; }
-.teach-step-body p { font-size: 15px; color: #5A6B85; line-height: 1.6; margin: 0; }
 
 /* --- 10. CTA --- */
 .teach-cta { background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 100%); }
