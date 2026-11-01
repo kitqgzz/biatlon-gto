@@ -3326,20 +3326,46 @@ button { font-family: inherit; cursor: pointer; border: none; }
     right: 20px;
     background: var(--orange);
 }
-
 /* --- АДАПТИВ --- */
 @media (max-width: 900px) {
-    .route-compact-svg { display: none; } /* Убираем фоновую линию на мобильных */
+    /* Скрываем S-образный SVG на мобильных */
+    .route-compact-svg { 
+        display: none; 
+    }
     
     .route-compact-grid {
         grid-template-columns: 1fr; /* Выстраиваем в одну колонку */
-        gap: 30px;
+        gap: 40px; /* Увеличиваем отступ, чтобы линия просвечивала между карточками */
         padding: 20px 0;
+        position: relative; /* Важно для позиционирования линии */
     }
-    
+
+    /* ДОБАВЛЯЕМ ВЕРТИКАЛЬНУЮ ЛИНИЮ НА МОБИЛЬНЫХ */
+    .route-compact-grid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        /* Рисуем пунктирную вертикальную линию */
+        background: repeating-linear-gradient(
+            to bottom,
+            #D6E4F5 0,
+            #D6E4F5 12px,
+            transparent 12px,
+            transparent 24px
+        );
+        z-index: 0; /* Линия на заднем плане */
+    }
+
+    /* Карточки поверх линии */
     .route-node-card {
-        margin: 0 15px; /* Небольшие отступы по бокам */
-        transform: none; /* Сбрасываем десктопный наклон */
+        margin: 0 15px;
+        transform: none; 
+        z-index: 1; /* Карточки поверх линии */
+        position: relative;
     }
 
     /* Задаем чередующийся наклон для мобильных карточек */
@@ -3350,7 +3376,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
         transform: rotate(2deg) !important;
     }
 
-    /* При нажатии/наведении на мобильном карточка выпрямляется */
     .route-node-card:hover, .route-node-card:active {
         transform: rotate(0) scale(1.02) !important;
     }
@@ -3360,11 +3385,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
         display: block;
         width: max-content;
         margin: 20px auto;
-        transform: rotate(-2deg); /* Тоже добавляем легкий наклон для стиля */
+        transform: rotate(-2deg); 
+        z-index: 2; /* Флажки поверх линии */
     }
     .route-flag.start { margin-top: 0; }
     .route-flag.finish { margin-bottom: 0; transform: rotate(2deg); }
 }
+
 
 /* --- 10. CTA --- */
 .teach-cta { background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 100%); }
