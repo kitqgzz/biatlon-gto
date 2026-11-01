@@ -2515,169 +2515,168 @@ button { font-family: inherit; cursor: pointer; border: none; }
     }
 }
 
-/* --- 5. Блок "Что ты получишь" (ФИНАЛЬНЫЙ ФИКС) --- */
-.benefits-ref-section {
-    background: #EEF4FC;
+/* --- 5. Блок "Что ты получишь" (BENTO GRID) --- */
+.benefits-bento-section {
+    background: #EEF4FC; /* Светло-голубой фон */
     padding: 100px 0;
-    overflow: hidden;
 }
 
-.benefits-ref-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    max-width: 1200px;
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Левая колонка чуть шире правой */
+    gap: 24px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding-left: 20px;
 }
 
-/* Белая карточка */
-.benefits-ref-card {
-    position: relative;
-    z-index: 3; /* Поверх плашки */
+/* Общие стили для карточек */
+.bento-card {
     background: #FFFFFF;
-    padding: 40px 40px 40px 50px;
-    border-radius: 30px;
-    width: 420px; /* Чуть шире, чтобы текст дышал */
-    flex-shrink: 0;
-    box-shadow: 0 20px 40px rgba(13, 43, 92, 0.08);
-}
-
-/* ... (текст внутри карточки оставляем как есть) ... */
-.benefits-text-group { margin-bottom: 24px; }
-.benefits-text-group:last-child { margin-bottom: 0; }
-.benefits-text-group h3 { font-size: 18px; font-weight: 800; color: var(--blue-dark); margin-bottom: 12px; }
-.benefits-text-group ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.benefits-text-group li { position: relative; padding-left: 22px; font-size: 15px; color: var(--blue-dark); line-height: 1.4; }
-.benefits-text-group li::before { content: '✓'; position: absolute; left: 0; top: -1px; color: #E24A4A; font-weight: 900; font-size: 16px; }
-
-/* Кубок */
-.benefits-ref-trophy {
-    position: relative;
-    z-index: 4; /* Самый верхний слой */
-    margin-left: -50px; /* Заезжает на карточку */
-    margin-right: -50px; /* Заезжает на синюю плашку */
-    flex-shrink: 0;
-}
-
-.benefits-ref-trophy img {
-    width: 180px;
-    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.25));
-}
-
-/* Синяя плашка */
-.benefits-ref-badge {
-    position: relative;
-    z-index: 2; /* Под карточкой и кубком */
-    background-color: var(--blue-dark);
-    background-image: repeating-linear-gradient(
-        -45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05) 20px, transparent 20px, transparent 40px
-    );
-    
-    flex-grow: 1; /* Растягиваем вправо */
-    height: 380px;
+    border-radius: 28px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* МАГИЯ: Делаем плавный закругленный левый край (вместо кривого clip-path) */
-    border-top-left-radius: 250px 200px;
-    border-bottom-left-radius: 250px 200px;
-    margin-left: -30px; /* Заводим под карточку */
-    padding-left: 80px; /* Отступ для контента */
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* Текст и лого в плашке */
-.benefits-badge-inner {
+/* Левая карточка (Для тела) */
+.bento-large {
+    grid-row: span 2; /* Растягивает карточку на две строки по высоте */
+}
+
+/* Заголовки карточек */
+.bento-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 24px;
+}
+
+/* Списки */
+.bento-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Отступ между пунктами */
+}
+
+.bento-list li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 15px; 
+    color: #5A6B85; /* Цвет для пояснений */
+    line-height: 1.5;
+}
+
+.bento-list li strong {
+    color: var(--blue-dark); /* Темный цвет для главной мысли */
+    font-weight: 700;
+}
+
+/* Оранжевая галочка */
+.bento-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    color: var(--orange);
+    font-weight: 900;
+    font-size: 18px;
+}
+
+/* Кубок в большой карточке */
+.bento-trophy {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 30px;
+}
+
+.bento-trophy img {
+    width: 160px;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.2));
+}
+
+/* Правая нижняя синяя карточка */
+.bento-blue {
+    background: var(--blue-dark);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    /* Диагональные полоски на фоне */
+    background-image: repeating-linear-gradient(
+        -45deg, 
+        rgba(255, 255, 255, 0.03), 
+        rgba(255, 255, 255, 0.03) 15px, 
+        transparent 15px, 
+        transparent 30px
+    );
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Переопределяем цвета текста для синей карточки */
+.bento-blue .bento-list li {
+    color: rgba(255, 255, 255, 0.85);
+}
+.bento-blue .bento-list li strong {
+    color: #FFFFFF;
+}
+.bento-blue .bento-list li::before {
+    color: #FFFFFF; /* Белая галочка на синем фоне */
+}
+
+/* Логотип в синей карточке */
+.bento-badge {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 16px;
+    flex-shrink: 0;
 }
 
-.benefits-badge-logo {
-    width: 100px;
+.bento-badge img {
+    width: 80px;
     height: auto;
-    /* Убрали уродливое свечение. Оставили просто тень для объема */
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); 
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
-.benefits-ref-badge p {
-    color: #FFFFFF;
-    font-size: 18px;
-    font-weight: 700;
+.bento-badge p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    font-weight: 600;
     line-height: 1.3;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* --- АДАПТИВ --- */
-@media (max-width: 1100px) {
-    .benefits-ref-card { width: 360px; padding: 30px; }
-    .benefits-ref-trophy img { width: 140px; }
-    .benefits-ref-badge { height: 320px; padding-left: 50px; }
-}
-
 @media (max-width: 900px) {
-    .benefits-ref-section { padding: 60px 0; }
-    .benefits-ref-container {
-        flex-direction: column;
-        padding: 0 20px;
-        gap: 0;
+    .bento-grid {
+        grid-template-columns: 1fr; /* В одну колонку на планшетах и телефонах */
     }
     
-    .benefits-ref-card { width: 100%; max-width: 500px; }
+    .bento-large {
+        grid-row: auto; /* Отменяем растягивание */
+    }
     
-    .benefits-ref-trophy { margin: -60px 0 -40px 0; z-index: 5; }
-    
-    /* На мобильных убираем фигурный край и наезды */
-    .benefits-ref-badge {
-        border-radius: 30px;
-        margin-left: 0;
-        width: 100%;
-        max-width: 500px;
-        height: auto;
+    .bento-blue {
+        flex-direction: column; /* Синяя карточка становится вертикальной */
+        text-align: center;
         padding: 40px 20px;
-        margin-top: 10px;
-    }
-}
-
-/* --- АДАПТИВ --- */
-@media (max-width: 1100px) {
-    .benefits-ref-card { width: 360px; padding: 30px; }
-    .benefits-ref-trophy img { width: 120px; }
-    .benefits-ref-badge { height: 300px; padding-left: 40px; }
-}
-
-@media (max-width: 900px) {
-    .benefits-ref-section { padding: 60px 0; }
-    
-    .benefits-ref-container {
-        flex-direction: column;
-        padding: 0 20px;
-        gap: 0;
     }
     
-    .benefits-ref-card { 
-        width: 100%; 
-        max-width: 500px; 
-    }
-    
-    /* На мобильных кубок становится между карточкой и плашкой */
-    .benefits-ref-trophy { 
-        margin: -40px 0; 
-        z-index: 5; 
-    }
-    
-    /* На мобильных убираем косой край, чтобы текст не обрезался */
-    .benefits-ref-badge {
-        clip-path: none;
-        border-radius: 30px;
-        width: 100%;
-        max-width: 500px;
-        height: auto;
-        padding: 40px 20px;
-        margin-top: 20px;
+    .bento-blue-content {
+        margin-bottom: 24px;
     }
 }
 
