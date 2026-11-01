@@ -2346,10 +2346,55 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 
 /* --- 3. Блок "Почему уникально" --- */
-#why-unique .preschool-elements { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
-#why-unique .preschool-element { flex: 0 1 calc(33.333% - 28px); min-width: 280px; }
-@media (max-width: 992px) { #why-unique .preschool-element { flex: 0 1 calc(50% - 28px); } }
-@media (max-width: 768px) { #why-unique .preschool-element { flex: 0 1 100%; } }
+#why-unique .preschool-elements { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); /* Ровно 4 колонки на десктопе */
+    gap: 24px; 
+    max-width: 1300px; 
+    margin: 0 auto;
+}
+
+#why-unique .preschool-element { 
+    /* Убираем min-width, чтобы они могли сжиматься */
+    padding: 30px 20px; /* Уменьшили внутренние отступы, чтобы текст влез в узкую карточку */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Уменьшаем размер шрифтов внутри карточек, чтобы все смотрелось аккуратно */
+#why-unique .preschool-element-num {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+#why-unique .preschool-element h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#why-unique .preschool-element p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* --- Адаптив --- */
+
+/* На планшетах (и небольшх ноутбуках) — по 2 карточки в ряд */
+@media (max-width: 1100px) { 
+    #why-unique .preschool-elements { 
+        grid-template-columns: repeat(2, 1fr); 
+    } 
+}
+
+/* На телефонах — по 1 карточке */
+@media (max-width: 768px) { 
+    #why-unique .preschool-elements { 
+        grid-template-columns: 1fr; 
+    } 
+    
+    /* Возвращаем нормальные отступы на мобильных, так как места стало больше */
+    #why-unique .preschool-element {
+        padding: 32px 24px;
+    }
+}
 
 /* --- 4. Таймлайн (Скрытый скроллбар, перетаскивание) --- */
 .timeline-nav { display: flex; gap: 10px; }
