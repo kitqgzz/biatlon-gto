@@ -500,11 +500,11 @@ document.addEventListener("DOMContentLoaded", function() {
         target.addEventListener('click', function(e) {
             if (hits >= 5) return; 
 
-            // --- ДОБАВЛЯЕМ ПРУЖИНУ ---
-            target.classList.remove('spring'); // Сбрасываем класс, если он уже был
-            void target.offsetWidth;           // Магия: заставляем браузер перезапустить анимацию
-            target.classList.add('spring');    // Включаем пружину
-            // ---------------------------
+            // --- Пружина ---
+            target.classList.remove('spring'); 
+            void target.offsetWidth;           
+            target.classList.add('spring');    
+            // -------------
 
             const rect = target.getBoundingClientRect();
             const hole = document.createElement('div');
@@ -522,59 +522,54 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-       // --- 2. Скролл Таймлайна с зацикливанием ---
+        // ВОТ ЭТОТ БЛОК ТЫ СЛУЧАЙНО УДАЛИЛА (Кнопка сброса)
+        resetBtn.addEventListener('click', function() {
+            hits = 0;
+            hitCounter.textContent = hits;
+            target.querySelectorAll('.bullet-hole').forEach(h => h.remove());
+        });
+    } // <--- ВОТ ЭТА СКОБКА БЫЛА ПРОПУЩЕНА, ИЗ-ЗА НЕЁ ВСЁ СЛОМАЛОСЬ
+
+    // --- 2. Скролл Таймлайна с зацикливанием ---
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     const timePrev = document.getElementById('timePrev');
     const timeNext = document.getElementById('timeNext');
 
     if (timeWrapper && timePrev && timeNext) {
-        
-        // Функция для проверки, докрутили ли мы до конца
-        const isAtEnd = () => {
-            // Погрешность в 10px нужна для разных экранов и масштабирования браузера
-            return timeWrapper.scrollLeft + timeWrapper.clientWidth >= timeWrapper.scrollWidth - 10;
-        };
+        const isAtEnd = () => timeWrapper.scrollLeft + timeWrapper.clientWidth >= timeWrapper.scrollWidth - 10;
+        const isAtStart = () => timeWrapper.scrollLeft <= 10;
 
-        // Функция для проверки, находимся ли мы в самом начале
-        const isAtStart = () => {
-            return timeWrapper.scrollLeft <= 10;
-        };
-
-        // Клик вперед
         timeNext.addEventListener('click', () => {
             if (isAtEnd()) {
-                // Если мы в конце, плавно едем в начало
                 timeWrapper.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
-                // Иначе просто листаем дальше
                 timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
             }
         });
 
-        // Клик назад
         timePrev.addEventListener('click', () => {
             if (isAtStart()) {
-                // Если мы в начале, плавно едем в самый конец
                 timeWrapper.scrollTo({ left: timeWrapper.scrollWidth, behavior: 'smooth' });
             } else {
-                // Иначе листаем назад
                 timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
             }
         });
     }
+
     // --- 3. Галерея (Слайдер и Лайтбокс) ---
     const galSlider = document.getElementById('aquaGalSlider');
     const galPrev = document.getElementById('aquaGalPrev');
     const galNext = document.getElementById('aquaGalNext');
     
-    const lightbox = document.getElementById('aquaLightbox');
-    const lightboxImg = document.getElementById('aquaLightboxImg');
-    const lightboxClose = document.getElementById('aquaLightboxClose');
-    const lightboxPrev = document.getElementById('aquaLightboxPrev');
-    const lightboxNext = document.getElementById('aquaLightboxNext');
+    // Уникальные имена для переменных, чтобы не конфликтовать с главной страницей
+    const aqLightbox = document.getElementById('aquaLightbox');
+    const aqLightboxImg = document.getElementById('aquaLightboxImg');
+    const aqLightboxClose = document.getElementById('aquaLightboxClose');
+    const aqLightboxPrev = document.getElementById('aquaLightboxPrev');
+    const aqLightboxNext = document.getElementById('aquaLightboxNext');
     
-    let currentIndex = 0;
-    let galleryImages = [];
+    let aqCurrentIndex = 0;
+    let aqImages = [];
 
     if (galSlider && galPrev && galNext) {
         galPrev.addEventListener('click', () => galSlider.scrollBy({ left: -320, behavior: 'smooth' }));
@@ -582,46 +577,45 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const triggers = galSlider.querySelectorAll('.aqua-lightbox-trigger');
         triggers.forEach((img, index) => {
-            galleryImages.push(img.src);
+            aqImages.push(img.src);
             img.addEventListener('click', () => {
-                currentIndex = index;
-                openLightbox(currentIndex);
+                aqCurrentIndex = index;
+                openAquaLightbox(aqCurrentIndex);
             });
         });
     }
 
-    function openLightbox(index) {
-        if(lightboxImg && lightbox) {
-            lightboxImg.src = galleryImages[index];
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Блокируем фон
+    function openAquaLightbox(index) {
+        if(aqLightboxImg && aqLightbox) {
+            aqLightboxImg.src = aqImages[index];
+            aqLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
         }
     }
 
-    if (lightboxClose && lightbox) {
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = ''; // Возвращаем скролл
+    if (aqLightboxClose && aqLightbox) {
+        aqLightboxClose.addEventListener('click', () => {
+            aqLightbox.classList.remove('active');
+            document.body.style.overflow = ''; 
         });
         
-        lightbox.addEventListener('click', (e) => { 
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active'); 
+        aqLightbox.addEventListener('click', (e) => { 
+            if (e.target === aqLightbox) {
+                aqLightbox.classList.remove('active'); 
                 document.body.style.overflow = '';
             }
         });
         
-        // Листание фото в лайтбоксе
-        if (lightboxPrev && lightboxNext) {
-            lightboxPrev.addEventListener('click', (e) => {
+        if (aqLightboxPrev && aqLightboxNext) {
+            aqLightboxPrev.addEventListener('click', (e) => {
                 e.stopPropagation();
-                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-                lightboxImg.src = galleryImages[currentIndex];
+                aqCurrentIndex = (aqCurrentIndex - 1 + aqImages.length) % aqImages.length;
+                aqLightboxImg.src = aqImages[aqCurrentIndex];
             });
-            lightboxNext.addEventListener('click', (e) => {
+            aqLightboxNext.addEventListener('click', (e) => {
                 e.stopPropagation();
-                currentIndex = (currentIndex + 1) % galleryImages.length;
-                lightboxImg.src = galleryImages[currentIndex];
+                aqCurrentIndex = (aqCurrentIndex + 1) % aqImages.length;
+                aqLightboxImg.src = aqImages[aqCurrentIndex];
             });
         }
     }
