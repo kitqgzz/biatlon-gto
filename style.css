@@ -3382,18 +3382,25 @@ button { font-family: inherit; cursor: pointer; border: none; }
         transform: rotate(0) scale(1.02) !important;
     }
     
-    /* ВОЗВРАЩАЕМ ФЛАЖКАМ АБСОЛЮТНОЕ ПОЗИЦИОНИРОВАНИЕ */
+   /* --- ЦЕНТРИРУЕМ ФЛАЖКИ --- */
     .route-flag {
         position: absolute;
-        left: 50%; /* Центрируем по горизонтали */
+        left: 0;
+        right: 0;
+        margin: 0 auto; /* Этот способ центрирования никогда не подводит */
+        width: max-content; /* Чтобы плашка не растягивалась на весь экран */
         z-index: 2;
-        margin: 0;
-        width: max-content;
     }
     
+    /* Ставим Старт наверх, Финиш вниз */
+    .route-flag.start { 
+        top: 0; 
+        /* Оставляем только наклон, убираем translateX */
+        transform: rotate(-2deg); 
+    }
     .route-flag.finish { 
         bottom: 0; 
-        transform: translateX(-50%) rotate(2deg); 
+        transform: rotate(2deg); 
     }
 }
 /* --- 9. Дорожка участника (Аккордеон) --- */
