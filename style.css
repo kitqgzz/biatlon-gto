@@ -2598,7 +2598,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     flex-shrink: 0; 
 }
 .card-image-side img {
-    max-width: 235px; 
+    max-width: 150px; 
     height: auto;
     object-fit: contain;
 }
