@@ -2683,7 +2683,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 @media (max-width: 768px) {
     .info-section { padding: 50px 0; }
     .info-card { padding: 40px 20px 20px 20px; }
-    .card-title-badge { font-size: 18px; padding: 10px 20px; top: -20px; left: 15px; }
+    .card-title-badge { font-size: 18px; padding: 10px 20px; top: -33px; left: 15px; }
     
     /* Пловец остается, но делаем его чуть меньше */
     .card-image-bottom img {
