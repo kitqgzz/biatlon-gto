@@ -264,6 +264,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
     letter-spacing: -2px;
     white-space: nowrap;
 }
+
+.teach-bento-item .stat-num { 
+    font-size: 42px; 
+    margin-bottom: 10px; 
+    text-align: center;
+    font-variant-numeric: tabular-nums; /* Делает все цифры одной ширины */
+}
 .stat-num-wide { font-size: clamp(38px, 4.8vw, 58px); }
 .stat-sign { color: var(--orange); margin-right: 4px; }
 .stat-label { font-size: 15px; color: #5A6B85; line-height: 1.5; font-weight: 500; }
