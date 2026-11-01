@@ -498,7 +498,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (target && hitCounter && resetBtn) {
         target.addEventListener('click', function(e) {
-            if (hits >= 5) return;
+            if (hits >= 5) return; 
+
+            // --- ДОБАВЛЯЕМ ПРУЖИНУ ---
+            target.classList.remove('spring'); // Сбрасываем класс, если он уже был
+            void target.offsetWidth;           // Магия: заставляем браузер перезапустить анимацию
+            target.classList.add('spring');    // Включаем пружину
+            // ---------------------------
 
             const rect = target.getBoundingClientRect();
             const hole = document.createElement('div');
@@ -507,6 +513,7 @@ document.addEventListener("DOMContentLoaded", function() {
             hole.style.top = `${e.clientY - rect.top}px`;
             
             target.appendChild(hole);
+
             hits++;
             hitCounter.textContent = hits;
 
@@ -514,13 +521,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 setTimeout(() => { alert("Отличная стрельба! Ты готов к Аква биатлону! 🎯"); }, 300);
             }
         });
-
-        resetBtn.addEventListener('click', function() {
-            hits = 0;
-            hitCounter.textContent = hits;
-            target.querySelectorAll('.bullet-hole').forEach(h => h.remove());
-        });
-    }
 
        // --- 2. Скролл Таймлайна с зацикливанием ---
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
