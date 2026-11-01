@@ -2856,7 +2856,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     
     /* Делаем карту меньше экрана, чтобы были белые поля */
     width: 70%; 
-    height: 70%;
+    height: 100%;
     max-width: 1000px;
     
     background-image: url('images/map.png'); 
