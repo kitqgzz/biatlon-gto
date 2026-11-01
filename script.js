@@ -1,3 +1,11 @@
+// ============ ЗАПРЕТ ПЕРЕТАСКИВАНИЯ КАРТИНОК ============
+document.addEventListener('dragstart', function(e) {
+    // Если пользователь пытается перетащить картинку (тег IMG), отменяем действие
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
 // ============ ХЕДЕР ПРИ СКРОЛЛЕ ============
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
