@@ -2838,25 +2838,76 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .icon-trophy { width: 80px; right: 0; }
 }
 
-/* --- 2. О проекте --- */
-.teach-about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 60px;
-    align-items: center;
+/* --- 2. О проекте (Миссия с картой) --- */
+.teach-mission-section {
+    position: relative;
+    padding: 120px 0;
+    background-color: #FFFFFF;
+    overflow: hidden;
 }
-.teach-about-text p {
-    font-size: 16px;
-    color: #4A5A75;
-    line-height: 1.75;
-    margin-bottom: 16px;
+
+/* Псевдоэлемент для карты на фоне */
+.teach-mission-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Твоя карта */
+    background-image: url('images/map.png'); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 85% auto;
+    z-index: 1;
+    
+    /* ВОТ ТУТ МЫ ДЕЛАЕМ КАРТУ СЕРЕЕ И КОНТРАСТНЕЕ */
+    opacity: 0.5; /* Делаем её полупрозрачной */
+    filter: grayscale(100%) contrast(150%) brightness(0.8); /* Усиливаем серый цвет */
+    
+    pointer-events: none; /* Чтобы карта не мешала выделять текст */
 }
-.teach-about-image img {
-    width: 100%;
-    max-width: 350px;
-    display: block;
+
+/* Контент поверх карты */
+.teach-mission-content {
+    max-width: 900px;
     margin: 0 auto;
-    filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.15));
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Текст всегда поверх карты */
+}
+
+/* Заголовок как на референсе */
+.mission-title {
+    font-size: clamp(40px, 6vw, 76px);
+    font-weight: 900;
+    color: #9bbce4; /* Светло-синий цвет */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    line-height: 1;
+}
+
+/* Текст по центру */
+.mission-text {
+    font-size: 18px;
+    color: #0D2B5C;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+.mission-text strong {
+    font-weight: 800;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .teach-mission-section { 
+        padding: 80px 20px; 
+    }
+    .teach-mission-section::before {
+        background-size: contain; /* Карта целиком на мобильных */
+        opacity: 0.3;
+    }
+    .mission-title { font-size: 36px; margin-bottom: 20px;}
+    .mission-text { font-size: 16px; }
 }
 @media (max-width: 992px) {
     .teach-about-grid { grid-template-columns: 1fr; }
