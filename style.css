@@ -2901,24 +2901,23 @@ button { font-family: inherit; cursor: pointer; border: none; }
     font-weight: 500;
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
-    .teach-mission-section { padding: 80px 20px; }
-    .teach-mission-section::before { 
-        width: 90%; 
-        height: 90%; 
-        opacity: 0.2; /* На мобильных делаем карту еще бледнее */
+    .teach-mission-section { 
+        padding: 80px 20px; 
     }
-    .mission-title { font-size: 32px; }
-    .mission-text { font-size: 16px; }
-}
-/* Контент поверх карты */
-.teach-mission-content {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-    z-index: 2; /* Текст всегда поверх карты */
+    
+    /* ПОЛНОСТЬЮ УБИРАЕМ КАРТУ НА МОБИЛЬНЫХ */
+    .teach-mission-section::before { 
+        display: none; 
+    }
+    
+    .mission-title { 
+        font-size: 32px; 
+        margin-bottom: 20px;
+    }
+    .mission-text { 
+        font-size: 16px; 
+    }
 }
 
 /* Заголовок как на референсе */
