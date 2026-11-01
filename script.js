@@ -701,3 +701,64 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// ==========================================
+// АНИМАЦИЯ ЦИФР ПРИ СКРОЛЛЕ (Для страницы педагогов)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const statsBlock = document.querySelector('.teach-bento-grid');
+    if (!statsBlock) return;
+
+    // Функция для плавного увеличения числа
+    const animateValue = (obj, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            // Плавное замедление к концу (easeOutQuad)
+            const easeOut = 1 - (1 - progress) * (1 - progress);
+            const current = Math.floor(easeOut * (end - start) + start);
+            
+            // Форматируем число (если больше 999, добавляем пробелы: 2 400)
+            if (end >= 1000 && end !== 1000000) {
+                obj.innerText = current.toLocaleString('ru-RU');
+            } else {
+                obj.innerText = current;
+            }
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                // В самом конце устанавливаем точное значение
+                if (end >= 1000 && end !== 1000000) {
+                    obj.innerText = end.toLocaleString('ru-RU');
+                } else {
+                    obj.innerText = end;
+                }
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    // Настраиваем "наблюдатель"
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Находим все счетчики внутри этого блока
+                const counters = entry.target.querySelectorAll('.count');
+                
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    // Запускаем анимацию (0 -> target, за 2000 миллисекунд = 2 секунды)
+                    animateValue(counter, 0, target, 2000); 
+                });
+                
+                // Отключаем наблюдение после запуска, чтобы при повторном скролле не было повторной анимации
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, { threshold: 0.3 }); // Сработает, когда 30% блока станет видно
+
+    observer.observe(statsBlock);
+});
