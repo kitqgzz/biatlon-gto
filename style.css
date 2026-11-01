@@ -2623,7 +2623,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     flex-shrink: 0;
 }
 .card-image-side img {
-    max-width: 140px;
+    max-width: 235px;
     height: auto;
     object-fit: contain;
 }
