@@ -3205,27 +3205,152 @@ button { font-family: inherit; cursor: pointer; border: none; }
         grid-row: span 1 !important; 
     }
 }
-/* --- 8. Почему стоит участвовать --- */
-.teach-why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+/* --- 8. Почему стоит участвовать (S-МАРШРУТ) --- */
+.teach-route-compact-section {
+    background: #FFFFFF;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.route-compact-wrap {
+    position: relative;
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 60px auto 0;
+    padding: 40px 0;
 }
-.teach-why-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
+
+/* Линия маршрута (на фоне) */
+.route-compact-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Сетка карточек */
+.route-compact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 60px 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Карточки */
+.route-node-card {
     background: #FFF;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(13, 43, 92, 0.06);
-    border: 1px solid #EDF1F7;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.08);
+    border: 2px solid #EDF1F7;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
 }
-.teach-why-item span { font-size: 20px; }
-.teach-why-item p { font-size: 15px; color: var(--blue-dark); font-weight: 600; margin: 0; line-height: 1.5; }
-@media (max-width: 768px) { .teach-why-grid { grid-template-columns: 1fr; } }
+
+/* Иконки */
+.node-emoji {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--blue-dark);
+    border: 4px solid #FFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(13, 43, 92, 0.2);
+    transition: all 0.3s;
+}
+
+.route-node-card h4 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+.route-node-card p {
+    font-size: 14px;
+    color: #5A6B85;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Легкий наклон карточек для объема */
+.node-1 { transform: rotate(-2deg); }
+.node-2 { transform: rotate(1deg); }
+.node-3 { transform: rotate(-1deg); }
+.node-4 { transform: rotate(2deg); }
+.node-5 { transform: rotate(-1deg); }
+.node-6 { transform: rotate(1deg); }
+
+/* Эффект при наведении */
+.route-node-card:hover {
+    transform: scale(1.08) rotate(0deg) !important;
+    box-shadow: 0 20px 40px rgba(13, 43, 92, 0.15);
+    border-color: var(--orange);
+    z-index: 10;
+}
+.route-node-card:hover .node-emoji {
+    background: var(--orange);
+    transform: translateX(-50%) scale(1.1);
+}
+
+/* Флажки */
+.route-flag {
+    position: absolute;
+    background: var(--blue-dark);
+    color: #FFF;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(13, 43, 92, 0.2);
+    z-index: 3;
+}
+.route-flag.start {
+    top: 0;
+    left: 20px;
+}
+.route-flag.finish {
+    bottom: 0;
+    right: 20px;
+    background: var(--orange);
+}
+
+/* --- АДАПТИВ --- */
+@media (max-width: 900px) {
+    .route-compact-svg { display: none; } /* Убираем SVG на мобильных */
+    
+    .route-compact-grid {
+        grid-template-columns: 1fr; /* В одну колонку */
+        gap: 40px;
+    }
+    
+    .route-node-card {
+        transform: none !important; /* Убираем наклон */
+        margin: 0 20px;
+    }
+    
+    .route-flag {
+        position: static;
+        display: block;
+        width: max-content;
+        margin: 20px auto;
+    }
+    .route-flag.start { margin-top: 0; }
+    .route-flag.finish { margin-bottom: 0; }
+}
 
 /* --- 9. Дорожка участника (Аккордеон) --- */
 .teach-accordion {
