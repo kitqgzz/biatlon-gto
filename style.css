@@ -2515,152 +2515,175 @@ button { font-family: inherit; cursor: pointer; border: none; }
     }
 }
 
-/* --- 5. Блок "Что ты получишь" (Полный текст с плашкой) --- */
+/* --- 5. Блок "Что ты получишь" (ФИНАЛ) --- */
 .benefits-ref-section {
-    background: #EEF4FC;
+    background: #EEF4FC; /* Светло-голубой фон */
     padding: 100px 0;
-    overflow: hidden;
+    overflow: hidden; /* Прячем всё лишнее */
 }
 
 .benefits-ref-container {
     position: relative;
     display: flex;
-    align-items: stretch; /* Растягиваем карточку и плашку по одной высоте */
-    max-width: 1300px;
+    align-items: center; /* Центрируем элементы по вертикали */
+    max-width: 1200px;
     margin: 0 auto;
     padding-left: 20px;
 }
 
-/* Белая карточка с текстом */
+/* Белая карточка */
 .benefits-ref-card {
     position: relative;
-    z-index: 2;
+    z-index: 3; /* Поверх плашки */
     background: #FFFFFF;
-    padding: 50px;
+    padding: 40px 40px 40px 50px;
     border-radius: 30px;
-    width: 60%; /* Занимает 60% ширины */
+    width: 400px; /* Фиксированная ширина, чтобы текст дышал */
     flex-shrink: 0;
-    box-shadow: 0 10px 40px rgba(13, 43, 92, 0.08);
+    box-shadow: 0 20px 40px rgba(13, 43, 92, 0.08);
 }
 
-.benefits-text-group {
-    margin-bottom: 30px;
+.benefits-text-group { 
+    margin-bottom: 24px; 
 }
-.benefits-text-group:last-child {
-    margin-bottom: 0;
+.benefits-text-group:last-child { 
+    margin-bottom: 0; 
 }
 
 .benefits-text-group h3 {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--blue-dark);
-    margin-bottom: 14px;
+    font-size: 18px; 
+    font-weight: 800; 
+    color: var(--blue-dark); 
+    margin-bottom: 12px;
 }
 
 .benefits-text-group ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px;
 }
 
 .benefits-text-group li {
-    position: relative;
-    padding-left: 24px;
-    font-size: 15px;
-    color: #4A5A75;
-    line-height: 1.6;
+    position: relative; 
+    padding-left: 22px; 
+    font-size: 15px; 
+    color: var(--blue-dark); /* Темный цвет для аккуратности */
+    line-height: 1.4;
 }
 
-/* Красная галочка как на референсе */
+/* Красная галочка */
 .benefits-text-group li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 2px;
+    content: '✓'; 
+    position: absolute; 
+    left: 0; 
+    top: -1px; 
     color: #E24A4A; /* Красный цвет */
-    font-weight: 900;
+    font-weight: 900; 
     font-size: 16px;
 }
 
-/* Синяя плашка с косым краем */
+/* Кубок */
+.benefits-ref-trophy {
+    position: relative;
+    z-index: 4; /* Поверх карточки и плашки */
+    margin-left: -40px; /* Накладываем на карточку */
+    margin-right: -40px; /* Накладываем на синюю плашку */
+    flex-shrink: 0;
+}
+
+.benefits-ref-trophy img {
+    width: 160px;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.25));
+}
+
+/* Синяя плашка с диагональными полосками и фигурным краем */
 .benefits-ref-badge {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     background-color: var(--blue-dark);
-    /* Диагональные полоски */
+    /* Паттерн из диагональных полос */
     background-image: repeating-linear-gradient(
-        -45deg,
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.05) 20px,
-        transparent 20px,
+        -45deg, 
+        rgba(255, 255, 255, 0.05), 
+        rgba(255, 255, 255, 0.05) 20px, 
+        transparent 20px, 
         transparent 40px
     );
     
-    /* МАГИЯ: Отрезаем левый край под углом */
-    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    /* МАГИЯ: Делаем вогнутый фигурный край слева */
+    clip-path: ellipse(120% 100% at 100% 50%);
     
-    flex-grow: 1; /* Занимает оставшееся место справа */
-    margin-left: -80px; /* Заводим под белую карточку */
-    border-radius: 0 30px 30px 0;
-    
+    flex-grow: 1; /* Растягиваем до правого края контейнера */
+    height: 360px; 
     display: flex;
     align-items: center;
-    justify-content: center; /* Центрируем логотип */
-    padding-left: 100px; /* Отступ от косого края */
+    justify-content: center;
+    padding-left: 60px; /* Отступ для текста */
 }
 
-/* Текст внутри синей плашки */
+/* Текст и лого в плашке */
 .benefits-badge-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 16px;
 }
 
 .benefits-badge-logo {
-    width: 120px;
+    width: 100px;
     height: auto;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    /* Делаем логотип ярче и добавляем белое свечение, чтобы выделялся */
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.6)) brightness(1.2);
 }
 
 .benefits-ref-badge p {
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.3;
     margin: 0;
 }
 
 /* --- АДАПТИВ --- */
 @media (max-width: 1100px) {
-    .benefits-ref-card { width: 65%; padding: 40px; }
-    .benefits-ref-badge { padding-left: 80px; }
+    .benefits-ref-card { width: 360px; padding: 30px; }
+    .benefits-ref-trophy img { width: 120px; }
+    .benefits-ref-badge { height: 300px; padding-left: 40px; }
 }
 
 @media (max-width: 900px) {
     .benefits-ref-section { padding: 60px 0; }
+    
     .benefits-ref-container {
         flex-direction: column;
         padding: 0 20px;
-        gap: 30px;
+        gap: 0;
     }
     
     .benefits-ref-card { 
         width: 100%; 
-        padding: 30px 20px; 
+        max-width: 500px; 
     }
     
-    /* На мобильных убираем косой край и наезды */
+    /* На мобильных кубок становится между карточкой и плашкой */
+    .benefits-ref-trophy { 
+        margin: -40px 0; 
+        z-index: 5; 
+    }
+    
+    /* На мобильных убираем косой край, чтобы текст не обрезался */
     .benefits-ref-badge {
         clip-path: none;
         border-radius: 30px;
-        margin-left: 0;
         width: 100%;
+        max-width: 500px;
+        height: auto;
         padding: 40px 20px;
+        margin-top: 20px;
     }
 }
 
