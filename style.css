@@ -3333,23 +3333,27 @@ button { font-family: inherit; cursor: pointer; border: none; }
         display: none; 
     }
     
+    /* Добавляем отступы сверху и снизу для флажков */
+    .route-compact-wrap {
+        padding: 60px 0; 
+    }
+    
     .route-compact-grid {
-        grid-template-columns: 1fr; /* Выстраиваем в одну колонку */
-        gap: 40px; /* Увеличиваем отступ, чтобы линия просвечивала между карточками */
+        grid-template-columns: 1fr; 
+        gap: 40px; 
         padding: 20px 0;
-        position: relative; /* Важно для позиционирования линии */
+        position: relative; 
     }
 
-    /* ДОБАВЛЯЕМ ВЕРТИКАЛЬНУЮ ЛИНИЮ НА МОБИЛЬНЫХ */
+    /* Вертикальная линия на мобильных */
     .route-compact-grid::before {
         content: '';
         position: absolute;
-        top: 0;
-        bottom: 0;
+        top: -40px; /* Продлеваем линию вверх к флажку */
+        bottom: -40px; /* Продлеваем линию вниз к флажку */
         left: 50%;
         transform: translateX(-50%);
         width: 4px;
-        /* Рисуем пунктирную вертикальную линию */
         background: repeating-linear-gradient(
             to bottom,
             #D6E4F5 0,
@@ -3357,18 +3361,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
             transparent 12px,
             transparent 24px
         );
-        z-index: 0; /* Линия на заднем плане */
+        z-index: 0; 
     }
 
-    /* Карточки поверх линии */
     .route-node-card {
         margin: 0 15px;
-        transform: none; 
-        z-index: 1; /* Карточки поверх линии */
+        z-index: 1; 
         position: relative;
     }
 
-    /* Задаем чередующийся наклон для мобильных карточек */
+    /* Чередующийся наклон */
     .node-1, .node-3, .node-5 {
         transform: rotate(-2deg) !important;
     }
@@ -3380,16 +3382,24 @@ button { font-family: inherit; cursor: pointer; border: none; }
         transform: rotate(0) scale(1.02) !important;
     }
     
+    /* ВОЗВРАЩАЕМ ФЛАЖКАМ АБСОЛЮТНОЕ ПОЗИЦИОНИРОВАНИЕ */
     .route-flag {
-        position: static;
-        display: block;
+        position: absolute;
+        left: 50%; /* Центрируем по горизонтали */
+        z-index: 2;
+        margin: 0;
         width: max-content;
-        margin: 20px auto;
-        transform: rotate(-2deg); 
-        z-index: 2; /* Флажки поверх линии */
     }
-    .route-flag.start { margin-top: 0; }
-    .route-flag.finish { margin-bottom: 0; transform: rotate(2deg); }
+    
+    /* Ставим Старт наверх, Финиш вниз */
+    .route-flag.start { 
+        top: 0; 
+        transform: translateX(-50%) rotate(-2deg); 
+    }
+    .route-flag.finish { 
+        bottom: 0; 
+        transform: translateX(-50%) rotate(2deg); 
+    }
 }
 
 
