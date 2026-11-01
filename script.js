@@ -522,45 +522,44 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- 2. Скролл Таймлайна (Стрелки + Перетаскивание мышкой) ---
+       // --- 2. Скролл Таймлайна с зацикливанием ---
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     const timePrev = document.getElementById('timePrev');
     const timeNext = document.getElementById('timeNext');
 
     if (timeWrapper && timePrev && timeNext) {
-        // Скролл по стрелкам
-        timePrev.addEventListener('click', () => {
-            timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
-        });
+        
+        // Функция для проверки, докрутили ли мы до конца
+        const isAtEnd = () => {
+            // Погрешность в 10px нужна для разных экранов и масштабирования браузера
+            return timeWrapper.scrollLeft + timeWrapper.clientWidth >= timeWrapper.scrollWidth - 10;
+        };
+
+        // Функция для проверки, находимся ли мы в самом начале
+        const isAtStart = () => {
+            return timeWrapper.scrollLeft <= 10;
+        };
+
+        // Клик вперед
         timeNext.addEventListener('click', () => {
-            timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+            if (isAtEnd()) {
+                // Если мы в конце, плавно едем в начало
+                timeWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                // Иначе просто листаем дальше
+                timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+            }
         });
 
-        // Перетаскивание мышкой (Drag to scroll)
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        timeWrapper.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - timeWrapper.offsetLeft;
-            scrollLeft = timeWrapper.scrollLeft;
-        });
-
-        timeWrapper.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        timeWrapper.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-
-        timeWrapper.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - timeWrapper.offsetLeft;
-            const walk = (x - startX) * 2; // Скорость прокрутки
-            timeWrapper.scrollLeft = scrollLeft - walk;
+        // Клик назад
+        timePrev.addEventListener('click', () => {
+            if (isAtStart()) {
+                // Если мы в начале, плавно едем в самый конец
+                timeWrapper.scrollTo({ left: timeWrapper.scrollWidth, behavior: 'smooth' });
+            } else {
+                // Иначе листаем назад
+                timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
+            }
         });
     }
     // --- 3. Галерея (Слайдер и Лайтбокс) ---
