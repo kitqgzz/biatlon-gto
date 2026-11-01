@@ -2574,7 +2574,20 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .card-left {
     justify-content: space-between;
 }
+/* ОГРАНИЧИВАЕМ ШИРИНУ ТЕКСТА в процентах, чтобы он переносился как на фото 2 */
+.card-left .card-content {
+    max-width: 85%; /* 85% от ширины карточки — текст станет уже и выше */
+}
 
+/* Правые карточки: текст и картинка в ряд */
+.card-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+    flex-wrap: wrap; /* ВАЖНО: разрешаем перенос элементов, если не хватает места */
+}
 /* Правые карточки: текст и картинка в ряд */
 .card-content-row {
     display: flex;
@@ -2673,20 +2686,40 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 @media (max-width: 768px) {
-    .info-main-title { padding: 15px 30px; font-size: 22px; }
-    .card-title-badge { font-size: 18px; padding: 10px 20px; top: -20px; left: 15px; }
+    .info-main-title { 
+        padding: 15px 30px; 
+        font-size: 22px; 
+    }
     
-    /* На мобильных перестраиваем правые блоки вертикально */
+    .card-title-badge { 
+        font-size: 18px; 
+        padding: 10px 20px; 
+        top: -20px; 
+        left: 15px; 
+    }
+    
+    /* Сбрасываем ограничение ширины текста на телефонах */
+    .card-left .card-content {
+        max-width: 100%; 
+    }
+
+    /* Перестраиваем правые блоки вертикально */
     .card-content-row {
         flex-direction: column;
         align-items: flex-start;
     }
+    
+    /* Картинки по центру под текстом */
     .card-image-side {
         margin-top: 20px;
         align-self: center;
     }
-    .card-image-side img { max-width: 120px; }
-    .team-side img { max-width: 180px; }
+    .card-image-side img { 
+        max-width: 120px; 
+    }
+    .team-side img { 
+        max-width: 180px; 
+    }
 }
 /* --- 6. Истории успеха --- */
 .aqua-stories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
