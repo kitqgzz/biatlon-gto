@@ -2580,7 +2580,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
     height: 100%;
 }
 .card-right {
@@ -2659,7 +2658,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     flex-shrink: 0;
 }
 .card-image-side img {
-    max-width: 140px;
+    max-width: 235px;
     height: auto;
     object-fit: contain;
 }
