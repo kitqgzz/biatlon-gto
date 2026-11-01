@@ -2517,30 +2517,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* --- 5. Блок "Что ты получишь" (ИНФОГРАФИКА) --- */
 .info-section {
     background: #F4F7FC; 
-    padding: 100px 0;
+    padding: 80px 0;
     overflow: hidden;
-}
-
-/* Красивый заголовок-плашка сверху */
-.info-header-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-.info-main-title {
-    background: var(--blue-dark);
-    color: #fff;
-    font-size: clamp(24px, 3vw, 36px);
-    font-weight: 900;
-    text-align: center;
-    line-height: 1.2;
-    padding: 20px 60px;
-    border-radius: 50px;
-    border: 4px solid #fff;
-    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.2);
-}
-.info-main-title span { 
-    color: var(--orange); 
 }
 
 /* Сетка */
@@ -2550,7 +2528,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
-    align-items: stretch; /* Растягиваем колонки на одну высоту */
+    align-items: stretch; 
 }
 
 .info-right-col {
@@ -2577,7 +2555,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     justify-content: flex-start;
 }
 
-/* Ограничиваем ширину текста, чтобы он переносился на новую строку */
 .card-left .card-content {
     max-width: 85%; 
 }
@@ -2587,7 +2564,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-top: auto; /* Прижимает картинку к самому низу */
+    margin-top: auto; 
     padding-top: 30px;
 }
 .card-image-bottom img {
@@ -2602,33 +2579,31 @@ button { font-family: inherit; cursor: pointer; border: none; }
     justify-content: center;
 }
 
-/* Контейнер для текста и картинки в правых карточках */
 .card-content-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
     height: 100%;
-    flex-wrap: nowrap; /* Запрещаем перенос картинки вниз на десктопе */
+    flex-wrap: nowrap; 
 }
 
-/* Текст занимает свободное место */
 .card-content-row .info-list {
     flex: 1; 
     min-width: 0;
 }
 
-/* Картинки справа */
+/* Картинки справа (Ласка и Студенты) */
 .card-image-side {
-    flex-shrink: 0;
+    flex-shrink: 0; 
 }
 .card-image-side img {
-    max-width: 235px;
+    max-width: 235px; 
     height: auto;
     object-fit: contain;
 }
 .team-side img {
-    max-width: 220px;
+    max-width: 220px; 
 }
 
 /* --- ПЛАШКИ-ЗАГОЛОВКИ --- */
@@ -2688,34 +2663,32 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* --- АДАПТИВ --- */
+
+/* С 1100px убираем Ласку и Студентов */
 @media (max-width: 1100px) {
     .info-grid { 
-        grid-template-columns: 1fr; /* В одну колонку на планшетах */
+        grid-template-columns: 1fr; /* В одну колонку */
     } 
+    
+    /* Прячем картинки в правых блоках */
+    .card-image-side {
+        display: none;
+    }
+    
+    .card-left .card-content {
+        max-width: 100%; /* Текст на всю ширину */
+    }
 }
 
 @media (max-width: 768px) {
-    .info-main-title { padding: 15px 30px; font-size: 22px; }
-    .card-title-badge { font-size: 18px; padding: 10px 20px; top: -20px; left: 15px; }
+    .info-section { padding: 50px 0; }
     .info-card { padding: 40px 20px 20px 20px; }
+    .card-title-badge { font-size: 18px; padding: 10px 20px; top: -20px; left: 15px; }
     
-    /* На мобильных текст занимает всю ширину */
-    .card-left .card-content {
-        max-width: 100%; 
+    /* Пловец остается, но делаем его чуть меньше */
+    .card-image-bottom img {
+        max-width: 220px; 
     }
-
-    /* На мобильных картинки спускаются вниз под текст */
-    .card-content-row {
-        flex-direction: column; 
-        align-items: flex-start;
-    }
-    
-    .card-image-side {
-        margin-top: 20px;
-        align-self: center;
-    }
-    .card-image-side img { max-width: 120px; }
-    .team-side img { max-width: 180px; }
 }
 
 /* --- 6. Истории успеха --- */
