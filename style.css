@@ -1281,6 +1281,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     animation: float 6s ease-in-out infinite;
     position: relative;
     z-index: 2;
+    max-width: 127%;
 }
 .preschool-hero-glow {
     position: absolute;
