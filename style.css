@@ -2515,171 +2515,166 @@ button { font-family: inherit; cursor: pointer; border: none; }
     }
 }
 
-/* --- 5. Блок "Что ты получишь" (BENTO GRID) --- */
-.benefits-bento-section {
-    background: #EEF4FC; /* Светло-голубой фон */
+/* --- 5. Блок "Что ты получишь" (ИНФОГРАФИКА) --- */
+.info-section {
+    background: #F4F7FC; /* Легкий фоновый цвет */
     padding: 100px 0;
+    overflow: hidden;
 }
 
-.bento-grid {
+/* Красивый заголовок-плашка сверху */
+.info-header-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px; /* Увеличили отступ, так как плашки карточек будут наезжать */
+}
+.info-main-title {
+    background: var(--blue-dark);
+    color: #fff;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.2;
+    padding: 20px 60px;
+    border-radius: 50px;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.2);
+}
+.info-main-title span { color: var(--orange); }
+
+/* Сетка */
+.info-grid {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* Левая колонка чуть шире правой */
-    gap: 24px;
-    max-width: 1100px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px; /* Отступ между колонками */
+    max-width: 1200px;
     margin: 0 auto;
+    align-items: start; /* Карточки не растягиваются на одну высоту */
 }
 
-/* Общие стили для карточек */
-.bento-card {
-    background: #FFFFFF;
-    border-radius: 28px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.06);
-    border: 1px solid #EDF1F7;
+.info-right-col {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 50px; /* Отступ между верхней и нижней карточкой справа */
 }
 
-/* Левая карточка (Для тела) */
-.bento-large {
-    grid-row: span 2; /* Растягивает карточку на две строки по высоте */
+/* Карточки */
+.info-card {
+    background: #fff;
+    border-radius: 30px;
+    padding: 50px 30px 30px 30px; /* Большой отступ сверху под плашку */
+    position: relative;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.05);
+    border: 2px solid #E1ECF9;
+    min-height: 250px;
 }
 
-/* Заголовки карточек */
-.bento-title {
+/* Цветные плашки-заголовки */
+.card-title-badge {
+    position: absolute;
+    top: -25px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    border-radius: 50px;
     font-size: 22px;
-    font-weight: 800;
-    color: var(--blue-dark);
-    margin-bottom: 24px;
+    font-weight: 900;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 10;
 }
+.orange-badge { background: var(--orange); }
+.blue-badge { background: var(--blue); }
+.badge-icon { font-size: 26px; }
 
-/* Списки */
-.bento-list {
+/* Контент карточек */
+.card-content {
+    position: relative;
+    z-index: 2; /* Текст поверх картинок */
+}
+.info-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px; /* Отступ между пунктами */
+    gap: 16px;
 }
-
-.bento-list li {
+.info-list li {
     position: relative;
-    padding-left: 28px;
-    font-size: 15px; 
-    color: #5A6B85; /* Цвет для пояснений */
+    padding-left: 36px;
+    font-size: 15px;
+    color: #4A5A75;
     line-height: 1.5;
 }
-
-.bento-list li strong {
-    color: var(--blue-dark); /* Темный цвет для главной мысли */
-    font-weight: 700;
-}
-
-/* Оранжевая галочка */
-.bento-list li::before {
+.info-list li::before {
     content: '✓';
     position: absolute;
     left: 0;
-    top: -1px;
-    color: var(--orange);
-    font-weight: 900;
-    font-size: 18px;
-}
-
-/* Кубок в большой карточке */
-.bento-trophy {
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--orange);
+    color: #fff;
+    border-radius: 50%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: flex-end;
-    margin-top: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.info-list li strong { color: var(--blue-dark); }
+
+/* --- ДЕКОРАТИВНЫЕ КАРТИНКИ (ПЕРСОНАЖИ) --- */
+.decor-img {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    object-fit: contain;
 }
 
-.bento-trophy img {
-    width: 160px;
-    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.2));
+/* Настройки для пловца */
+.swimmer-img {
+    bottom: -10px;
+    right: 10px;
+    max-width: 250px;
 }
 
-/* Правая нижняя синяя карточка */
-.bento-blue {
-    background: var(--blue-dark);
-    border: none;
-    position: relative;
-    overflow: hidden;
-    /* Диагональные полоски на фоне */
-    background-image: repeating-linear-gradient(
-        -45deg, 
-        rgba(255, 255, 255, 0.03), 
-        rgba(255, 255, 255, 0.03) 15px, 
-        transparent 15px, 
-        transparent 30px
-    );
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+/* Настройки для ласки */
+.weasel-img {
+    bottom: -10px;
+    right: 10px;
+    max-width: 180px;
 }
 
-/* Переопределяем цвета текста для синей карточки */
-.bento-blue .bento-list li {
-    color: rgba(255, 255, 255, 0.85);
-}
-.bento-blue .bento-list li strong {
-    color: #FFFFFF;
-}
-.bento-blue .bento-list li::before {
-    color: #FFFFFF; /* Белая галочка на синем фоне */
-}
-
-/* Логотип в синей карточке */
-.bento-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-.bento-badge img {
-    width: 80px;
-    height: auto;
-    margin-bottom: 12px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-
-.bento-badge p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.3;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+/* Настройки для команды */
+.team-img {
+    bottom: -20px;
+    right: 10px;
+    max-width: 220px;
 }
 
 /* --- АДАПТИВ --- */
-@media (max-width: 900px) {
-    .bento-grid {
-        grid-template-columns: 1fr; /* В одну колонку на планшетах и телефонах */
-    }
-    
-    .bento-large {
-        grid-row: auto; /* Отменяем растягивание */
-    }
-    
-    .bento-blue {
-        flex-direction: column; /* Синяя карточка становится вертикальной */
-        text-align: center;
-        padding: 40px 20px;
-    }
-    
-    .bento-blue-content {
-        margin-bottom: 24px;
-    }
+@media (max-width: 1100px) {
+    .info-grid { grid-template-columns: 1fr; } /* В одну колонку */
+    .info-right-col { gap: 40px; }
 }
 
+@media (max-width: 768px) {
+    .info-main-title { padding: 15px 30px; font-size: 22px; }
+    .card-title-badge { font-size: 18px; padding: 10px 20px; top: -20px; left: 15px; }
+    .info-card { padding: 40px 20px 20px 20px; }
+    
+    /* На телефонах делаем картинки полупрозрачным фоном, чтобы текст было удобно читать */
+    .decor-img { 
+        max-width: 120px; 
+        opacity: 0.15; 
+        right: 0; 
+        bottom: 0; 
+    } 
+}
 /* --- 6. Истории успеха --- */
 .aqua-stories-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto; }
 .aqua-stories-image img { 
