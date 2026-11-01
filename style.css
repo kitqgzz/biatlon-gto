@@ -2842,29 +2842,76 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .teach-mission-section {
     position: relative;
     padding: 120px 0;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* Белый фон секции */
     overflow: hidden;
 }
 
-/* Псевдоэлемент для карты на фоне */
+/* Карта на фоне (уменьшенная) */
 .teach-mission-section::before {
     content: '';
     position: absolute;
-    inset: 0;
-    /* Твоя карта */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Делаем карту меньше экрана, чтобы были белые поля */
+    width: 70%; 
+    height: 70%;
+    max-width: 1000px;
+    
     background-image: url('images/map.png'); 
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 85% auto;
+    background-size: contain; /* Карта вписывается целиком */
     z-index: 1;
     
-    /* ВОТ ТУТ МЫ ДЕЛАЕМ КАРТУ СЕРЕЕ И КОНТРАСТНЕЕ */
-    opacity: 0.5; /* Делаем её полупрозрачной */
-    filter: grayscale(100%) contrast(150%) brightness(0.8); /* Усиливаем серый цвет */
+    /* Настраиваем цвет карты */
+    opacity: 0.4; 
+    filter: grayscale(100%) contrast(120%) brightness(0.9); 
     
-    pointer-events: none; /* Чтобы карта не мешала выделять текст */
+    pointer-events: none;
 }
 
+/* Контент поверх карты */
+.teach-mission-content {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2; /* Текст всегда поверх карты */
+}
+
+/* Заголовок */
+.mission-title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    color: #0D2B5C; /* Темно-синий цвет, чтобы читалось лучше */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    line-height: 1;
+}
+
+/* Текст по центру */
+.mission-text {
+    font-size: 18px;
+    color: #2A3B5C;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .teach-mission-section { padding: 80px 20px; }
+    .teach-mission-section::before { 
+        width: 90%; 
+        height: 90%; 
+        opacity: 0.2; /* На мобильных делаем карту еще бледнее */
+    }
+    .mission-title { font-size: 32px; }
+    .mission-text { font-size: 16px; }
+}
 /* Контент поверх карты */
 .teach-mission-content {
     max-width: 900px;
