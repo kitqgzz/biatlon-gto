@@ -2731,3 +2731,382 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .gallery-slider-wrap { padding: 0 20px; }
     .gallery-slider-btn { width: 36px; height: 36px; font-size: 20px; }
 }
+
+/* ============ СТРАНИЦА «ДЛЯ ПЕДАГОГОВ» ============ */
+
+/* --- 1. Hero --- */
+.teach-hero {
+    background: linear-gradient(135deg, #EEF4FC 0%, #E1ECF9 100%);
+    padding: 160px 0 80px;
+    overflow: hidden;
+}
+.teach-hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
+.teach-hero-title {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.teach-hero-subtitle {
+    font-size: 18px;
+    color: #4A5A75;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.teach-hero-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.teach-hero-list li {
+    position: relative;
+    padding-left: 24px;
+    font-size: 16px;
+    color: #4A5A75;
+    font-weight: 500;
+}
+.teach-hero-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-size: 24px;
+    top: -4px;
+}
+.teach-hero-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Высота контейнера с Лаской */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+/* Фон-круг за Лаской */
+.hero-laska-bg {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: rgba(46, 107, 196, 0.1);
+    border-radius: 50%;
+    bottom: 0;
+    z-index: 1;
+}
+/* Ласка обрезана по пояс */
+.hero-laska-img {
+    position: relative;
+    z-index: 2;
+    height: 130%; /* Увеличиваем, чтобы сделать по пояс */
+    width: auto;
+    object-fit: contain;
+    object-position: bottom;
+    margin-bottom: -50px; /* Сдвигаем вниз, чтобы обрезать ноги */
+}
+/* Парящие иконки */
+.float-icon {
+    position: absolute;
+    z-index: 3;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    animation: floatIcon 4s ease-in-out infinite;
+}
+.icon-target { width: 90px; top: 10%; left: -5%; animation-delay: 0s; }
+.icon-medal { width: 100px; top: 5%; right: 0%; animation-delay: 1s; }
+.icon-trophy { width: 110px; bottom: 20%; right: -10%; animation-delay: 2s; }
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+@media (max-width: 992px) {
+    .teach-hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .teach-hero-list li { padding-left: 0; }
+    .teach-hero-list li::before { display: none; }
+    .teach-hero-image-wrap { height: 400px; margin-top: 30px; }
+    .hero-laska-bg { width: 300px; height: 300px; }
+    .hero-laska-img { height: 120%; }
+    .icon-target { width: 60px; left: 0; }
+    .icon-medal { width: 70px; right: 0; }
+    .icon-trophy { width: 80px; right: 0; }
+}
+
+/* --- 2. О проекте --- */
+.teach-about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+.teach-about-text p {
+    font-size: 16px;
+    color: #4A5A75;
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+.teach-about-image img {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.15));
+}
+@media (max-width: 992px) {
+    .teach-about-grid { grid-template-columns: 1fr; }
+    .teach-about-image { order: -1; }
+}
+
+/* --- 3. Bento Сетка --- */
+.teach-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.teach-bento-item {
+    background: #FFF;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.teach-bento-item.bento-main {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: var(--blue-dark);
+    color: #FFF;
+    text-align: center;
+}
+.teach-bento-item.bento-main .stat-num { color: #FFF; }
+.teach-bento-item.bento-main .stat-label { color: rgba(255,255,255,0.8); font-size: 20px; font-weight: 600;}
+.teach-bento-item .stat-num { font-size: 42px; margin-bottom: 10px; text-align: center;}
+.teach-bento-item .stat-label { font-size: 15px; color: #5A6B85; text-align: center; }
+
+@media (max-width: 900px) {
+    .teach-bento-grid { grid-template-columns: 1fr; }
+    .teach-bento-item.bento-main { grid-column: auto; grid-row: auto; }
+}
+
+/* --- 4. Что получает педагог --- */
+.teach-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.teach-benefit-card {
+    background: #FFF;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+}
+.teach-benefit-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--orange);
+    margin-bottom: 12px;
+}
+.teach-benefit-card h3 { font-size: 18px; font-weight: 800; color: var(--blue-dark); margin-bottom: 10px; }
+.teach-benefit-card p { font-size: 14px; color: #5A6B85; line-height: 1.6; }
+
+/* --- 5. Интерактивная методика (ТАБЫ) --- */
+.teach-tabs-container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #FFF;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(13, 43, 92, 0.08);
+}
+.teach-tabs-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.teach-tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: transparent;
+    border: 2px solid #EDF1F7;
+    border-radius: 20px;
+    text-align: left;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.teach-tab-btn:hover { background: #F4F7FC; }
+.teach-tab-btn.active {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+    color: #FFF;
+}
+.tab-num { font-size: 24px; font-weight: 900; color: var(--orange); }
+.teach-tab-btn.active .tab-num { color: #FFF; }
+.tab-title { font-size: 16px; font-weight: 700; color: var(--blue-dark); }
+.teach-tab-btn.active .tab-title { color: #FFF; }
+
+.teach-tabs-content { position: relative; }
+.teach-tab-pane { display: none; animation: fadeIn 0.4s ease; }
+.teach-tab-pane.active { display: block; }
+.teach-tab-pane h3 { font-size: 24px; font-weight: 900; color: var(--blue-dark); margin-bottom: 16px; }
+.teach-tab-pane p { font-size: 16px; color: #4A5A75; line-height: 1.7; margin-bottom: 20px; }
+.teach-pane-img { max-width: 200px; display: block; margin-top: 20px; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) {
+    .teach-tabs-container { grid-template-columns: 1fr; padding: 20px; }
+    .teach-tabs-menu { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
+    .teach-tab-btn { padding: 12px 20px; white-space: nowrap; }
+}
+
+/* --- 6. Связь с ГТО --- */
+.teach-gto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.teach-gto-card {
+    background: #EEF4FC;
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid #D6E4F5;
+}
+.teach-gto-icon { width: 100px; height: auto; margin: 0 auto 20px; display: block; }
+.teach-gto-card h3 { font-size: 22px; font-weight: 900; color: var(--blue-dark); margin-bottom: 16px; }
+.teach-gto-card p { font-size: 15px; color: #4A5A75; line-height: 1.6; }
+@media (max-width: 900px) { .teach-gto-grid { grid-template-columns: 1fr; } }
+
+/* --- 7. Masonry Галерея --- */
+.teach-masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.teach-masonry-item {
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+.teach-masonry-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.teach-masonry-item:hover img { transform: scale(1.05); }
+.teach-masonry-item.big { grid-column: span 2; grid-row: span 2; }
+.teach-masonry-item.wide { grid-column: span 2; }
+@media (max-width: 900px) {
+    .teach-masonry-grid { grid-template-columns: repeat(2, 1fr); }
+    .teach-masonry-item.big { grid-column: span 2; grid-row: span 1; }
+    .teach-masonry-item.wide { grid-column: span 1; }
+}
+
+/* --- 8. Почему стоит участвовать --- */
+.teach-why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.teach-why-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #FFF;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+}
+.teach-why-item span { font-size: 20px; }
+.teach-why-item p { font-size: 15px; color: var(--blue-dark); font-weight: 600; margin: 0; line-height: 1.5; }
+@media (max-width: 768px) { .teach-why-grid { grid-template-columns: 1fr; } }
+
+/* --- 9. Дорожка участника (Аккордеон) --- */
+.teach-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+}
+.teach-accordion::before {
+    content: '';
+    position: absolute;
+    top: 20px; bottom: 20px; left: 30px;
+    width: 4px;
+    background: #D6E4F5;
+    z-index: 1;
+    border-radius: 4px;
+}
+.teach-step-item {
+    background: #FFF;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+.teach-step-header {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    cursor: pointer;
+    background: #FFF;
+}
+.teach-step-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--blue-dark);
+    color: #FFF;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    margin-right: 20px;
+    flex-shrink: 0;
+    border: 4px solid #FFF;
+}
+.teach-step-item.active .teach-step-num { background: var(--orange); }
+.teach-step-title { font-size: 18px; font-weight: 800; color: var(--blue-dark); flex-grow: 1; }
+.teach-step-icon { font-size: 24px; color: var(--orange); transition: transform 0.3s; }
+.teach-step-item.active .teach-step-icon { transform: rotate(45deg); }
+
+.teach-step-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 24px 0 84px;
+    background: #F4F7FC;
+}
+.teach-step-item.active .teach-step-body { max-height: 200px; padding: 0 24px 24px 84px; }
+.teach-step-body p { font-size: 15px; color: #5A6B85; line-height: 1.6; margin: 0; }
+
+/* --- 10. CTA --- */
+.teach-cta { background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 100%); }
+.teach-cta h2 { color: #FFF; max-width: 800px; margin: 0 auto 20px; font-size: clamp(24px, 3vw, 36px); }
+.teach-cta p { color: rgba(255,255,255,0.8); font-size: 18px; margin-bottom: 32px; }
