@@ -2396,7 +2396,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     }
 }
 
-/* --- 4. Таймлайн (Скрытый скроллбар, перетаскивание) --- */
+/* --- 4. Таймлайн (Исправленный) --- */
 .timeline-nav { display: flex; gap: 10px; }
 .btn-nav { width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--blue-dark); color: #fff; font-size: 24px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center;}
 .btn-nav:hover { background: var(--orange); }
@@ -2404,16 +2404,15 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .timeline-scroll-wrapper {
     width: 100%;
     overflow-x: auto;
+    overflow-y: hidden; /* Убирает вертикальное дергание блока */
     padding: 40px 0;
-    cursor: grab; /* Курсор-рука */
-    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
-    
-    /* Прячем скроллбар во всех браузерах */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-.timeline-scroll-wrapper::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-.timeline-scroll-wrapper:active { cursor: grabbing; } /* Курсор при перетаскивании */
+.timeline-scroll-wrapper::-webkit-scrollbar { display: none; }
+.timeline-scroll-wrapper:active { cursor: grabbing; }
 
 .timeline-track {
     display: flex;
@@ -2422,32 +2421,71 @@ button { font-family: inherit; cursor: pointer; border: none; }
     width: max-content;
     position: relative;
 }
-/* Кривая линия */
+
+/* Кривая линия (единая и непрерывная) */
 .timeline-bg-line {
-    position: absolute; top: 30px; left: 0; right: 0; height: 100px;
-    transform: translateY(0);
-    background-image: url("data:image/svg+xml,%3Csvg width='200' height='100' viewBox='0 0 200 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q50,0 100,50 T200,50' stroke='%23D6E4F5' stroke-width='8' fill='none'/%3E%3C/svg%3E");
-    background-repeat: repeat-x; background-position: center; z-index: 0; pointer-events: none;
+    position: absolute; 
+    top: 30px; 
+    left: 0; 
+    right: 0; 
+    height: 100px;
+    /* Ширина SVG 290px (260px карточка + 30px отступ) */
+    background-image: url("data:image/svg+xml,%3Csvg width='290' height='100' viewBox='0 0 290 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q72.5,0 145,50 T290,50' stroke='%23D6E4F5' stroke-width='8' fill='none'/%3E%3C/svg%3E");
+    background-repeat: repeat-x; 
+    background-position: left center; 
+    background-size: 290px 100px; /* Фиксируем размер, чтобы паттерн не рвался */
+    z-index: 0; 
+    pointer-events: none;
 }
+
 .timeline-node {
-    position: relative; z-index: 1; flex: 0 0 260px;
-    display: flex; flex-direction: column; align-items: center;
+    position: relative; 
+    z-index: 1; 
+    flex: 0 0 260px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
 }
+
 .node-icon {
-    width: 60px; height: 60px; background: var(--blue-dark); color: #fff;
-    border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    font-size: 28px; margin-bottom: 30px; border: 4px solid #FFF;
+    width: 60px; 
+    height: 60px; 
+    background: var(--blue-dark); 
+    color: #fff;
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 28px; 
+    margin-bottom: 30px; 
+    border: 4px solid #FFF;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
 .node-card {
-    background: #fff; padding: 24px; border-radius: 20px; text-align: center;
+    background: #fff; 
+    padding: 24px; 
+    border-radius: 20px; 
+    text-align: center;
     box-shadow: 0 10px 30px rgba(13, 43, 92, 0.08);
-    transform: rotate(-3deg); transition: 0.3s; width: 100%;
+    transform: rotate(-3deg); 
+    transition: transform 0.3s, box-shadow 0.3s; 
+    width: 100%;
+    border: 1px solid transparent; /* Прозрачная рамка, чтобы не менять размеры */
 }
-.timeline-node:nth-child(even) .node-card { transform: rotate(3deg); }
-.timeline-node:hover .node-card { transform: rotate(0) scale(1.05); box-shadow: 0 15px 40px rgba(13, 43, 92, 0.15); border: 1px solid var(--orange); }
-.node-card h3 { font-size: 18px; font-weight: 800; color: var(--blue-dark); margin-bottom: 8px; }
-.node-card p { font-size: 14px; color: #5A6B85; margin: 0; line-height: 1.4; }
+
+.timeline-node:nth-child(even) .node-card { 
+    transform: rotate(3deg); 
+}
+
+/* Эффект наведения ТОЛЬКО для мышки (на телефонах не сработает) */
+@media (hover: hover) and (pointer: fine) {
+    .timeline-node:hover .node-card { 
+        transform: rotate(0) scale(1.05); 
+        /* Используем box-shadow вместо border, чтобы избежать дергания */
+        box-shadow: 0 15px 40px rgba(13, 43, 92, 0.15), 0 0 0 2px var(--orange); 
+    }
+}
 
 /* --- 5. Блок "Что ты получишь" (Волна СПРАВА) --- */
 .benefits-wave-section {
