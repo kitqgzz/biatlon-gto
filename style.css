@@ -3391,11 +3391,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
         width: max-content;
     }
     
-    /* Ставим Старт наверх, Финиш вниз */
-    .route-flag.start { 
-        top: 0; 
-        transform: translateX(-50%) rotate(-2deg); 
-    }
     .route-flag.finish { 
         bottom: 0; 
         transform: translateX(-50%) rotate(2deg); 
