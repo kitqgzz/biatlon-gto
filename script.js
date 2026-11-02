@@ -876,7 +876,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         setTimeout(() => {
                             bubble.classList.add('show');
                             
-                            // Когда появляется последнее сообщение, возвращаем статус "в сети"
+                            // Автопрокрутка чата вниз (сработает только если есть overflow-y: auto)
+                            const chatBody = bubble.parentElement;
+                            chatBody.scrollTop = chatBody.scrollHeight;
+
                             if (index === bubbles.length - 1) {
                                 setTimeout(() => {
                                     if (status) status.innerText = "в сети";
