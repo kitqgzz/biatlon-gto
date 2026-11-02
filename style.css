@@ -3704,31 +3704,76 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 /* --- 4. Слайдер занятий --- */
-.school-slider-wrap { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-.school-slider { display: flex; gap: 24px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 0; scrollbar-width: none; }
+.school-slider-wrap { 
+    position: relative; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 40px; 
+}
+.school-slider { 
+    display: flex; 
+    gap: 24px; 
+    overflow-x: auto; 
+    scroll-behavior: smooth; 
+    padding: 20px 0; 
+    scrollbar-width: none; 
+    scroll-snap-type: x mandatory; /* Добавили для плавного свайпа на мобильных */
+}
 .school-slider::-webkit-scrollbar { display: none; }
 .school-card {
-    flex: 0 0 350px;
+    flex: 0 0 350px; /* Ширина на десктопе */
     background: #FFF;
     border-radius: 24px;
     padding: 30px;
     box-shadow: 0 10px 30px rgba(13, 43, 92, 0.06);
     border: 2px solid #EDF1F7;
     transition: 0.3s;
+    scroll-snap-align: start; /* Привязка карточек при свайпе */
 }
 .school-card:hover { transform: translateY(-5px); border-color: var(--orange); }
 .school-card-num { font-size: 36px; font-weight: 900; color: var(--orange); margin-bottom: 16px; }
 .school-card h3 { font-size: 20px; font-weight: 800; color: var(--blue-dark); margin-bottom: 12px; }
 .school-card p { font-size: 15px; color: #5A6B85; line-height: 1.6; }
+
 .school-slider-btn {
     position: absolute; top: 50%; transform: translateY(-50%);
     width: 50px; height: 50px; border-radius: 50%; background: #FFF; border: none;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-size: 28px; cursor: pointer; z-index: 10; color: var(--blue-dark);
+    transition: 0.2s;
+    display: flex; align-items: center; justify-content: center;
 }
 .school-slider-btn:hover { background: var(--orange); color: #FFF; }
 .school-slider-btn.prev { left: 0; }
 .school-slider-btn.next { right: 0; }
 
+/* АДАПТИВ ДЛЯ СЛАЙДЕРА НА МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+    .school-slider-wrap {
+        padding: 0 10px; /* Уменьшаем отступы по бокам */
+    }
+    
+    .school-card {
+        flex: 0 0 260px; /* Уменьшаем ширину карточки */
+        padding: 20px; /* Уменьшаем внутренние отступы */
+    }
+    
+    .school-card h3 {
+        font-size: 18px;
+    }
+    
+    .school-card p {
+        font-size: 14px;
+    }
+    
+    /* Уменьшаем и прижимаем кнопки на мобильных */
+    .school-slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+    .school-slider-btn.prev { left: -5px; }
+    .school-slider-btn.next { right: -5px; }
+}
 /* --- 5. Инвентарь (С КАРТИНКАМИ) --- */
 .school-inventory-grid {
     display: grid;
