@@ -3593,25 +3593,39 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 @keyframes floatIcon { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } }
 
-/* --- 1. Hero (Адаптив с летающими объектами) --- */
 @media (max-width: 992px) {
-    .school-hero-inner { grid-template-columns: 1fr; text-align: center; }
-    .main-hero-img { max-height: 350px; margin-top: 30px; }
+    .school-hero-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+    }
+    .main-hero-img { 
+        max-height: 350px; 
+        margin-top: 40px; /* Чуть больше отступа, чтобы было место для иконок */
+    }
     
-    /* ВОЗВРАЩАЕМ ИКОНКИ НА МОБИЛЬНЫХ */
     .school-hero-bg { display: block; } 
     
     .floating-icon {
-        opacity: 0.6; /* Делаем их чуть прозрачными, чтобы не отвлекали */
+        opacity: 0.8; /* Делаем чуть ярче */
         filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
     }
     
-    /* Позиционируем их по краям экрана вокруг ласки */
-    .bg-icon-1 { width: 50px; top: 35%; left: -15px; } /* Мишень */
-    .bg-icon-2 { width: 60px; top: 45%; right: -15px; } /* Медаль */
-    .bg-icon-3 { width: 70px; bottom: 15%; left: -10px; } /* Кубок */
-    .bg-icon-4 { width: 40px; top: 15%; right: 10%; } /* Звезда 1 */
-    .bg-icon-5 { width: 30px; bottom: 25%; right: -5px; } /* Звезда 2 */
+    /* РАСПРЕДЕЛЯЕМ ИКОНКИ ПО КРАЯМ ЭКРАНА */
+    
+    /* Мишень - слева, на уровне текста */
+    .bg-icon-1 { width: 50px; top: 45%; left: -15px; } 
+    
+    /* Кубок - оставляем сверху слева */
+    .bg-icon-3 { width: 65px; top: 15%; left: -10px; } 
+    
+    /* Медаль - справа, прямо рядом с лаской */
+    .bg-icon-2 { width: 60px; bottom: 35%; right: -15px; } 
+    
+    /* Звезда 1 - сверху справа */
+    .bg-icon-4 { width: 40px; top: 10%; right: 10%; } 
+    
+    /* Звезда 2 - внизу, прямо возле ласки */
+    .bg-icon-5 { width: 35px; bottom: 10%; right: 25%; } 
 }
 
 /* --- 2. О проекте --- */
