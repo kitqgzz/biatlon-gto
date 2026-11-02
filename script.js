@@ -808,20 +808,43 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(statsBlock);
     }
 
-    // --- 2. Слайдер занятий ---
+    // --- 2. Слайдер занятий (с зацикливанием) ---
     const slider = document.getElementById('schoolSlider');
     const prevBtn = document.getElementById('schoolSliderPrev');
     const nextBtn = document.getElementById('schoolSliderNext');
 
     if (slider && prevBtn && nextBtn) {
-        // Ширина карточки (350px) + отступ (24px) = 374px
-        const scrollAmount = 374; 
         
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
+        // Функция для вычисления ширины одной карточки + отступа (gap)
+        const getScrollAmount = () => {
+            const card = slider.querySelector('.school-card');
+            if (!card) return 374; // Запасное значение
+            // Ширина карточки + отступ (gap 24px)
+            return card.offsetWidth + 24; 
+        };
+
+        // Клик вперед
         nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            const scrollAmount = getScrollAmount();
+            
+            // Если мы у самого конца (погрешность 10px), крутим в начало
+            if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                slider.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        });
+
+        // Клик назад
+        prevBtn.addEventListener('click', () => {
+            const scrollAmount = getScrollAmount();
+            
+            // Если мы в самом начале, крутим в конец
+            if (slider.scrollLeft <= 10) {
+                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
         });
     }
 
