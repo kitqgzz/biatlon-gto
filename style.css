@@ -1403,9 +1403,25 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* ============ ОБЩИЙ АДАПТИВ ============ */
 @media (max-width: 1100px) {
+    /* Уменьшаем отступы в самом меню */
+    .nav {
+        gap: 6px; /* Было 12px */
+    }
+    
+    /* Уменьшаем кнопки (шрифт и внутренние отступы) */
+    .nav a { 
+        padding: 6px 10px; /* Было 8px 14px */
+        font-size: 12px;    /* Было 13px */
+    }
+
+    /* Чуть-чуть уменьшаем логотип, чтобы дать меню больше места */
+    .logo-img {
+        height: 40px; /* Было 48px */
+    }
+
+    /* Остальные стили для этого разрешения оставляем как были */
     .heroes-grid { grid-template-columns: repeat(3, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .nav a { padding: 8px 14px; font-size: 13px; }
     .elements-cards { gap: 12px; }
     .element-card { width: 180px; height: 270px; }
     .element-card-img img { max-height: 140px; }
