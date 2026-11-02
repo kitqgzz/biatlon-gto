@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Школьникам — Биатлон ГТО</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-school">
+
+<!-- ============ ХЕДЕР ============ -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logogto.png" alt="Биатлон ГТО" class="logo-img">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="index.html#about">О проекте</a>
+            <a href="preschool.html">Биатлошка</a>
+            <a href="school.html" style="background: var(--orange); color: var(--white);">Школьникам</a>
+            <a href="students.html">Студентам</a>
+            <a href="aquathlon.html">Аква биатлон</a>
+            <a href="teachers.html">Педагогам</a>
+            <a href="index.html#contacts">Связаться с нами</a>
+        </nav>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- ============ 1. HERO (С ПАРЯЩИМИ ЭЛЕМЕНТАМИ) ============ -->
+<section class="school-hero">
+    <!-- Парящий фон -->
+    <div class="school-hero-bg">
+        <img src="images/target-3d.png" alt="" class="floating-icon bg-icon-1">
+        <img src="images/gold.png" alt="" class="floating-icon bg-icon-2">
+        <img src="images/aqua-trophy.png" alt="" class="floating-icon bg-icon-3">
+        <img src="images/star.png" alt="" class="floating-icon bg-icon-4">
+        <img src="images/star.png" alt="" class="floating-icon bg-icon-5">
+    </div>
+
+    <div class="container school-hero-inner">
+        <div class="school-hero-content">
+            <span class="school-tag">Школьный проект</span>
+            <h1 class="school-hero-title">Для тех, кто хочет быть быстрым, метким и сильным!</h1>
+            <p class="school-hero-subtitle">
+                Хочешь попробовать настоящий биатлон, но без снега и сложного оружия? Мечтаешь сдать ГТО на золотой знак?
+            </p>
+            <p class="school-hero-accent">Тогда этот проект — для тебя!</p>
+            <div class="preschool-hero-buttons">
+                <a href="https://forms.yandex.ru/u/6abb74a384227cf427d6c8b0" target="_blank" rel="noopener" class="btn btn-orange">Подать заявку</a>
+                <a href="#about-school" class="btn btn-outline-blue" style="color: var(--blue-dark); border-color: var(--blue-dark);">Узнать больше</a>
+            </div>
+        </div>
+        <div class="school-hero-image">
+            <img src="images/school-weasel.png" alt="Ласка-школьник" class="main-hero-img">
+        </div>
+    </div>
+</section>
+
+<!-- ============ 2. О ПРОЕКТЕ ============ -->
+<section class="section" id="about-school">
+    <div class="container">
+        <div class="school-about-grid">
+            <div class="school-about-text">
+                <h2 class="section-title" style="text-align: left;">О проекте</h2>
+                <p><strong>«Биатлон ГТО для школьников»</strong> — это дополнительная образовательная программа для учеников 1–11 классов, реализуемая при поддержке Министерства просвещения РФ и Министерства спорта РФ.</p>
+                <p>Занятия проходят в спортивном зале школы или на стадионе. Ты будешь бегать эстафеты и стрелять из безопасной пневматической винтовки по мишеням. Вместо штрафного круга — весёлое задание: приседания или прыжки!</p>
+                <p>Программа готовит тебя к сдаче нормативов ГТО, развивает меткость, выносливость и координацию. А ещё — это отличный способ найти новых друзей!</p>
+            </div>
+            <div class="school-about-image">
+                <!-- Новая группа школьников -->
+                <img src="images/school-groupe.png" alt="Школьники" class="group-school-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 3. НАШИ ЦИФРЫ ============ -->
+<section class="section section-gray">
+    <div class="container">
+        <h2 class="section-title">Наши цифры</h2>
+        <div class="school-stats-grid">
+            <div class="school-stat-card">
+                <div class="stat-num"><span class="stat-sign">&gt;</span><span class="count" data-target="1000">0</span></div>
+                <div class="stat-label">образовательных организаций уже в программе</div>
+            </div>
+            <div class="school-stat-card card-highlight">
+                <div class="stat-num"><span class="stat-sign">&gt;</span><span class="count" data-target="2500000">0</span></div>
+                <div class="stat-label">школьников по всей России проходят обучение</div>
+            </div>
+            <div class="school-stat-card">
+                <div class="stat-num"><span class="count" data-target="48">0</span></div>
+                <div class="stat-label">регионов России и стран содружества участвуют</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 4. КАК ПРОХОДЯТ ЗАНЯТИЯ (СЛАЙДЕР) ============ -->
+<section class="section" id="classes-school">
+    <div class="container">
+        <h2 class="section-title">Как проходят занятия</h2>
+        <p class="section-subtitle">Каждое занятие — это мини-соревнование. Листай, чтобы узнать больше!</p>
+        
+        <div class="school-slider-wrap">
+            <button class="school-slider-btn prev" id="schoolSliderPrev">‹</button>
+            <div class="school-slider" id="schoolSlider">
+                <div class="school-card">
+                    <div class="school-card-num">01</div>
+                    <h3>Беговая подготовка</h3>
+                    <p>Вместо лыжной гонки — челночный бег, короткие дистанции (10, 30, 60 метров) или эстафеты. Развивает скорость и выносливость!</p>
+                </div>
+                <div class="school-card">
+                    <div class="school-card-num">02</div>
+                    <h3>Огневой рубеж</h3>
+                    <p>После бега ты подходишь к рубежу. Стрельба из положения лёжа с упора или стоя. Винтовка лёгкая и безопасная, созданная для школьников.</p>
+                </div>
+                <div class="school-card">
+                    <div class="school-card-num">03</div>
+                    <h3>Штрафные задания</h3>
+                    <p>Промахнулся? Не беда! Вместо штрафного круга тебя ждёт весёлое испытание: пробежать круг, сделать 10 приседаний или 5 отжиманий.</p>
+                </div>
+                <div class="school-card">
+                    <div class="school-card-num">04</div>
+                    <h3>Соревнования</h3>
+                    <p>Регулярно проводятся школьные, районные и городские соревнования. Лучшие команды выезжают на всероссийские финалы в «Смену», «Океан», «Орлёнок».</p>
+                </div>
+            </div>
+            <button class="school-slider-btn next" id="schoolSliderNext">›</button>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 5. ЧТО ТЫ ПОЛУЧИШЬ ============ -->
+<section class="section section-gray" id="inventory-school">
+    <div class="container">
+        <h2 class="section-title">Что ты получишь</h2>
+        <p class="section-subtitle">В рамках проекта школы получают мобильный комплекс «Биатлон-ГТО»:</p>
+        
+        <div class="school-inventory-grid">
+            <div class="school-inv-card">
+                <img src="images/aqua-trophy.png" alt="Винтовка" class="school-inv-img">
+                <h3>Пневматическая винтовка</h3>
+                <p>Безопасная, лёгкая, создана на базе МР-61 специально для школьников. Позволяет стрелять в любом спортзале.</p>
+            </div>
+            <div class="school-inv-card">
+                <img src="images/target-3d.png" alt="Мишень" class="school-inv-img">
+                <h3>Мишенная установка</h3>
+                <p>Ключевой элемент для отработки стрельбы и проведения соревнований.</p>
+            </div>
+            <div class="school-inv-card">
+                <img src="images/star.png" alt="Упоры" class="school-inv-img">
+                <h3>Упоры и коврики</h3>
+                <p>Специальные подставки для винтовок и нескользящие коврики для зонирования рубежа.</p>
+            </div>
+            <div class="school-inv-card">
+                <img src="images/gold.png" alt="Методички" class="school-inv-img">
+                <h3>Методички</h3>
+                <p>Сценарии праздников, эстафет и планы для учителей физкультуры.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 6. СВЯЗЬ С ГТО ============ -->
+<section class="section" id="gto-school">
+    <div class="container">
+        <div class="school-gto-box">
+            <div class="school-gto-text">
+                <h2>Связь с реальным ГТО</h2>
+                <p>«Биатлон ГТО» — это не просто игра. Это тренировочный элемент, который напрямую готовит тебя к сдаче официальных тестов.</p>
+                <p>Элементы биатлона тренируют меткость и координацию. Сдав нормы ГТО, ты получишь знак отличия — золотой, серебряный или бронзовый. А это — гордость для тебя и твоей семьи!</p>
+            </div>
+            <div class="school-gto-image">
+                <img src="images/gold.png" alt="Медаль ГТО">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 7. ПОЧЕМУ ЭТО ЗДОРОВО ============ -->
+<section class="section section-gray" id="why-school">
+    <div class="container">
+        <h2 class="section-title">Почему это здорово?</h2>
+        <div class="school-why-grid">
+            <div class="school-why-card"><img src="images/star.png" alt="star" class="why-icon"><p>Ты становишься сильнее и здоровее</p></div>
+            <div class="school-why-card"><img src="images/star.png" alt="star" class="why-icon"><p>Ты учишься стрелять</p></div>
+            <div class="school-why-card"><img src="images/star.png" alt="star" class="why-icon"><p>Ты участвуешь в соревнованиях</p></div>
+            <div class="school-why-card"><img src="images/star.png" alt="star" class="why-icon"><p>Ты находишь друзей</p></div>
+            <div class="school-why-card"><img src="images/star.png" alt="star" class="why-icon"><p>Ты готовишься к ГТО</p></div>
+            <div class="school-why-card"><img src="images/star.png" alt="star" class="why-icon"><p>Ты часть большого проекта</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 8. ФОТОГАЛЕРЕЯ (ПОЛАРОИДЫ) ============ -->
+<section class="section" id="gallery-school">
+    <div class="container">
+        <h2 class="section-title">Биатлон ГТО в школе</h2>
+        <div class="school-polaroid-grid">
+            <div class="polaroid-item"><img src="images/project-1.jpg" alt="Фото 1" class="school-lightbox-trigger"></div>
+            <div class="polaroid-item"><img src="images/gallery-01.jpg" alt="Фото 2" class="school-lightbox-trigger"></div>
+            <div class="polaroid-item"><img src="images/gallery-02.jpg" alt="Фото 3" class="school-lightbox-trigger"></div>
+            <div class="polaroid-item"><img src="images/project-4.jpg" alt="Фото 4" class="school-lightbox-trigger"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 9. КАК ПРИСОЕДИНИТЬСЯ (КВЕСТ) ============ -->
+<section class="section section-gray" id="join-school">
+    <div class="container">
+        <h2 class="section-title">Как присоединиться?</h2>
+        <div class="school-quest-wrap">
+            <div class="school-quest-step">
+                <div class="quest-num">1</div>
+                <div class="quest-text">
+                    <h4>Узнай у учителя</h4>
+                    <p>Спроси у своего учителя физкультуры, участвует ли школа в проекте.</p>
+                </div>
+            </div>
+            <div class="school-quest-step">
+                <div class="quest-num">2</div>
+                <div class="quest-text">
+                    <h4>Предложи идею</h4>
+                    <p>Если нет — предложи учителю подать заявку на нашем сайте.</p>
+                </div>
+            </div>
+            <div class="school-quest-step">
+                <div class="quest-num">3</div>
+                <div class="quest-text">
+                    <h4>Запишись в секцию</h4>
+                    <p>Запишись в школьный кружок «Биатлон ГТО».</p>
+                </div>
+            </div>
+            <div class="school-quest-step">
+                <div class="quest-num">4</div>
+                <div class="quest-text">
+                    <h4>Приходи на тренировку!</h4>
+                    <p>Начни свой путь к победам и золотому знаку ГТО!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 10. ФИНАЛЬНЫЙ ПРИЗЫВ ============ -->
+<section class="cta" id="cta-school">
+    <div class="container cta-inner">
+        <h2>Не упусти свой шанс стать быстрым, метким и сильным!</h2>
+        <p>Присоединяйся к «Биатлону ГТО»!</p>
+        <a href="https://forms.yandex.ru/u/6abb74a384227cf427d6c8b0" target="_blank" rel="noopener" class="btn btn-white">Подать заявку</a>
+    </div>
+</section>
+
+<!-- ============ ФУТЕР ============ -->
+<footer class="footer" id="contacts">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo"><img src="images/logogto.png" alt="Биатлон ГТО" class="footer-logo-img"></div>
+                <p>Благотворительный фонд поддержки и развития физкультурно-спортивных многоборий «Биатлон Готов к Труду и Обороне».</p>
+                <div class="footer-socials">
+                    <a href="https://vk.ru/biatlonv_gto" target="_blank" class="footer-social">VK</a>
+                    <a href="https://t.me/unostrus96" target="_blank" class="footer-social">TG</a>
+                    <a href="https://max.ru/join/y0WsVsxAyvVWuQJE02IU4ZRLbYFkY3nSQubuzBuzwjU" target="_blank" class="footer-social">MAX</a>
+                </div>
+            </div>
+            <div>
+                <h4>Проект</h4>
+                <ul>
+                    <li><a href="index.html#about">О проекте</a></li>
+                    <li><a href="school.html">Школьникам</a></li>
+                    <li><a href="students.html">Студентам</a></li>
+                    <li><a href="aquathlon.html">Аква биатлон</a></li>
+                    <li><a href="teachers.html">Педагогам</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Информация</h4>
+                <ul>
+                    <li><a href="docs/rabochaya-programma.pdf" target="_blank">Примерная рабочая программа</a></li>
+                    <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                    <li><a href="https://biatlonvgto.ru/" target="_blank">Основной сайт</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Контакты</h4>
+                <p>Email: gromykollila@yandex.ru</p>
+                <p>Телефон: +7 982 672 23 32</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-requisites">
+                ПОЛНОЕ НАИМЕНОВАНИЕ: Благотворительный Фонд поддержки и развития физкультурно-спортивных многоборий «Биатлон Готов к Труду и Обороне» · ИНН 9703152613 · КПП 770301001 · ОГРН 1237700527855
+            </div>
+            <div class="footer-copy">
+                © Благотворительный фонд «Биатлон Готов к Труду и Обороне», 2019–2026. Все права защищены.
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============ ЛАЙТБОКС ============ -->
+<div class="lightbox" id="schoolLightbox">
+    <button class="lightbox-close" id="schoolLightboxClose" aria-label="Закрыть">×</button>
+    <img src="" alt="" id="schoolLightboxImg">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
