@@ -3727,30 +3727,158 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .school-gto-image img { width: 200px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
 @media (max-width: 900px) { .school-gto-box { flex-direction: column; text-align: center; } }
 
-/* --- 7. Почему это здорово (С ЗВЕЗДАМИ) --- */
-.school-why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+/* --- 7. Почему это здорово (ЧАТ) --- */
+.chat-section {
+    background: #EEF4FC; /* Мягкий фон */
+    padding: 100px 0;
+    overflow: hidden;
 }
-.school-why-card {
-    background: #FFF;
-    border-radius: 20px;
-    padding: 24px;
+
+.chat-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* Корпус телефона */
+.phone-mockup {
+    width: 100%;
+    max-width: 380px;
+    height: 650px;
+    background: #0D2B5C; /* Темно-синий, как на сайте */
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 25px 50px rgba(13, 43, 92, 0.3), inset 0 0 10px rgba(255,255,255,0.2);
+    position: relative;
+}
+
+/* Экран */
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #F4F7FC;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Шапка чата */
+.chat-header {
+    background: #FFFFFF;
+    padding: 15px 20px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.06);
-    border: 1px solid #EDF1F7;
-    transition: 0.3s;
+    gap: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 2;
 }
-.school-why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(13, 43, 92, 0.1); }
-.why-icon { width: 36px; height: auto; flex-shrink: 0; }
-.school-why-card p { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0; }
-@media (max-width: 900px) { .school-why-grid { grid-template-columns: 1fr; } }
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #E1ECF9;
+    overflow: hidden;
+}
+.chat-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.chat-name {
+    font-weight: 800;
+    color: var(--blue-dark);
+    font-size: 15px;
+}
+.chat-status {
+    font-size: 11px;
+    color: var(--orange);
+    font-weight: 600;
+}
 
+/* Тело чата */
+.chat-body {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    scrollbar-width: none; /* Прячем скроллбар */
+}
+.chat-body::-webkit-scrollbar { display: none; }
+
+/* Пузыри сообщений */
+.chat-bubble {
+    max-width: 85%;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.chat-bubble.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Исходящее сообщение (от школьника) */
+.bubble-out {
+    background: var(--blue);
+    color: #FFFFFF;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    /* Оно появляется сразу при прокрутке до блока */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Входящие сообщения (от Ласки) */
+.bubble-in {
+    background: #FFFFFF;
+    color: var(--blue-dark);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Поле ввода */
+.chat-input {
+    background: #FFFFFF;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #E1ECF9;
+}
+.chat-text {
+    flex-grow: 1;
+    background: #F4F7FC;
+    color: #A0AEC0;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.chat-send-btn {
+    width: 36px;
+    height: 36px;
+    background: var(--orange);
+    color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding-left: 2px;
+}
+
+@media (max-width: 600px) {
+    .phone-mockup { height: 550px; }
+    .bubble-in { font-size: 13px; }
+}
 /* --- 8. Полароиды --- */
 .school-polaroid-grid {
     display: flex;
