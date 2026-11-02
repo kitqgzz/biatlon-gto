@@ -870,24 +870,19 @@ document.addEventListener("DOMContentLoaded", function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     
-                    // Сначала ставим статус "печатает..."
                     if (status) status.innerText = "Биатлон ГТО печатает...";
 
                     bubbles.forEach((bubble, index) => {
                         setTimeout(() => {
                             bubble.classList.add('show');
                             
-                            // Автопрокрутка чата вниз
-                            const chatBody = bubble.parentElement;
-                            chatBody.scrollTop = chatBody.scrollHeight;
-
-                            // Если это последнее сообщение, меняем статус обратно на "в сети"
+                            // Когда появляется последнее сообщение, возвращаем статус "в сети"
                             if (index === bubbles.length - 1) {
                                 setTimeout(() => {
                                     if (status) status.innerText = "в сети";
                                 }, 600);
                             }
-                        }, index * 800); // Задержка между сообщениями
+                        }, index * 800); 
                     });
 
                     obs.unobserve(entry.target);
