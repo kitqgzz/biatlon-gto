@@ -3836,9 +3836,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
     padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* Прижимаем сообщения к низу */
     gap: 12px;
-    overflow-y: auto;
-    scrollbar-width: none;
+    overflow: hidden; /* ЗАПРЕЩАЕМ СКРОЛЛ */
 }
 .chat-body::-webkit-scrollbar { display: none; }
 
