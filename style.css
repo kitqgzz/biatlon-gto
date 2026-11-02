@@ -73,7 +73,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     color: var(--blue-dark);
     font-size: 14px;
     font-weight: 600;
-    padding: 10px 20px;
+    padding: 10px 14px; /* <--- Было 20px, стало 14px */
     border-radius: 50px;
     background: var(--gray);
     transition: all 0.25s ease;
