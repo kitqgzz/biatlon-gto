@@ -3593,10 +3593,25 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 @keyframes floatIcon { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } }
 
+/* --- 1. Hero (Адаптив с летающими объектами) --- */
 @media (max-width: 992px) {
     .school-hero-inner { grid-template-columns: 1fr; text-align: center; }
     .main-hero-img { max-height: 350px; margin-top: 30px; }
-    .school-hero-bg { display: none; }
+    
+    /* ВОЗВРАЩАЕМ ИКОНКИ НА МОБИЛЬНЫХ */
+    .school-hero-bg { display: block; } 
+    
+    .floating-icon {
+        opacity: 0.6; /* Делаем их чуть прозрачными, чтобы не отвлекали */
+        filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    }
+    
+    /* Позиционируем их по краям экрана вокруг ласки */
+    .bg-icon-1 { width: 50px; top: 35%; left: -15px; } /* Мишень */
+    .bg-icon-2 { width: 60px; top: 45%; right: -15px; } /* Медаль */
+    .bg-icon-3 { width: 70px; bottom: 15%; left: -10px; } /* Кубок */
+    .bg-icon-4 { width: 40px; top: 15%; right: 10%; } /* Звезда 1 */
+    .bg-icon-5 { width: 30px; bottom: 25%; right: -5px; } /* Звезда 2 */
 }
 
 /* --- 2. О проекте --- */
@@ -3619,7 +3634,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 @media (max-width: 992px) {
     .school-about-grid { grid-template-columns: 1fr; }
-    .school-about-image { order: -1; margin-bottom: 30px; }
+    
+    /* ПОЛНОСТЬЮ СКРЫВАЕМ КАРТИНКУ СО ШКОЛЬНИКАМИ */
+    .school-about-image { 
+        display: none; 
+    }
 }
 
 /* --- 3. Bento Статистика --- */
@@ -3725,7 +3744,14 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .school-gto-text h2 { font-size: 28px; font-weight: 900; color: var(--blue-dark); margin-bottom: 16px; }
 .school-gto-text p { font-size: 16px; color: #4A5A75; line-height: 1.7; margin-bottom: 12px; }
 .school-gto-image img { width: 200px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
-@media (max-width: 900px) { .school-gto-box { flex-direction: column; text-align: center; } }
+@media (max-width: 900px) { 
+    .school-gto-box { flex-direction: column; text-align: center; }
+    
+    /* СКРЫВАЕМ КАРТИНКУ МЕДАЛИ */
+    .school-gto-image { 
+        display: none; 
+    }
+}
 
 /* --- 7. Почему это здорово (ЧАТ) --- */
 .chat-section {
@@ -3907,7 +3933,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     padding-left: 2px;
 }
 
-/* Скрываем летающие иконки на мобильных, чтобы не мешали */
+/* --- 7. Чат (Добавляем скролл на мобильных) --- */
 @media (max-width: 900px) {
     .chat-floating-icon { display: none; }
 }
@@ -3915,6 +3941,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
 @media (max-width: 600px) {
     .phone-mockup { height: 550px; }
     .bubble-in { font-size: 13px; }
+    
+    /* ВКЛЮЧАЕМ СКРОЛЛ ВНУТРИ ТЕЛЕФОНА */
+    .chat-body {
+        justify-content: flex-start; /* Сообщения идут сверху вниз */
+        overflow-y: auto; /* Разрешаем скролл */
+        scrollbar-width: none; /* Прячем скроллбар */
+    }
+    .chat-body::-webkit-scrollbar { 
+        display: none; 
+    }
 }
 /* --- 8. Полароиды (1 большой + 4 маленьких) --- */
 .school-polaroid-grid {
