@@ -856,3 +856,39 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// ==========================================
+// АНИМАЦИЯ ЧАТА НА СТРАНИЦЕ ШКОЛЬНИКОВ
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const chatSection = document.querySelector('.chat-section');
+    const bubbles = document.querySelectorAll('.chat-bubble.bubble-in');
+    const status = document.querySelector('.chat-status');
+
+    if (chatSection && bubbles.length > 0) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Как только блок появился на экране:
+                    if (status) status.innerText = "в сети";
+
+                    // Запускаем появление сообщений по очереди с задержкой
+                    bubbles.forEach((bubble, index) => {
+                        setTimeout(() => {
+                            bubble.classList.add('show');
+                            
+                            // Автоматически прокручиваем чат вниз, чтобы было видно новые сообщения
+                            const chatBody = bubble.parentElement;
+                            chatBody.scrollTop = chatBody.scrollHeight;
+                        }, index * 800); // 800 миллисекунд между сообщениями
+                    });
+
+                    // Отключаем наблюдение после запуска, чтобы анимация не повторялась
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 }); // Сработает, когда 30% блока появится на экране
+
+        observer.observe(chatSection);
+    }
+});
