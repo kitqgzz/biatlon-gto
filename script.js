@@ -863,31 +863,37 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const chatSection = document.querySelector('.chat-section');
     const bubbles = document.querySelectorAll('.chat-bubble.bubble-in');
-    const status = document.querySelector('.chat-status');
+    const status = document.getElementById('chatStatus');
 
     if (chatSection && bubbles.length > 0) {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Как только блок появился на экране:
-                    if (status) status.innerText = "в сети";
+                    
+                    // Сначала ставим статус "печатает..."
+                    if (status) status.innerText = "Биатлон ГТО печатает...";
 
-                    // Запускаем появление сообщений по очереди с задержкой
                     bubbles.forEach((bubble, index) => {
                         setTimeout(() => {
                             bubble.classList.add('show');
                             
-                            // Автоматически прокручиваем чат вниз, чтобы было видно новые сообщения
+                            // Автопрокрутка чата вниз
                             const chatBody = bubble.parentElement;
                             chatBody.scrollTop = chatBody.scrollHeight;
-                        }, index * 800); // 800 миллисекунд между сообщениями
+
+                            // Если это последнее сообщение, меняем статус обратно на "в сети"
+                            if (index === bubbles.length - 1) {
+                                setTimeout(() => {
+                                    if (status) status.innerText = "в сети";
+                                }, 600);
+                            }
+                        }, index * 800); // Задержка между сообщениями
                     });
 
-                    // Отключаем наблюдение после запуска, чтобы анимация не повторялась
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 }); // Сработает, когда 30% блока появится на экране
+        }, { threshold: 0.3 });
 
         observer.observe(chatSection);
     }
