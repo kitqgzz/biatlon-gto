@@ -3916,33 +3916,110 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .phone-mockup { height: 550px; }
     .bubble-in { font-size: 13px; }
 }
-/* --- 8. Полароиды --- */
+/* --- 8. Полароиды (1 большой + 4 маленьких) --- */
 .school-polaroid-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Большой чуть шире */
     gap: 30px;
-    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: stretch; /* Растягиваем на одну высоту */
+    padding: 20px 0;
 }
-.polaroid-item {
+
+/* --- БОЛЬШОЙ ПОЛАРОИД --- */
+.polaroid-big {
     background: #FFF;
-    padding: 15px 15px 40px 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 15px 15px 60px 15px; /* Снизу больше места для эффекта полароида */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     border-radius: 4px;
     transition: 0.3s;
     cursor: pointer;
     position: relative;
+    transform: rotate(-2deg);
+    display: flex;
+    flex-direction: column;
 }
-.polaroid-item:nth-child(odd) { transform: rotate(-3deg); }
-.polaroid-item:nth-child(even) { transform: rotate(3deg); }
-.polaroid-item:hover { transform: scale(1.1) rotate(0deg); z-index: 10; }
-.polaroid-item img { width: 250px; height: 200px; object-fit: cover; border: 1px solid #eee; }
-/* Имитация скотча */
-.polaroid-item::before {
-    content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-    width: 60px; height: 20px; background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.05);
+.polaroid-big:hover { 
+    transform: scale(1.03) rotate(0deg); 
+    z-index: 10; 
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+.polaroid-big img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border: 1px solid #eee; 
 }
 
+/* --- СЕТКА МАЛЕНЬКИХ ПОЛАРОИДОВ --- */
+.polaroid-small-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+.polaroid-small {
+    background: #FFF;
+    padding: 10px 10px 35px 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    border-radius: 4px;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+/* Чередуем наклон для маленьких */
+.polaroid-small:nth-child(1) { transform: rotate(3deg); }
+.polaroid-small:nth-child(2) { transform: rotate(-2deg); }
+.polaroid-small:nth-child(3) { transform: rotate(-3deg); }
+.polaroid-small:nth-child(4) { transform: rotate(2deg); }
+
+.polaroid-small:hover { 
+    transform: scale(1.08) rotate(0deg); 
+    z-index: 10; 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+.polaroid-small img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border: 1px solid #eee; 
+}
+
+/* --- ИМИТАЦИЯ СКОТЧА НА ВСЕХ ПОЛАРОИДАХ --- */
+.polaroid-big::before, .polaroid-small::before {
+    content: ''; 
+    position: absolute; 
+    top: -10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 60px; 
+    height: 20px; 
+    background: rgba(255, 255, 255, 0.6); 
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .school-polaroid-grid {
+        grid-template-columns: 1fr; /* В одну колонку */
+        gap: 40px;
+    }
+    .polaroid-big {
+        height: 350px; /* На телефоне большому задаем фикс. высоту */
+        transform: rotate(0deg);
+    }
+    .polaroid-small-grid {
+        gap: 15px;
+    }
+    .polaroid-small {
+        transform: rotate(0deg) !important; /* Убираем наклоны на телефонах */
+    }
+}
 /* --- 9. Квест --- */
 .school-quest-wrap {
     display: grid;
