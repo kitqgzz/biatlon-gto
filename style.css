@@ -3515,3 +3515,302 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .teach-cta { background: linear-gradient(135deg, #0D2B5C 0%, #1A4B8C 100%); }
 .teach-cta h2 { color: #FFF; max-width: 800px; margin: 0 auto 20px; font-size: clamp(24px, 3vw, 36px); }
 .teach-cta p { color: rgba(255,255,255,0.8); font-size: 18px; margin-bottom: 32px; }
+
+/* ============ СТРАНИЦА «ШКОЛЬНИКАМ» ============ */
+
+/* --- 1. Hero (С летающими иконками) --- */
+.school-hero {
+    position: relative;
+    background: linear-gradient(135deg, #E1ECF9 0%, #B3D4F5 100%);
+    padding: 160px 0 100px;
+    overflow: hidden;
+}
+.school-hero-inner {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
+.school-tag {
+    display: inline-block;
+    background: var(--orange);
+    color: #FFF;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.school-hero-title {
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 900;
+    color: var(--blue-dark);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.school-hero-subtitle {
+    font-size: 18px;
+    color: #2A3B5C;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+.school-hero-accent {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--orange-dark);
+    margin-bottom: 30px;
+}
+.school-hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.main-hero-img {
+    max-height: 550px;
+    width: auto;
+    filter: drop-shadow(0 20px 40px rgba(13, 43, 92, 0.2));
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Парящий фон */
+.school-hero-bg { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.floating-icon {
+    position: absolute;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    animation: floatIcon 5s ease-in-out infinite;
+}
+.bg-icon-1 { width: 80px; top: 15%; left: 5%; animation-delay: 0s; } /* Мишень */
+.bg-icon-2 { width: 80px; top: 60%; right: 5%; animation-delay: 1.5s; } /* Медаль */
+.bg-icon-3 { width: 90px; top: 25%; right: 15%; animation-delay: 0.7s; } /* Кубок */
+.bg-icon-4 { width: 60px; bottom: 15%; left: 45%; animation-delay: 2s; } /* Звезда 1 */
+.bg-icon-5 { width: 40px; top: 10%; left: 35%; animation-delay: 1s; } /* Звезда 2 */
+
+@keyframes floatIcon { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(10deg); } }
+
+@media (max-width: 992px) {
+    .school-hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .main-hero-img { max-height: 350px; margin-top: 30px; }
+    .school-hero-bg { display: none; }
+}
+
+/* --- 2. О проекте --- */
+.school-about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+.school-about-text p {
+    font-size: 16px;
+    color: #4A5A75;
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+.group-school-img {
+    width: 100%;
+    display: block;
+    filter: drop-shadow(0 15px 30px rgba(13,43,92,0.1));
+}
+@media (max-width: 992px) {
+    .school-about-grid { grid-template-columns: 1fr; }
+    .school-about-image { order: -1; margin-bottom: 30px; }
+}
+
+/* --- 3. Bento Статистика --- */
+.school-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+}
+.school-stat-card {
+    background: #FFF;
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+}
+.school-stat-card.card-highlight {
+    background: var(--blue-dark);
+    color: #FFF;
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(13, 43, 92, 0.2);
+}
+.school-stat-card.card-highlight .stat-label { color: rgba(255,255,255,0.8); }
+.school-stat-card.card-highlight .stat-num { color: #FFF; }
+.school-stat-card .stat-num { font-size: 48px; font-weight: 900; color: var(--blue); font-variant-numeric: tabular-nums; margin-bottom: 10px; }
+.school-stat-card .stat-label { font-size: 15px; color: #5A6B85; font-weight: 600; }
+@media (max-width: 900px) {
+    .school-stats-grid { grid-template-columns: 1fr; }
+    .school-stat-card.card-highlight { transform: none; }
+}
+
+/* --- 4. Слайдер занятий --- */
+.school-slider-wrap { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+.school-slider { display: flex; gap: 24px; overflow-x: auto; scroll-behavior: smooth; padding: 20px 0; scrollbar-width: none; }
+.school-slider::-webkit-scrollbar { display: none; }
+.school-card {
+    flex: 0 0 350px;
+    background: #FFF;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(13, 43, 92, 0.06);
+    border: 2px solid #EDF1F7;
+    transition: 0.3s;
+}
+.school-card:hover { transform: translateY(-5px); border-color: var(--orange); }
+.school-card-num { font-size: 36px; font-weight: 900; color: var(--orange); margin-bottom: 16px; }
+.school-card h3 { font-size: 20px; font-weight: 800; color: var(--blue-dark); margin-bottom: 12px; }
+.school-card p { font-size: 15px; color: #5A6B85; line-height: 1.6; }
+.school-slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 50px; height: 50px; border-radius: 50%; background: #FFF; border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-size: 28px; cursor: pointer; z-index: 10; color: var(--blue-dark);
+}
+.school-slider-btn:hover { background: var(--orange); color: #FFF; }
+.school-slider-btn.prev { left: 0; }
+.school-slider-btn.next { right: 0; }
+
+/* --- 5. Инвентарь (С КАРТИНКАМИ) --- */
+.school-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.school-inv-card {
+    background: #FFF;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+    transition: 0.3s;
+}
+.school-inv-card:hover { transform: translateY(-5px); border-color: var(--blue-light); }
+.school-inv-img { 
+    width: 80px; 
+    height: 80px;
+    object-fit: contain;
+    margin: 0 auto 16px; 
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+.school-inv-card h3 { font-size: 16px; font-weight: 800; color: var(--blue-dark); margin-bottom: 10px; }
+.school-inv-card p { font-size: 13px; color: #5A6B85; line-height: 1.5; }
+@media (max-width: 900px) { .school-inventory-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .school-inventory-grid { grid-template-columns: 1fr; } }
+
+/* --- 6. Связь с ГТО --- */
+.school-gto-box {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: linear-gradient(135deg, #EEF4FC 0%, #E1ECF9 100%);
+    border-radius: 30px;
+    padding: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid #D6E4F5;
+}
+.school-gto-text h2 { font-size: 28px; font-weight: 900; color: var(--blue-dark); margin-bottom: 16px; }
+.school-gto-text p { font-size: 16px; color: #4A5A75; line-height: 1.7; margin-bottom: 12px; }
+.school-gto-image img { width: 200px; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15)); }
+@media (max-width: 900px) { .school-gto-box { flex-direction: column; text-align: center; } }
+
+/* --- 7. Почему это здорово (С ЗВЕЗДАМИ) --- */
+.school-why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.school-why-card {
+    background: #FFF;
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.06);
+    border: 1px solid #EDF1F7;
+    transition: 0.3s;
+}
+.school-why-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(13, 43, 92, 0.1); }
+.why-icon { width: 36px; height: auto; flex-shrink: 0; }
+.school-why-card p { font-size: 15px; font-weight: 700; color: var(--blue-dark); margin: 0; }
+@media (max-width: 900px) { .school-why-grid { grid-template-columns: 1fr; } }
+
+/* --- 8. Полароиды --- */
+.school-polaroid-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+.polaroid-item {
+    background: #FFF;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+.polaroid-item:nth-child(odd) { transform: rotate(-3deg); }
+.polaroid-item:nth-child(even) { transform: rotate(3deg); }
+.polaroid-item:hover { transform: scale(1.1) rotate(0deg); z-index: 10; }
+.polaroid-item img { width: 250px; height: 200px; object-fit: cover; border: 1px solid #eee; }
+/* Имитация скотча */
+.polaroid-item::before {
+    content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 20px; background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* --- 9. Квест --- */
+.school-quest-wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+.school-quest-wrap::before {
+    content: ''; position: absolute; top: 30px; left: 0; right: 0; height: 4px;
+    background: repeating-linear-gradient(to right, #D6E4F5 0, #D6E4F5 10px, transparent 10px, transparent 20px);
+    z-index: 1;
+}
+.school-quest-step {
+    background: #FFF;
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(13, 43, 92, 0.06);
+    position: relative;
+    z-index: 2;
+    border: 1px solid #EDF1F7;
+}
+.quest-num {
+    width: 50px; height: 50px; background: var(--orange); color: #FFF;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; margin: 0 auto 16px; border: 4px solid #FFF;
+    box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+}
+.school-quest-step h4 { font-size: 17px; font-weight: 800; color: var(--blue-dark); margin-bottom: 8px; }
+.school-quest-step p { font-size: 14px; color: #5A6B85; margin: 0; }
+@media (max-width: 900px) {
+    .school-quest-wrap { grid-template-columns: 1fr; }
+    .school-quest-wrap::before { display: none; }
+}
