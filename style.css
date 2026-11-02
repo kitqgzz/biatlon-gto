@@ -3621,11 +3621,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
     /* Медаль - справа, прямо рядом с лаской */
     .bg-icon-2 { width: 60px; bottom: 35%; right: -15px; } 
     
-    /* Звезда 1 - сверху справа */
-    .bg-icon-4 { width: 40px; top: 10%; right: 10%; } 
+    /* Звезда 1 - ОПУСКАЕМ ВЛЕВО К РЮКЗАКУ */
+    .bg-icon-4 { width: 45px; bottom: 25%; left: 8%; } 
     
-    /* Звезда 2 - внизу, прямо возле ласки */
-    .bg-icon-5 { width: 35px; bottom: 10%; right: 25%; } 
+    /* Звезда 2 - оставляем внизу справа или тоже подвинем */
+    .bg-icon-5 { width: 35px; bottom: 5%; right: 25%; } 
 }
 
 /* --- 2. О проекте --- */
