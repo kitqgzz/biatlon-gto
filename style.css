@@ -3729,27 +3729,59 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* --- 7. Почему это здорово (ЧАТ) --- */
 .chat-section {
-    background: #EEF4FC; /* Мягкий фон */
+    background: #EEF4FC;
     padding: 100px 0;
     overflow: hidden;
+    position: relative; /* Для позиционирования сетки */
+}
+
+/* Сетка на фоне (как в "Элементах проекта") */
+.chat-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(13, 43, 92, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 43, 92, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .chat-wrapper {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-top: 40px;
+    z-index: 2; /* Телефон поверх сетки */
 }
+
+/* Летающие иконки вокруг телефона */
+.chat-floating-icon {
+    position: absolute;
+    filter: drop-shadow(0 10px 20px rgba(13, 43, 92, 0.15));
+    animation: floatIcon 5s ease-in-out infinite;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Позиционируем иконки по углам вокруг телефона */
+.float-tl { width: 70px; top: 5%; left: 10%; animation-delay: 0s; }
+.float-tr { width: 80px; top: 10%; right: 12%; animation-delay: 1.2s; }
+.float-bl { width: 85px; bottom: 10%; left: 8%; animation-delay: 0.6s; }
+.float-br { width: 60px; bottom: 5%; right: 15%; animation-delay: 1.8s; }
 
 /* Корпус телефона */
 .phone-mockup {
     width: 100%;
     max-width: 380px;
     height: 650px;
-    background: #0D2B5C; /* Темно-синий, как на сайте */
+    background: #0D2B5C;
     border-radius: 40px;
     padding: 12px;
     box-shadow: 0 25px 50px rgba(13, 43, 92, 0.3), inset 0 0 10px rgba(255,255,255,0.2);
     position: relative;
+    z-index: 4;
 }
 
 /* Экран */
@@ -3795,6 +3827,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     font-size: 11px;
     color: var(--orange);
     font-weight: 600;
+    min-height: 14px; /* Чтобы не прыгало */
 }
 
 /* Тело чата */
@@ -3805,7 +3838,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     flex-direction: column;
     gap: 12px;
     overflow-y: auto;
-    scrollbar-width: none; /* Прячем скроллбар */
+    scrollbar-width: none;
 }
 .chat-body::-webkit-scrollbar { display: none; }
 
@@ -3825,18 +3858,17 @@ button { font-family: inherit; cursor: pointer; border: none; }
     transform: translateY(0) scale(1);
 }
 
-/* Исходящее сообщение (от школьника) */
+/* Исходящее сообщение */
 .bubble-out {
     background: var(--blue);
     color: #FFFFFF;
     align-self: flex-end;
     border-bottom-right-radius: 4px;
-    /* Оно появляется сразу при прокрутке до блока */
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* Входящие сообщения (от Ласки) */
+/* Входящие сообщения */
 .bubble-in {
     background: #FFFFFF;
     color: var(--blue-dark);
@@ -3873,6 +3905,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
     justify-content: center;
     font-size: 16px;
     padding-left: 2px;
+}
+
+/* Скрываем летающие иконки на мобильных, чтобы не мешали */
+@media (max-width: 900px) {
+    .chat-floating-icon { display: none; }
 }
 
 @media (max-width: 600px) {
