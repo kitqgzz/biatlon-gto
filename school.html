@@ -190,6 +190,12 @@
         <h2 class="section-title">Почему это здорово?</h2>
         
         <div class="chat-wrapper">
+            <!-- Летающие иконки вокруг телефона -->
+            <img src="images/target-3d.png" alt="" class="chat-floating-icon float-tl">
+            <img src="images/gold.png" alt="" class="chat-floating-icon float-tr">
+            <img src="images/aqua-trophy.png" alt="" class="chat-floating-icon float-bl">
+            <img src="images/star.png" alt="" class="chat-floating-icon float-br">
+
             <!-- Мобильный телефон -->
             <div class="phone-mockup">
                 <div class="phone-screen">
@@ -200,18 +206,17 @@
                         </div>
                         <div class="chat-info">
                             <div class="chat-name">Биатлон ГТО</div>
-                            <div class="chat-status">печатает...</div>
+                            <div class="chat-status" id="chatStatus">в сети</div>
                         </div>
                     </div>
 
                     <!-- Тело чата -->
                     <div class="chat-body">
-                        <!-- Сообщение от пользователя -->
                         <div class="chat-bubble bubble-out">
                             А почему мне стоит пойти на биатлон ГТО?
                         </div>
                         
-                        <!-- Ответы (появляются при скролле) -->
+                        <!-- Ответы -->
                         <div class="chat-bubble bubble-in msg-1">💪 Ты становишься сильнее и здоровее</div>
                         <div class="chat-bubble bubble-in msg-2">🎯 Ты учишься метко стрелять</div>
                         <div class="chat-bubble bubble-in msg-3">🏆 Ты участвуешь в крутых соревнованиях</div>
@@ -220,7 +225,7 @@
                         <div class="chat-bubble bubble-in msg-6">🔥 Ты становишься частью большого проекта!</div>
                     </div>
 
-                    <!-- Поле ввода (для красоты) -->
+                    <!-- Поле ввода -->
                     <div class="chat-input">
                         <div class="chat-text">Сообщение...</div>
                         <div class="chat-send-btn">➤</div>
