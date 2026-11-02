@@ -762,3 +762,97 @@ document.addEventListener("DOMContentLoaded", function() {
 
     observer.observe(statsBlock);
 });
+
+// ==========================================
+// СКРИПТЫ ДЛЯ СТРАНИЦЫ "ШКОЛЬНИКАМ"
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // --- 1. Анимация цифр ---
+    const statsBlock = document.querySelector('.school-stats-grid');
+    if (statsBlock) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.count').forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = 2000; // 2 секунды
+                        let startTimestamp = null;
+                        
+                        const step = (timestamp) => {
+                            if (!startTimestamp) startTimestamp = timestamp;
+                            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                            // Плавное замедление (easeOutQuad)
+                            const easeOut = 1 - (1 - progress) * (1 - progress);
+                            let current = Math.floor(easeOut * target);
+                            
+                            // Форматируем числа с пробелами (2 500 000)
+                            if (target >= 1000) {
+                                counter.innerText = current.toLocaleString('ru-RU');
+                            } else {
+                                counter.innerText = current;
+                            }
+                            
+                            if (progress < 1) {
+                                window.requestAnimationFrame(step);
+                            } else {
+                                counter.innerText = target.toLocaleString('ru-RU');
+                            }
+                        };
+                        window.requestAnimationFrame(step);
+                    });
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(statsBlock);
+    }
+
+    // --- 2. Слайдер занятий ---
+    const slider = document.getElementById('schoolSlider');
+    const prevBtn = document.getElementById('schoolSliderPrev');
+    const nextBtn = document.getElementById('schoolSliderNext');
+
+    if (slider && prevBtn && nextBtn) {
+        // Ширина карточки (350px) + отступ (24px) = 374px
+        const scrollAmount = 374; 
+        
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // --- 3. Лайтбокс для полароидов ---
+    const lightbox = document.getElementById('schoolLightbox');
+    const lightboxImg = document.getElementById('schoolLightboxImg');
+    const lightboxClose = document.getElementById('schoolLightboxClose');
+    const triggers = document.querySelectorAll('.school-lightbox-trigger');
+
+    if (triggers.length > 0 && lightbox) {
+        triggers.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+            });
+        });
+
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Возвращаем скролл
+            });
+        }
+
+        // Закрытие по клику на темный фон
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+});
