@@ -2,7 +2,7 @@ backend:
   name: github
   repo: kitqgzz/biatlon-gto
   branch: main
-  base_url: https://decap-proxy.biathlon-proxy.workers.dev/
+  base_url: https://decap-proxy.biathlon-proxy.workers.dev
 
 media_folder: "images"
 public_folder: "/images"
