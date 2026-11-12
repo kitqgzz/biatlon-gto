@@ -1,1 +1,67 @@
+backend:
+  name: github
+  repo: kitqgz/biatlon-gto
+  branch: main
+  base_url: https://decap-proxy.biathlon-proxy.workers.dev
 
+media_folder: "images/uploads" # Сюда будут загружаться новые картинки
+public_folder: "/images/uploads"
+
+collections:
+  # 1. Наши проекты (главная)
+  - name: "projects"
+    label: "Наши проекты (Главная)"
+    folder: "content/projects"
+    create: true
+    fields:
+      - {label: "Название", name: "title", widget: "string"}
+      - {label: "Картинка", name: "image", widget: "image"}
+      - {label: "Описание", name: "description", widget: "text"}
+
+  # 2. Фотографии с мероприятий (главная)
+  - name: "gallery_main"
+    label: "Фотографии с мероприятий"
+    folder: "content/gallery"
+    create: true
+    fields:
+      - {label: "Название файла (для системы)", name: "title", widget: "string"}
+      - label: "Список фотографий"
+        name: "images"
+        widget: "list"
+        field: {label: "Фото", name: "image", widget: "image"}
+
+  # 3. Аква биатлон (фото)
+  - name: "aquathlon_gallery"
+    label: "Аква биатлон: Фото"
+    folder: "content/aquathlon"
+    create: true
+    fields:
+      - {label: "Название файла (для системы)", name: "title", widget: "string"}
+      - label: "Список фотографий"
+        name: "images"
+        widget: "list"
+        field: {label: "Фото", name: "image", widget: "image"}
+
+  # 4. Школьникам (коллаж)
+  - name: "school_collage"
+    label: "Школьникам: Коллаж"
+    folder: "content/school-collage"
+    create: true
+    fields:
+      - {label: "Название файла (для системы)", name: "title", widget: "string"}
+      - label: "Список фотографий"
+        name: "images"
+        widget: "list"
+        field: {label: "Фото", name: "image", widget: "image"}
+
+  # 5. Педагогам (коллаж)
+  - name: "teachers_collage"
+    label: "Педагогам: Коллаж"
+    folder: "content/teachers-collage"
+    create: true
+    fields:
+      - {label: "Название файла (для системы)", name: "title", widget: "string"}
+      - label: "Список фотографий"
+        name: "images"
+        widget: "list"
+        field: {label: "Фото", name: "image", widget: "image"}
