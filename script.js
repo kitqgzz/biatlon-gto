@@ -1,6 +1,5 @@
 // ============ ЗАПРЕТ ПЕРЕТАСКИВАНИЯ КАРТИНОК ============
 document.addEventListener('dragstart', function(e) {
-    // Если пользователь пытается перетащить картинку (тег IMG), отменяем действие
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
     }
@@ -78,122 +77,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ============ ЭЛЕМЕНТЫ ПРОЕКТА: МОДАЛЬНОЕ ОКНО ============
 const elementsData = [
-    {
-        title: 'ШКОЛЬНИКИ И СТУДЕНТЫ',
-        subtitle: 'Всероссийский марафон «Биатлон ГТО»',
-        list: [
-            'собрать команду и пройти отбор',
-            'победить на муниципальном и региональном этапах',
-            'выполнить нормативы ГТО и выйти в финал'
-        ],
-        percentTop: '100%',
-        percentBottom: 'ПЕРСПЕКТИВЫ',
-        bottom: 'Победители марафона получают ценные призы и путёвки в ВДЦ «Смена» и ВДЦ «Океан».',
-        img: 'images/schoolboy.png'
-    },
-    {
-        title: 'ВСЕРОССИЙСКИЙ КРУГЛОГОДИЧНЫЙ МАРАФОН «БИАТЛОН ГТО»',
-        subtitle: 'Ты готов проверить свою точность и выносливость? Тогда это твой старт!',
-        list: [
-            'Собери команду (2 мальчика + 2 девочки или 4 юноши + 4 девушки — в зависимости от этапа',
-            'Пройди отбор на школьном, муниципальном или региональном уровне',
-            'Победи — и получи путёвку в финал на базе ВДЦ «Смена» или ВДЦ «Океан',
-            'Выходи на старт, стреляй, беги, плыви — и становись лучшим.'
-        ],
-        percentTop: '100%',
-        percentBottom: 'УВЕРЕННОСТИ',
-        bottom: 'Присоединяйся к марафону «Биатлон ГТО» — стань частью самого масштабного спортивного движения страны!',
-        img: 'images/biatlonguy.png'
-    },
-    {
-        title: 'ПЕДАГОГИ И ТРЕНЕРЫ',
-        subtitle: 'Наставники чемпионов',
-        list: [
-            'внедрять модуль «биатлон» в уроки физкультуры',
-            'организовывать школьные спортивные клубы',
-            'повышать квалификацию и посещать семинары'
-        ],
-        percentTop: '100%',
-        percentBottom: 'ДОВЕРИЯ',
-        bottom: 'Учителя и тренеры — главные проводники проекта. Более 100 семинаров-практикумов уже проведено по всей стране.',
-        img: 'images/teacher.png'
-    },
-    {
-        title: 'РОДИТЕЛИ',
-        subtitle: 'Надёжный тыл и опора детей',
-        list: [
-            'вдохновлять детей личным спортивным примером',
-            'поддерживать, мотивировать и болеть на соревнованиях',
-            'выступать на семейных эстафетах'
-        ],
-        percentTop: '100%',
-        percentBottom: 'ПОДДЕРЖКИ',
-        bottom: 'Родители делают с детьми путь от первых выстрелов до пьедестала и медалей. Проект объединяет всю семью.',
-        img: 'images/preschool.png'
-    },
-    {
-        title: 'КОЛЛЕКТИВЫ ПРЕДПРИЯТИЙ',
-        subtitle: 'Рабочее единство и корпоративный биатлон',
-        list: [
-            'формировать рабочие команды для выступлений на стартах',
-            'проводить тренировки для укрепления здоровья сотрудников',
-            'привлекать внимание к социально значимой инициативе'
-        ],
-        percentTop: '100%',
-        percentBottom: 'ОТВЕТСТВЕННОСТИ',
-        bottom: 'Предприятия-партнёры активно вовлечены в тренировочную и соревновательную деятельность. Совместные старты сплачивают коллектив.',
-        img: 'images/worker.png'
-    },
-    {
-        title: 'ДОШКОЛЬНИКИ',
-        subtitle: 'Первое знакомство со спортом',
-        list: [
-            'наблюдать за спортивными занятиями родителей',
-            'впервые знакомиться с пневматической биатлонной винтовкой',
-            'играть в подвижные эстафеты'
-        ],
-        percentTop: '100%',
-        percentBottom: 'ЛЮБОПЫТСТВА',
-        bottom: 'В этом возрасте спорт открывается через игру и пример родителей. Проект адаптирует элементы биатлона для самых маленьких.',
-        img: 'images/laska2.png'
-    }
+    { title: 'ШКОЛЬНИКИ И СТУДЕНТЫ', subtitle: 'Всероссийский марафон «Биатлон ГТО»', list: ['собрать команду и пройти отбор', 'победить на муниципальном и региональном этапах', 'выполнить нормативы ГТО и выйти в финал'], percentTop: '100%', percentBottom: 'ПЕРСПЕКТИВЫ', bottom: 'Победители марафона получают ценные призы и путёвки в ВДЦ «Смена» и ВДЦ «Океан».', img: 'images/schoolboy.png' },
+    { title: 'ВСЕРОССИЙСКИЙ КРУГЛОГОДИЧНЫЙ МАРАФОН «БИАТЛОН ГТО»', subtitle: 'Ты готов проверить свою точность и выносливость? Тогда это твой старт!', list: ['Собери команду', 'Пройди отбор', 'Победи — и получи путёвку в финал', 'Выходи на старт и становись лучшим'], percentTop: '100%', percentBottom: 'УВЕРЕННОСТИ', bottom: 'Присоединяйся к марафону «Биатлон ГТО»!', img: 'images/biatlonguy.png' },
+    { title: 'ПЕДАГОГИ И ТРЕНЕРЫ', subtitle: 'Наставники чемпионов', list: ['внедрять модуль «биатлон»', 'организовывать клубы', 'повышать квалификацию'], percentTop: '100%', percentBottom: 'ДОВЕРИЯ', bottom: 'Более 100 семинаров уже проведено.', img: 'images/teacher.png' },
+    { title: 'РОДИТЕЛИ', subtitle: 'Надёжный тыл', list: ['вдохновлять детей', 'поддерживать', 'выступать на эстафетах'], percentTop: '100%', percentBottom: 'ПОДДЕРЖКИ', bottom: 'Проект объединяет всю семью.', img: 'images/preschool.png' },
+    { title: 'КОЛЛЕКТИВЫ ПРЕДПРИЯТИЙ', subtitle: 'Корпоративный биатлон', list: ['формировать команды', 'проводить тренировки', 'привлекать внимание'], percentTop: '100%', percentBottom: 'ОТВЕТСТВЕННОСТИ', bottom: 'Совместные старты сплачивают коллектив.', img: 'images/worker.png' },
+    { title: 'ДОШКОЛЬНИКИ', subtitle: 'Первое знакомство', list: ['наблюдать', 'знакомиться с винтовкой', 'играть в эстафеты'], percentTop: '100%', percentBottom: 'ЛЮБОПЫТСТВА', bottom: 'Проект адаптирует элементы биатлона для самых маленьких.', img: 'images/laska2.png' }
 ];
 
 const elementModal = document.getElementById('elementModal');
 const elementModalClose = document.getElementById('elementModalClose');
-const emTitle = document.getElementById('emTitle');
-const emSubtitle = document.getElementById('emSubtitle');
-const emList = document.getElementById('emList');
-const emImage = document.getElementById('emImage');
-const emPercent = document.getElementById('emPercent');
-const emBottom = document.getElementById('emBottom');
 
 function openElementModal(index) {
     const data = elementsData[index];
     if (!data) return;
-
-    emTitle.textContent = data.title;
-    emSubtitle.textContent = data.subtitle;
-    emImage.src = data.img;
-    emImage.alt = data.title;
-    emBottom.textContent = data.bottom;
-
+    document.getElementById('emTitle').textContent = data.title;
+    document.getElementById('emSubtitle').textContent = data.subtitle;
+    document.getElementById('emImage').src = data.img;
+    document.getElementById('emBottom').textContent = data.bottom;
+    const emList = document.getElementById('emList');
     emList.innerHTML = '';
     data.list.forEach(item => {
         const li = document.createElement('li');
         li.textContent = item;
         emList.appendChild(li);
     });
-
-    emPercent.innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
-
-    // Цвет карточки → цвет фона модального окна
+    document.getElementById('emPercent').innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
+    
     const card = document.querySelector('.element-card[data-element="' + index + '"]');
     if (card) {
         const cardColor = card.style.getPropertyValue('--color') || '#0D2B5C';
         elementModal.querySelector('.element-modal').style.setProperty('--modal-color', cardColor);
     }
-
     elementModal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -204,728 +119,79 @@ function closeElementModal() {
 }
 
 document.querySelectorAll('.element-card').forEach(card => {
-    card.addEventListener('click', () => {
-        const index = parseInt(card.getAttribute('data-element'), 10);
-        openElementModal(index);
-    });
+    card.addEventListener('click', () => openElementModal(parseInt(card.getAttribute('data-element'), 10)));
 });
 
-if (elementModalClose) {
-    elementModalClose.addEventListener('click', closeElementModal);
-}
-if (elementModal) {
-    elementModal.addEventListener('click', (e) => {
-        if (e.target === elementModal) closeElementModal();
-    });
-}
-
-// ============ НАШИ ПРОЕКТЫ: ДАННЫЕ ============
-const projectsData = [
-    { img: 'images/project-1.jpg', title: 'Всероссийский финал «Биатлон ГТО» в ВДЦ «Смена»', desc: 'Стрельба из пневматической винтовки' },
-    { img: 'images/project-2.jpg', title: 'Семинары-практикумы в школах и колледжах и патриотических организациях', desc: 'И патриотических организациях' },
-    { img: 'images/urgpy.jpg', title: 'Всероссийский мировой «Биатлон Готов к Труду и Обороне»', desc: '' },
-    { img: 'images/project-4.jpg', title: 'Всероссийские спортивные соревнования школьников', desc: '«Президентские состязания» (по зимним видам спорта)' },
-    { img: 'images/project-5.jpg', title: 'Встреча студентов УРГПУ с олимпийским чемпионом по биатлону Александром Тихоновым', desc: 'Идейный руководитель «Биатлон ГТО» Юрий Громыко подарил УРГПУ сертификат «Биатлон в школу»' },
-    { img: 'images/project-6.jpg', title: 'Эстафета Всероссийского проекта «Год биатлона».', desc: 'Торжественная часть завершилась пленарной, где ребята задавали вопросы почетным гостям' }
-];
-// ============ ФОТОГАЛЕРЕЯ: СЛАЙДЕР + ЛАЙТБОКС ============
-const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
-const galleryImages = gallerySlides.map(slide => slide.querySelector('img'));
-let currentGalleryIndex = 0;
-
-const gallerySlider = document.getElementById('gallerySlider');
-const gallerySliderPrev = document.getElementById('gallerySliderPrev');
-const gallerySliderNext = document.getElementById('gallerySliderNext');
-
-function scrollSlider(direction) {
-    if (!gallerySlider) return;
-    const slide = gallerySlider.querySelector('.gallery-slide');
-    if (!slide) return;
-    const slideWidth = slide.offsetWidth + 16;
-    gallerySlider.scrollBy({ left: direction * slideWidth * 2, behavior: 'smooth' });
-}
-
-if (gallerySliderPrev) gallerySliderPrev.addEventListener('click', () => scrollSlider(-1));
-if (gallerySliderNext) gallerySliderNext.addEventListener('click', () => scrollSlider(1));
-
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-const lightboxCounter = document.getElementById('lightboxCounter');
-
-function updateCounter() {
-    if (lightboxCounter) {
-        lightboxCounter.textContent = (currentGalleryIndex + 1) + ' / ' + galleryImages.length;
-    }
-}
-
-function openLightbox(index) {
-    currentGalleryIndex = index;
-    lightboxImg.src = galleryImages[index].src;
-    lightboxImg.alt = galleryImages[index].alt;
-    updateCounter();
-
-    lightboxPrev.style.display = '';
-    lightboxNext.style.display = '';
-    if (lightboxCounter) lightboxCounter.style.display = '';
-
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-    if (lightbox) {
-        lightbox.classList.remove('active');
-    }
-    document.body.style.overflow = '';
-}
-
-function showNextImage() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentGalleryIndex].src;
-    lightboxImg.alt = galleryImages[currentGalleryIndex].alt;
-    updateCounter();
-}
-
-function showPrevImage() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
-    lightboxImg.src = galleryImages[currentGalleryIndex].src;
-    lightboxImg.alt = galleryImages[currentGalleryIndex].alt;
-    updateCounter();
-}
-
-gallerySlides.forEach((slide, idx) => {
-    slide.addEventListener('click', () => openLightbox(idx));
-});
-
-document.querySelectorAll('.project-card').forEach((card, idx) => {
-    card.addEventListener('click', () => {
-        const data = projectsData[idx];
-        if (data) {
-            lightboxImg.src = data.img;
-            lightboxImg.alt = data.title;
-            if (lightboxCounter) lightboxCounter.textContent = data.title;
-
-            // Скрываем стрелки и счётчик — в проектах только одно фото
-            lightboxPrev.style.display = 'none';
-            lightboxNext.style.display = 'none';
-            if (lightboxCounter) lightboxCounter.style.display = 'none';
-
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    });
-});
-
-if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
-if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
-
-if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    lightbox.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lightbox.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchEndX - touchStartX;
-        if (Math.abs(diff) > 50) {
-            if (diff < 0) showNextImage();
-            else showPrevImage();
-        }
-    });
-}
+if (elementModalClose) elementModalClose.addEventListener('click', closeElementModal);
+if (elementModal) elementModal.addEventListener('click', (e) => { if (e.target === elementModal) closeElementModal(); });
 
 // ============ КЛАВИАТУРА ============
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         if (elementModal && elementModal.classList.contains('active')) closeElementModal();
-        if (lightbox && lightbox.classList.contains('active')) closeLightbox();
-    }
-    if (lightbox && lightbox.classList.contains('active')) {
-        if (e.key === 'ArrowRight') showNextImage();
-        if (e.key === 'ArrowLeft') showPrevImage();
+        const lightboxes = document.querySelectorAll('.lightbox');
+        lightboxes.forEach(lb => { lb.classList.remove('active'); document.body.style.overflow = ''; });
     }
 });
 
-// ============ ВИДЕО-ФАСАД (RuTube) ============
+// ============ ВИДЕО-ФАСАД ============
 const videoFacade = document.querySelector('.video-facade');
 if (videoFacade) {
-    const loadVideo = () => {
+    videoFacade.addEventListener('click', () => {
         const src = videoFacade.getAttribute('data-video-src');
         if (!src) return;
-        const wrapper = videoFacade.parentElement;
-
         const iframe = document.createElement('iframe');
         iframe.src = src;
         iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('allow', 'clipboard-write; autoplay; fullscreen');
         iframe.setAttribute('allowfullscreen', '');
-        iframe.setAttribute('title', 'Хроника проекта «Биатлон ГТО»');
-
-        wrapper.innerHTML = '';
-        wrapper.appendChild(iframe);
-    };
-
-    videoFacade.addEventListener('click', loadVideo);
-    videoFacade.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            loadVideo();
-        }
+        videoFacade.parentElement.innerHTML = '';
+        videoFacade.parentElement.appendChild(iframe);
     });
 }
 
-const applySection = document.querySelector('.apply-section');
-if (applySection) {
-    const applyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                applyObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    applyObserver.observe(applySection);
-}
-
-// ============ ФОРМА СВЯЗИ (Formspree) ============
+// ============ ФОРМА СВЯЗИ ============
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
         const message = document.getElementById('contactFormMessage');
         const submitBtn = contactForm.querySelector('.contact-submit');
         const originalText = submitBtn.textContent;
-
         submitBtn.textContent = 'Отправка...';
         submitBtn.disabled = true;
-
         try {
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: new FormData(contactForm),
-                headers: { 'Accept': 'application/json' }
-            });
-
+            const response = await fetch(contactForm.action, { method: 'POST', body: new FormData(contactForm), headers: { 'Accept': 'application/json' } });
             if (response.ok) {
                 contactForm.reset();
-                if (message) {
-                    message.classList.add('show');
-                    setTimeout(() => message.classList.remove('show'), 6000);
-                }
-            } else {
-                alert('Что-то пошло не так. Попробуйте ещё раз.');
-            }
-        } catch (err) {
-            alert('Ошибка соединения. Попробуйте ещё раз.');
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
+                if (message) { message.classList.add('show'); setTimeout(() => message.classList.remove('show'), 6000); }
+            } else { alert('Что-то пошло не так.'); }
+        } catch (err) { alert('Ошибка соединения.'); }
+        finally { submitBtn.textContent = originalText; submitBtn.disabled = false; }
     });
 }
-// ============ ПОЯВЛЕНИЕ ЛАСКИ В БЛОКЕ «СВЯЖИТЕСЬ С НАМИ» ============
+
+// ============ ПОЯВЛЕНИЕ ЛАСКИ ============
+const applySection = document.querySelector('.apply-section');
+if (applySection) {
+    const applyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); applyObserver.unobserve(entry.target); }
+        });
+    }, { threshold: 0.2 });
+    applyObserver.observe(applySection);
+}
 const contactSection = document.querySelector('.contact-form-section');
 if (contactSection) {
     const contactObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                contactObserver.unobserve(entry.target);
-            }
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); contactObserver.unobserve(entry.target); }
         });
     }, { threshold: 0.2 });
-
     contactObserver.observe(contactSection);
 }
 
-
-// Скрипт для слайдера на странице студентов (с зацикливанием)
-document.addEventListener("DOMContentLoaded", function() {
-    const slider = document.getElementById('studentSlider');
-    const prevBtn = document.getElementById('studentSliderPrev');
-    const nextBtn = document.getElementById('studentSliderNext');
-
-    if (slider && prevBtn && nextBtn) {
-        
-        // Функция для вычисления ширины одной карточки + отступа (gap)
-        const getScrollAmount = () => {
-            const card = slider.querySelector('.student-card');
-            if (!card) return 360; // Запасное значение
-            // Ширина карточки + 24px (значение gap из CSS)
-            return card.offsetWidth + 24; 
-        };
-
-        // Клик вперед
-        nextBtn.addEventListener('click', () => {
-            const scrollAmount = getScrollAmount();
-            
-            // Если мы у самого конца (погрешность 10px), крутим в начало
-            if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
-                slider.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-        });
-
-        // Клик назад
-        prevBtn.addEventListener('click', () => {
-            const scrollAmount = getScrollAmount();
-            
-            // Если мы в самом начале, крутим в конец
-            if (slider.scrollLeft <= 10) {
-                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            }
-        });
-    }
-});
-
-// ==========================================
-// СКРИПТЫ ДЛЯ СТРАНИЦЫ "АКВА БИАТЛОН"
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // --- 1. Интерактивная мишень ---
-    const target = document.getElementById('aquaTarget');
-    const hitCounter = document.getElementById('hitCounter');
-    const resetBtn = document.getElementById('resetTargetBtn');
-    let hits = 0;
-
-    if (target && hitCounter && resetBtn) {
-        target.addEventListener('click', function(e) {
-            if (hits >= 5) return; 
-
-            // --- Пружина ---
-            target.classList.remove('spring'); 
-            void target.offsetWidth;           
-            target.classList.add('spring');    
-            // -------------
-
-            const rect = target.getBoundingClientRect();
-            const hole = document.createElement('div');
-            hole.classList.add('bullet-hole');
-            hole.style.left = `${e.clientX - rect.left}px`;
-            hole.style.top = `${e.clientY - rect.top}px`;
-            
-            target.appendChild(hole);
-
-            hits++;
-            hitCounter.textContent = hits;
-
-            if (hits === 5) {
-                setTimeout(() => { alert("Отличная стрельба! Ты готов к Аква биатлону! 🎯"); }, 300);
-            }
-        });
-
-        // ВОТ ЭТОТ БЛОК ТЫ СЛУЧАЙНО УДАЛИЛА (Кнопка сброса)
-        resetBtn.addEventListener('click', function() {
-            hits = 0;
-            hitCounter.textContent = hits;
-            target.querySelectorAll('.bullet-hole').forEach(h => h.remove());
-        });
-    } // <--- ВОТ ЭТА СКОБКА БЫЛА ПРОПУЩЕНА, ИЗ-ЗА НЕЁ ВСЁ СЛОМАЛОСЬ
-
-    // --- 2. Скролл Таймлайна с зацикливанием ---
-    const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
-    const timePrev = document.getElementById('timePrev');
-    const timeNext = document.getElementById('timeNext');
-
-    if (timeWrapper && timePrev && timeNext) {
-        const isAtEnd = () => timeWrapper.scrollLeft + timeWrapper.clientWidth >= timeWrapper.scrollWidth - 10;
-        const isAtStart = () => timeWrapper.scrollLeft <= 10;
-
-        timeNext.addEventListener('click', () => {
-            if (isAtEnd()) {
-                timeWrapper.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
-            }
-        });
-
-        timePrev.addEventListener('click', () => {
-            if (isAtStart()) {
-                timeWrapper.scrollTo({ left: timeWrapper.scrollWidth, behavior: 'smooth' });
-            } else {
-                timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
-            }
-        });
-    }
-
-    // --- 3. Галерея (Слайдер и Лайтбокс) ---
-    const galSlider = document.getElementById('aquaGalSlider');
-    const galPrev = document.getElementById('aquaGalPrev');
-    const galNext = document.getElementById('aquaGalNext');
-    
-    // Уникальные имена для переменных, чтобы не конфликтовать с главной страницей
-    const aqLightbox = document.getElementById('aquaLightbox');
-    const aqLightboxImg = document.getElementById('aquaLightboxImg');
-    const aqLightboxClose = document.getElementById('aquaLightboxClose');
-    const aqLightboxPrev = document.getElementById('aquaLightboxPrev');
-    const aqLightboxNext = document.getElementById('aquaLightboxNext');
-    
-    let aqCurrentIndex = 0;
-    let aqImages = [];
-
-    if (galSlider && galPrev && galNext) {
-        galPrev.addEventListener('click', () => galSlider.scrollBy({ left: -320, behavior: 'smooth' }));
-        galNext.addEventListener('click', () => galSlider.scrollBy({ left: 320, behavior: 'smooth' }));
-
-        const triggers = galSlider.querySelectorAll('.aqua-lightbox-trigger');
-        triggers.forEach((img, index) => {
-            aqImages.push(img.src);
-            img.addEventListener('click', () => {
-                aqCurrentIndex = index;
-                openAquaLightbox(aqCurrentIndex);
-            });
-        });
-    }
-
-    function openAquaLightbox(index) {
-        if(aqLightboxImg && aqLightbox) {
-            aqLightboxImg.src = aqImages[index];
-            aqLightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        }
-    }
-
-    if (aqLightboxClose && aqLightbox) {
-        aqLightboxClose.addEventListener('click', () => {
-            aqLightbox.classList.remove('active');
-            document.body.style.overflow = ''; 
-        });
-        
-        aqLightbox.addEventListener('click', (e) => { 
-            if (e.target === aqLightbox) {
-                aqLightbox.classList.remove('active'); 
-                document.body.style.overflow = '';
-            }
-        });
-        
-        if (aqLightboxPrev && aqLightboxNext) {
-            aqLightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                aqCurrentIndex = (aqCurrentIndex - 1 + aqImages.length) % aqImages.length;
-                aqLightboxImg.src = aqImages[aqCurrentIndex];
-            });
-            aqLightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                aqCurrentIndex = (aqCurrentIndex + 1) % aqImages.length;
-                aqLightboxImg.src = aqImages[aqCurrentIndex];
-            });
-        }
-    }
-});
-// ==========================================
-// СКРИПТЫ ДЛЯ СТРАНИЦЫ "ДЛЯ ПЕДАГОГОВ"
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // --- 1. Интерактивная методика (Табы) ---
-    const tabBtns = document.querySelectorAll('.teach-tab-btn');
-    const tabPanes = document.querySelectorAll('.teach-tab-pane');
-
-    if (tabBtns.length > 0) {
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabPanes.forEach(p => p.classList.remove('active'));
-
-                btn.classList.add('active');
-                const targetIndex = btn.getAttribute('data-tab');
-                const targetPane = document.querySelector(`.teach-tab-pane[data-pane="${targetIndex}"]`);
-                if (targetPane) {
-                    targetPane.classList.add('active');
-                }
-            });
-        });
-    }
-
-    // --- 2. Дорожка участника (Аккордеон) ---
-    const stepItems = document.querySelectorAll('.teach-step-item');
-
-    if (stepItems.length > 0) {
-        stepItems.forEach(item => {
-            const header = item.querySelector('.teach-step-header');
-            if (header) {
-                header.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    stepItems.forEach(i => i.classList.remove('active'));
-                    if (!isActive) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        });
-    }
-
-    // --- 3. Лайтбокс для Masonry Галереи ---
-    const teachLightbox = document.getElementById('teachLightbox');
-    const teachLightboxImg = document.getElementById('teachLightboxImg');
-    const teachLightboxClose = document.getElementById('teachLightboxClose');
-    const teachTriggers = document.querySelectorAll('.teach-lightbox-trigger');
-
-    if (teachTriggers.length > 0 && teachLightbox) {
-        teachTriggers.forEach(img => {
-            img.addEventListener('click', () => {
-                teachLightboxImg.src = img.src;
-                teachLightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        if (teachLightboxClose) {
-            teachLightboxClose.addEventListener('click', () => {
-                teachLightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-
-        teachLightbox.addEventListener('click', (e) => {
-            if (e.target === teachLightbox) {
-                teachLightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-});
-
-// ==========================================
-// АНИМАЦИЯ ЦИФР ПРИ СКРОЛЛЕ (Для страницы педагогов)
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    const statsBlock = document.querySelector('.teach-bento-grid');
-    if (!statsBlock) return;
-
-    // Функция для плавного увеличения числа
-    const animateValue = (obj, start, end, duration) => {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            
-            // Плавное замедление к концу (easeOutQuad)
-            const easeOut = 1 - (1 - progress) * (1 - progress);
-            const current = Math.floor(easeOut * (end - start) + start);
-            
-            // Форматируем число (если больше 999, добавляем пробелы: 2 400)
-            if (end >= 1000 && end !== 1000000) {
-                obj.innerText = current.toLocaleString('ru-RU');
-            } else {
-                obj.innerText = current;
-            }
-            
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            } else {
-                // В самом конце устанавливаем точное значение
-                if (end >= 1000 && end !== 1000000) {
-                    obj.innerText = end.toLocaleString('ru-RU');
-                } else {
-                    obj.innerText = end;
-                }
-            }
-        };
-        window.requestAnimationFrame(step);
-    };
-
-    // Настраиваем "наблюдатель"
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Находим все счетчики внутри этого блока
-                const counters = entry.target.querySelectorAll('.count');
-                
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    // Запускаем анимацию (0 -> target, за 2000 миллисекунд = 2 секунды)
-                    animateValue(counter, 0, target, 2000); 
-                });
-                
-                // Отключаем наблюдение после запуска, чтобы при повторном скролле не было повторной анимации
-                observer.unobserve(entry.target); 
-            }
-        });
-    }, { threshold: 0.3 }); // Сработает, когда 30% блока станет видно
-
-    observer.observe(statsBlock);
-});
-
-// ==========================================
-// СКРИПТЫ ДЛЯ СТРАНИЦЫ "ШКОЛЬНИКАМ"
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // --- 1. Анимация цифр ---
-    const statsBlock = document.querySelector('.school-stats-grid');
-    if (statsBlock) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('.count').forEach(counter => {
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 2000; // 2 секунды
-                        let startTimestamp = null;
-                        
-                        const step = (timestamp) => {
-                            if (!startTimestamp) startTimestamp = timestamp;
-                            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                            // Плавное замедление (easeOutQuad)
-                            const easeOut = 1 - (1 - progress) * (1 - progress);
-                            let current = Math.floor(easeOut * target);
-                            
-                            // Форматируем числа с пробелами (2 500 000)
-                            if (target >= 1000) {
-                                counter.innerText = current.toLocaleString('ru-RU');
-                            } else {
-                                counter.innerText = current;
-                            }
-                            
-                            if (progress < 1) {
-                                window.requestAnimationFrame(step);
-                            } else {
-                                counter.innerText = target.toLocaleString('ru-RU');
-                            }
-                        };
-                        window.requestAnimationFrame(step);
-                    });
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(statsBlock);
-    }
-
-    // --- 2. Слайдер занятий (с зацикливанием) ---
-    const slider = document.getElementById('schoolSlider');
-    const prevBtn = document.getElementById('schoolSliderPrev');
-    const nextBtn = document.getElementById('schoolSliderNext');
-
-    if (slider && prevBtn && nextBtn) {
-        
-        // Функция для вычисления ширины одной карточки + отступа (gap)
-        const getScrollAmount = () => {
-            const card = slider.querySelector('.school-card');
-            if (!card) return 374; // Запасное значение
-            // Ширина карточки + отступ (gap 24px)
-            return card.offsetWidth + 24; 
-        };
-
-        // Клик вперед
-        nextBtn.addEventListener('click', () => {
-            const scrollAmount = getScrollAmount();
-            
-            // Если мы у самого конца (погрешность 10px), крутим в начало
-            if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
-                slider.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-        });
-
-        // Клик назад
-        prevBtn.addEventListener('click', () => {
-            const scrollAmount = getScrollAmount();
-            
-            // Если мы в самом начале, крутим в конец
-            if (slider.scrollLeft <= 10) {
-                slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            }
-        });
-    }
-
-    // --- 3. Лайтбокс для полароидов ---
-    const lightbox = document.getElementById('schoolLightbox');
-    const lightboxImg = document.getElementById('schoolLightboxImg');
-    const lightboxClose = document.getElementById('schoolLightboxClose');
-    const triggers = document.querySelectorAll('.school-lightbox-trigger');
-
-    if (triggers.length > 0 && lightbox) {
-        triggers.forEach(img => {
-            img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Блокируем скролл фона
-            });
-        });
-
-        if (lightboxClose) {
-            lightboxClose.addEventListener('click', () => {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = ''; // Возвращаем скролл
-            });
-        }
-
-        // Закрытие по клику на темный фон
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-});
-
-// ==========================================
-// АНИМАЦИЯ ЧАТА НА СТРАНИЦЕ ШКОЛЬНИКОВ
-// ==========================================
-document.addEventListener("DOMContentLoaded", function() {
-    const chatSection = document.querySelector('.chat-section');
-    const bubbles = document.querySelectorAll('.chat-bubble.bubble-in');
-    const status = document.getElementById('chatStatus');
-
-    if (chatSection && bubbles.length > 0) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    
-                    if (status) status.innerText = "Биатлон ГТО печатает...";
-
-                    bubbles.forEach((bubble, index) => {
-                        setTimeout(() => {
-                            bubble.classList.add('show');
-                            
-                            // Автопрокрутка чата вниз (сработает только если есть overflow-y: auto)
-                            const chatBody = bubble.parentElement;
-                            chatBody.scrollTop = chatBody.scrollHeight;
-
-                            if (index === bubbles.length - 1) {
-                                setTimeout(() => {
-                                    if (status) status.innerText = "в сети";
-                                }, 600);
-                            }
-                        }, index * 800); 
-                    });
-
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        observer.observe(chatSection);
-    }
-});
-// ==========================================
-// ЗАГРУЗКА ДАННЫХ ИЗ АДМИНКИ (Decap CMS)
-// ==========================================
-
-// Универсальная функция для открытия лайтбокса
+// ============ УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ============
 function openDynamicLightbox(imgSrc, title = '') {
-    // Ищем любой открытый лайтбокс на странице
     const lightbox = document.getElementById('lightbox') || 
                      document.getElementById('aquaLightbox') || 
                      document.getElementById('teachLightbox') || 
@@ -935,7 +201,6 @@ function openDynamicLightbox(imgSrc, title = '') {
         const imgElement = lightbox.querySelector('img');
         if (imgElement) imgElement.src = imgSrc;
         
-        // Если есть счетчик, меняем текст
         const counter = lightbox.querySelector('.lightbox-counter');
         if (counter) counter.textContent = title;
 
@@ -943,6 +208,137 @@ function openDynamicLightbox(imgSrc, title = '') {
         document.body.style.overflow = 'hidden';
     }
 }
+
+document.querySelectorAll('.lightbox').forEach(lightbox => {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// ============ СЛАЙДЕРЫ И ИГРЫ ============
+document.addEventListener("DOMContentLoaded", function() {
+    const studentSlider = document.getElementById('studentSlider');
+    if (studentSlider) {
+        const prev = document.getElementById('studentSliderPrev');
+        const next = document.getElementById('studentSliderNext');
+        const getScrollAmount = () => (studentSlider.querySelector('.student-card')?.offsetWidth || 300) + 24;
+        if (prev) prev.addEventListener('click', () => studentSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
+        if (next) next.addEventListener('click', () => studentSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }));
+    }
+
+    const target = document.getElementById('aquaTarget');
+    if (target) {
+        const hitCounter = document.getElementById('hitCounter');
+        const resetBtn = document.getElementById('resetTargetBtn');
+        let hits = 0;
+        target.addEventListener('click', function(e) {
+            if (hits >= 5) return;
+            target.classList.remove('spring'); void target.offsetWidth; target.classList.add('spring');
+            const rect = target.getBoundingClientRect();
+            const hole = document.createElement('div');
+            hole.classList.add('bullet-hole');
+            hole.style.left = `${e.clientX - rect.left}px`;
+            hole.style.top = `${e.clientY - rect.top}px`;
+            target.appendChild(hole);
+            hits++; if(hitCounter) hitCounter.textContent = hits;
+            if (hits === 5) setTimeout(() => { alert("Отличная стрельба! 🎯"); }, 300);
+        });
+        if (resetBtn) resetBtn.addEventListener('click', function() { hits = 0; if(hitCounter) hitCounter.textContent = hits; target.querySelectorAll('.bullet-hole').forEach(h => h.remove()); });
+    }
+
+    const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
+    if (timeWrapper) {
+        const timePrev = document.getElementById('timePrev');
+        const timeNext = document.getElementById('timeNext');
+        const isAtEnd = () => timeWrapper.scrollLeft + timeWrapper.clientWidth >= timeWrapper.scrollWidth - 10;
+        const isAtStart = () => timeWrapper.scrollLeft <= 10;
+        if (timePrev) timePrev.addEventListener('click', () => {
+            if (isAtStart()) timeWrapper.scrollTo({ left: timeWrapper.scrollWidth, behavior: 'smooth' });
+            else timeWrapper.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+        if (timeNext) timeNext.addEventListener('click', () => {
+            if (isAtEnd()) timeWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            else timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    }
+
+    const schoolSlider = document.getElementById('schoolSlider');
+    if (schoolSlider) {
+        const prev = document.getElementById('schoolSliderPrev');
+        const next = document.getElementById('schoolSliderNext');
+        const getScrollAmount = () => (schoolSlider.querySelector('.school-card')?.offsetWidth || 300) + 24;
+        if (prev) prev.addEventListener('click', () => {
+            if (schoolSlider.scrollLeft <= 10) schoolSlider.scrollTo({ left: schoolSlider.scrollWidth, behavior: 'smooth' });
+            else schoolSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+        if (next) next.addEventListener('click', () => {
+            if (schoolSlider.scrollLeft + schoolSlider.clientWidth >= schoolSlider.scrollWidth - 10) schoolSlider.scrollTo({ left: 0, behavior: 'smooth' });
+            else schoolSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+    }
+
+    // Счетчики
+    const statsBlocks = document.querySelectorAll('.teach-bento-grid, .school-stats-grid');
+    if (statsBlocks.length > 0) {
+        const obs = new IntersectionObserver((entries, o) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.count').forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        let startTimestamp = null;
+                        const step = (ts) => {
+                            if (!startTimestamp) startTimestamp = ts;
+                            const progress = Math.min((ts - startTimestamp) / 2000, 1);
+                            const easeOut = 1 - (1 - progress) * (1 - progress);
+                            let current = Math.floor(easeOut * target);
+                            counter.innerText = (target >= 1000) ? current.toLocaleString('ru-RU') : current;
+                            if (progress < 1) window.requestAnimationFrame(step);
+                            else counter.innerText = target.toLocaleString('ru-RU');
+                        };
+                        window.requestAnimationFrame(step);
+                    });
+                    o.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        statsBlocks.forEach(block => obs.observe(block));
+    }
+
+    // Чат
+    const chatSection = document.querySelector('.chat-section');
+    if (chatSection) {
+        const bubbles = document.querySelectorAll('.chat-bubble.bubble-in');
+        const status = document.getElementById('chatStatus');
+        const obs = new IntersectionObserver((entries, o) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (status) status.innerText = "Биатлон ГТО печатает...";
+                    bubbles.forEach((bubble, index) => {
+                        setTimeout(() => {
+                            bubble.classList.add('show');
+                            if (index === bubbles.length - 1) setTimeout(() => { if (status) status.innerText = "в сети"; }, 600);
+                        }, index * 800);
+                    });
+                    o.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        obs.observe(chatSection);
+    }
+});
+
+// ==========================================
+// ЗАГРУЗКА ДАННЫХ ИЗ АДМИНКИ (Decap CMS)
+// ==========================================
+
+// Универсальная функция для получения пути картинки (строки или объекта)
+const getImgPath = (item) => {
+    if (!item) return '';
+    return (typeof item === 'string') ? item : (item.image || '');
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
     
@@ -957,19 +353,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 projectsContainer.innerHTML = data.items.map((item, index) => `
                     <div class="project-card" data-project="${index}">
                         <div class="project-img">
-                            <img src="${item.image}" alt="${item.title}" class="dyn-project-img">
+                            <img src="${getImgPath(item)}" alt="${item.title}" class="dyn-project-img">
                         </div>
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
                     </div>
                 `).join('');
 
-                // Добавляем клики для новых карточек
                 projectsContainer.querySelectorAll('.dyn-project-img').forEach((img, idx) => {
                     img.addEventListener('click', () => openDynamicLightbox(img.src, data.items[idx].title));
                 });
-            } else {
-                projectsContainer.innerHTML = '<p style="text-align:center; width:100%;">Пока нет проектов.</p>';
             }
         } catch (e) { console.log('Ошибка загрузки проектов:', e); }
     }
@@ -982,8 +375,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
             if (data && data.images) {
                 mainGallery.innerHTML = data.images.map(item => `
-                    <div class="gallery-slide"><img src="${item.image}" alt="Фото"></div>
+                    <div class="gallery-slide"><img src="${getImgPath(item)}" alt="Фото" class="dyn-main-gal-img"></div>
                 `).join('');
+                
+                mainGallery.querySelectorAll('.dyn-main-gal-img').forEach(img => {
+                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+                });
             }
         } catch (e) { console.log('Ошибка загрузки галереи:', e); }
     }
@@ -996,7 +393,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
             if (data && data.images) {
                 aquaGallery.innerHTML = data.images.map(item => `
-                    <div class="gallery-slide"><img src="${item.image}" alt="Фото" class="dyn-aqua-img"></div>
+                    <div class="gallery-slide"><img src="${getImgPath(item)}" alt="Фото" class="dyn-aqua-img"></div>
                 `).join('');
                 
                 aquaGallery.querySelectorAll('.dyn-aqua-img').forEach(img => {
@@ -1013,16 +410,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             const res = await fetch('content/school.json');
             const data = await res.json();
             if (data && data.images && data.images.length > 0) {
-                // Первая картинка - большая
-                let html = `<div class="polaroid-big"><img src="${data.images[0].image}" alt="Фото" class="dyn-school-img"></div>`;
-                
-                // Остальные - маленькие
+                let html = `<div class="polaroid-big"><img src="${getImgPath(data.images[0])}" alt="Фото" class="dyn-school-img"></div>`;
                 html += `<div class="polaroid-small-grid">`;
                 for (let i = 1; i < data.images.length; i++) {
-                    html += `<div class="polaroid-small"><img src="${data.images[i].image}" alt="Фото" class="dyn-school-img"></div>`;
+                    html += `<div class="polaroid-small"><img src="${getImgPath(data.images[i])}" alt="Фото" class="dyn-school-img"></div>`;
                 }
                 html += `</div>`;
-                
                 schoolPolaroids.innerHTML = html;
                 
                 schoolPolaroids.querySelectorAll('.dyn-school-img').forEach(img => {
@@ -1040,10 +433,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
             if (data && data.images) {
                 const classes = ['item-big', 'item-small-l1', 'item-small-l2', 'item-r1', 'item-r2', 'item-r3', 'item-r4'];
-                
                 teachMasonry.innerHTML = data.images.map((item, i) => `
                     <div class="teach-masonry-item ${classes[i] || ''}">
-                        <img src="${item.image}" alt="Фото" class="dyn-teach-img">
+                        <img src="${getImgPath(item)}" alt="Фото" class="dyn-teach-img">
                     </div>
                 `).join('');
 
