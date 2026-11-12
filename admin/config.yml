@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: kitqgz/biatlon-gto
+  repo: kitqgzz/biatlon-gto
   branch: main
   base_url: https://decap-proxy.biathlon-proxy.workers.dev
 
