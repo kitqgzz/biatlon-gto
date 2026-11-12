@@ -1,9 +1,9 @@
 {
   "images": [
-    { "image": "/images/gallery-01.jpg" },
-    { "image": "/images/gallery-02.jpg" },
-    { "image": "/images/gallery-03.jpg" },
-    { "image": "/images/gallery-04.jpg" },
-    { "image": "/images/gallery-05.jpg" }
+    "/images/aqua-1.jpg",
+    "/images/aqua-2.jpg",
+    "/images/aqua-3.jpg",
+    "/images/aqua-4.jpg",
+    "/images/aqua-5.jpg"
   ]
 }
