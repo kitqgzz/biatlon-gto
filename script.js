@@ -218,17 +218,37 @@ document.querySelectorAll('.lightbox').forEach(lightbox => {
     });
 });
 
+// ============ УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ СТРЕЛОК СЛАЙДЕРОВ ============
+function setupSliderArrows(sliderId, prevBtnId, nextBtnId, stepMultiplier = 1) {
+    const slider = document.getElementById(sliderId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+
+    if (slider && prevBtn && nextBtn) {
+        const scrollAmount = () => {
+            const slide = slider.firstElementChild;
+            return slide ? slide.offsetWidth + 20 : 300;
+        };
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -scrollAmount() * stepMultiplier, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: scrollAmount() * stepMultiplier, behavior: 'smooth' });
+        });
+    }
+}
+
 // ============ СЛАЙДЕРЫ И ИГРЫ ============
 document.addEventListener("DOMContentLoaded", function() {
-    const studentSlider = document.getElementById('studentSlider');
-    if (studentSlider) {
-        const prev = document.getElementById('studentSliderPrev');
-        const next = document.getElementById('studentSliderNext');
-        const getScrollAmount = () => (studentSlider.querySelector('.student-card')?.offsetWidth || 300) + 24;
-        if (prev) prev.addEventListener('click', () => studentSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }));
-        if (next) next.addEventListener('click', () => studentSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }));
-    }
+    
+    // Привязываем стрелки ко всем слайдерам
+    setupSliderArrows('gallerySlider', 'gallerySliderPrev', 'gallerySliderNext', 2); // Главная
+    setupSliderArrows('aquaGalSlider', 'aquaGalPrev', 'aquaGalNext', 1);             // Аква
+    setupSliderArrows('studentSlider', 'studentSliderPrev', 'studentSliderNext', 1); // Студенты
+    setupSliderArrows('schoolSlider', 'schoolSliderPrev', 'schoolSliderNext', 1);    // Школьники
 
+    // Мишень
     const target = document.getElementById('aquaTarget');
     if (target) {
         const hitCounter = document.getElementById('hitCounter');
@@ -249,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (resetBtn) resetBtn.addEventListener('click', function() { hits = 0; if(hitCounter) hitCounter.textContent = hits; target.querySelectorAll('.bullet-hole').forEach(h => h.remove()); });
     }
 
+    // Таймлайн
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     if (timeWrapper) {
         const timePrev = document.getElementById('timePrev');
@@ -262,21 +283,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (timeNext) timeNext.addEventListener('click', () => {
             if (isAtEnd()) timeWrapper.scrollTo({ left: 0, behavior: 'smooth' });
             else timeWrapper.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-    }
-
-    const schoolSlider = document.getElementById('schoolSlider');
-    if (schoolSlider) {
-        const prev = document.getElementById('schoolSliderPrev');
-        const next = document.getElementById('schoolSliderNext');
-        const getScrollAmount = () => (schoolSlider.querySelector('.school-card')?.offsetWidth || 300) + 24;
-        if (prev) prev.addEventListener('click', () => {
-            if (schoolSlider.scrollLeft <= 10) schoolSlider.scrollTo({ left: schoolSlider.scrollWidth, behavior: 'smooth' });
-            else schoolSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-        });
-        if (next) next.addEventListener('click', () => {
-            if (schoolSlider.scrollLeft + schoolSlider.clientWidth >= schoolSlider.scrollWidth - 10) schoolSlider.scrollTo({ left: 0, behavior: 'smooth' });
-            else schoolSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
         });
     }
 
@@ -333,8 +339,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // ==========================================
 // ЗАГРУЗКА ДАННЫХ ИЗ АДМИНКИ (Decap CMS)
 // ==========================================
-
-// Универсальная функция для получения пути картинки (строки или объекта)
 const getImgPath = (item) => {
     if (!item) return '';
     return (typeof item === 'string') ? item : (item.image || '');
