@@ -5,23 +5,71 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
-// ============ ХЕДЕР ПРИ СКРОЛЛЕ ============
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-});
+// ============ УНИВЕРСАЛЬНЫЕ ФУНКЦИИ ============
 
-// ============ МОБИЛЬНОЕ МЕНЮ ============
+// Получение пути картинки (поддерживает и строки, и объекты)
+const getImgPath = (item) => {
+    if (!item) return '';
+    return (typeof item === 'string') ? item : (item.image || '');
+};
+
+// Универсальная функция для открытия лайтбокса
+function openDynamicLightbox(imgSrc, title = '') {
+    // Ищем любой открытый лайтбокс на странице
+    const lightbox = document.getElementById('lightbox') || 
+                     document.getElementById('aquaLightbox') || 
+                     document.getElementById('teachLightbox') || 
+                     document.getElementById('schoolLightbox');
+    
+    if (lightbox) {
+        const imgElement = lightbox.querySelector('img');
+        if (imgElement) imgElement.src = imgSrc;
+        
+        const counter = lightbox.querySelector('.lightbox-counter');
+        if (counter) counter.textContent = title;
+
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Универсальная функция для настройки стрелок слайдера
+function setupSliderArrows(sliderId, prevBtnId, nextBtnId, stepMultiplier = 1) {
+    const slider = document.getElementById(sliderId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+
+    if (slider && prevBtn && nextBtn) {
+        const scrollAmount = () => {
+            const slide = slider.firstElementChild;
+            return slide ? slide.offsetWidth + 20 : 300;
+        };
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -scrollAmount() * stepMultiplier, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: scrollAmount() * stepMultiplier, behavior: 'smooth' });
+        });
+    }
+}
+
+// ============ БАЗОВЫЕ СКРИПТЫ (ХЕДЕР, МЕНЮ, СКРОЛЛ) ============
+const header = document.getElementById('header');
+if (header) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+    });
+}
+
 const burger = document.getElementById('burger');
 const nav = document.getElementById('nav');
-
 if (burger && nav) {
     burger.addEventListener('click', () => {
         nav.classList.toggle('nav-open');
         burger.classList.toggle('active');
     });
-
     nav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             nav.classList.remove('nav-open');
@@ -30,37 +78,20 @@ if (burger && nav) {
     });
 }
 
-// ============ FAQ АККОРДЕОН ============
+// FAQ
 const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        faqItems.forEach(i => i.classList.remove('active'));
-        if (!isActive) item.classList.add('active');
-    });
+    if (question) {
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    }
 });
 
-// ============ АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ============
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.hero-card, .stat-item, .faq-item, .project-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// ============ ПЛАВНЫЙ СКРОЛЛ ============
+// Плавный скролл
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -68,14 +99,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(targetId);
         if (target) {
             e.preventDefault();
-            const headerHeight = header.offsetHeight;
+            const headerHeight = header ? header.offsetHeight : 0;
             const targetPosition = target.offsetTop - headerHeight - 20;
             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     });
 });
 
-// ============ ЭЛЕМЕНТЫ ПРОЕКТА: МОДАЛЬНОЕ ОКНО ============
+// ============ МОДАЛЬНОЕ ОКНО ЭЛЕМЕНТОВ (Главная) ============
 const elementsData = [
     { title: 'ШКОЛЬНИКИ И СТУДЕНТЫ', subtitle: 'Всероссийский марафон «Биатлон ГТО»', list: ['собрать команду и пройти отбор', 'победить на муниципальном и региональном этапах', 'выполнить нормативы ГТО и выйти в финал'], percentTop: '100%', percentBottom: 'ПЕРСПЕКТИВЫ', bottom: 'Победители марафона получают ценные призы и путёвки в ВДЦ «Смена» и ВДЦ «Океан».', img: 'images/schoolboy.png' },
     { title: 'ВСЕРОССИЙСКИЙ КРУГЛОГОДИЧНЫЙ МАРАФОН «БИАТЛОН ГТО»', subtitle: 'Ты готов проверить свою точность и выносливость? Тогда это твой старт!', list: ['Собери команду', 'Пройди отбор', 'Победи — и получи путёвку в финал', 'Выходи на старт и становись лучшим'], percentTop: '100%', percentBottom: 'УВЕРЕННОСТИ', bottom: 'Присоединяйся к марафону «Биатлон ГТО»!', img: 'images/biatlonguy.png' },
@@ -90,19 +121,32 @@ const elementModalClose = document.getElementById('elementModalClose');
 
 function openElementModal(index) {
     const data = elementsData[index];
-    if (!data) return;
-    document.getElementById('emTitle').textContent = data.title;
-    document.getElementById('emSubtitle').textContent = data.subtitle;
-    document.getElementById('emImage').src = data.img;
-    document.getElementById('emBottom').textContent = data.bottom;
+    if (!data || !elementModal) return;
+    
+    const emTitle = document.getElementById('emTitle');
+    const emSubtitle = document.getElementById('emSubtitle');
+    const emImage = document.getElementById('emImage');
+    const emBottom = document.getElementById('emBottom');
     const emList = document.getElementById('emList');
-    emList.innerHTML = '';
-    data.list.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        emList.appendChild(li);
-    });
-    document.getElementById('emPercent').innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
+    const emPercent = document.getElementById('emPercent');
+
+    if (emTitle) emTitle.textContent = data.title;
+    if (emSubtitle) emSubtitle.textContent = data.subtitle;
+    if (emImage) emImage.src = data.img;
+    if (emBottom) emBottom.textContent = data.bottom;
+    
+    if (emList) {
+        emList.innerHTML = '';
+        data.list.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            emList.appendChild(li);
+        });
+    }
+    
+    if (emPercent) {
+        emPercent.innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
+    }
     
     const card = document.querySelector('.element-card[data-element="' + index + '"]');
     if (card) {
@@ -114,8 +158,10 @@ function openElementModal(index) {
 }
 
 function closeElementModal() {
-    elementModal.classList.remove('active');
-    document.body.style.overflow = '';
+    if (elementModal) {
+        elementModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 document.querySelectorAll('.element-card').forEach(card => {
@@ -125,7 +171,7 @@ document.querySelectorAll('.element-card').forEach(card => {
 if (elementModalClose) elementModalClose.addEventListener('click', closeElementModal);
 if (elementModal) elementModal.addEventListener('click', (e) => { if (e.target === elementModal) closeElementModal(); });
 
-// ============ КЛАВИАТУРА ============
+// Клавиатура (Escape)
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         if (elementModal && elementModal.classList.contains('active')) closeElementModal();
@@ -170,45 +216,7 @@ if (contactForm) {
     });
 }
 
-// ============ ПОЯВЛЕНИЕ ЛАСКИ ============
-const applySection = document.querySelector('.apply-section');
-if (applySection) {
-    const applyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); applyObserver.unobserve(entry.target); }
-        });
-    }, { threshold: 0.2 });
-    applyObserver.observe(applySection);
-}
-const contactSection = document.querySelector('.contact-form-section');
-if (contactSection) {
-    const contactObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); contactObserver.unobserve(entry.target); }
-        });
-    }, { threshold: 0.2 });
-    contactObserver.observe(contactSection);
-}
-
-// ============ УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС ============
-function openDynamicLightbox(imgSrc, title = '') {
-    const lightbox = document.getElementById('lightbox') || 
-                     document.getElementById('aquaLightbox') || 
-                     document.getElementById('teachLightbox') || 
-                     document.getElementById('schoolLightbox');
-    
-    if (lightbox) {
-        const imgElement = lightbox.querySelector('img');
-        if (imgElement) imgElement.src = imgSrc;
-        
-        const counter = lightbox.querySelector('.lightbox-counter');
-        if (counter) counter.textContent = title;
-
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
+// ============ ЗАКРЫТИЕ ЛАЙТБОКСОВ ПО ФОНУ И КРЕСТИКУ ============
 document.querySelectorAll('.lightbox').forEach(lightbox => {
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
@@ -218,37 +226,16 @@ document.querySelectorAll('.lightbox').forEach(lightbox => {
     });
 });
 
-// ============ УНИВЕРСАЛЬНАЯ ФУНКЦИЯ ДЛЯ СТРЕЛОК СЛАЙДЕРОВ ============
-function setupSliderArrows(sliderId, prevBtnId, nextBtnId, stepMultiplier = 1) {
-    const slider = document.getElementById(sliderId);
-    const prevBtn = document.getElementById(prevBtnId);
-    const nextBtn = document.getElementById(nextBtnId);
-
-    if (slider && prevBtn && nextBtn) {
-        const scrollAmount = () => {
-            const slide = slider.firstElementChild;
-            return slide ? slide.offsetWidth + 20 : 300;
-        };
-
-        prevBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: -scrollAmount() * stepMultiplier, behavior: 'smooth' });
-        });
-        nextBtn.addEventListener('click', () => {
-            slider.scrollBy({ left: scrollAmount() * stepMultiplier, behavior: 'smooth' });
-        });
-    }
-}
-
-// ============ СЛАЙДЕРЫ И ИГРЫ ============
+// ============ АНИМАЦИИ И СЛАЙДЕРЫ ============
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Привязываем стрелки ко всем слайдерам
+    // 1. Настройка стрелок для всех слайдеров
     setupSliderArrows('gallerySlider', 'gallerySliderPrev', 'gallerySliderNext', 2); // Главная
     setupSliderArrows('aquaGalSlider', 'aquaGalPrev', 'aquaGalNext', 1);             // Аква
     setupSliderArrows('studentSlider', 'studentSliderPrev', 'studentSliderNext', 1); // Студенты
     setupSliderArrows('schoolSlider', 'schoolSliderPrev', 'schoolSliderNext', 1);    // Школьники
 
-    // Мишень
+    // 2. Интерактивная мишень
     const target = document.getElementById('aquaTarget');
     if (target) {
         const hitCounter = document.getElementById('hitCounter');
@@ -269,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (resetBtn) resetBtn.addEventListener('click', function() { hits = 0; if(hitCounter) hitCounter.textContent = hits; target.querySelectorAll('.bullet-hole').forEach(h => h.remove()); });
     }
 
-    // Таймлайн
+    // 3. Таймлайн
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     if (timeWrapper) {
         const timePrev = document.getElementById('timePrev');
@@ -286,7 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Счетчики
+    // 4. Счетчики (Педагоги и Школьники)
     const statsBlocks = document.querySelectorAll('.teach-bento-grid, .school-stats-grid');
     if (statsBlocks.length > 0) {
         const obs = new IntersectionObserver((entries, o) => {
@@ -313,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
         statsBlocks.forEach(block => obs.observe(block));
     }
 
-    // Чат
+    // 5. Чат (Школьники)
     const chatSection = document.querySelector('.chat-section');
     if (chatSection) {
         const bubbles = document.querySelectorAll('.chat-bubble.bubble-in');
@@ -336,14 +323,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// ==========================================
-// ЗАГРУЗКА ДАННЫХ ИЗ АДМИНКИ (Decap CMS)
-// ==========================================
-const getImgPath = (item) => {
-    if (!item) return '';
-    return (typeof item === 'string') ? item : (item.image || '');
-};
-
+// ============ ДИНАМИЧЕСКАЯ ЗАГРУЗКА ИЗ АДМИНКИ (Decap CMS) ============
 document.addEventListener("DOMContentLoaded", async () => {
     
     // 1. ГЛАВНАЯ: Наши проекты
@@ -352,20 +332,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             const res = await fetch('content/projects.json');
             const data = await res.json();
-            
             if (data && data.items) {
                 projectsContainer.innerHTML = data.items.map((item, index) => `
                     <div class="project-card" data-project="${index}">
                         <div class="project-img">
-                            <img src="${getImgPath(item)}" alt="${item.title}" class="dyn-project-img">
+                            <img src="${getImgPath(item)}" alt="${item.title}">
                         </div>
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
                     </div>
                 `).join('');
 
-                projectsContainer.querySelectorAll('.dyn-project-img').forEach((img, idx) => {
-                    img.addEventListener('click', () => openDynamicLightbox(img.src, data.items[idx].title));
+                // Делегирование клика на весь контейнер проектов
+                projectsContainer.addEventListener('click', (e) => {
+                    const card = e.target.closest('.project-card');
+                    if (card) {
+                        const img = card.querySelector('img');
+                        const idx = card.getAttribute('data-project');
+                        if (img) openDynamicLightbox(img.src, data.items[idx].title);
+                    }
                 });
             }
         } catch (e) { console.log('Ошибка загрузки проектов:', e); }
@@ -379,11 +364,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
             if (data && data.images) {
                 mainGallery.innerHTML = data.images.map(item => `
-                    <div class="gallery-slide"><img src="${getImgPath(item)}" alt="Фото" class="dyn-main-gal-img"></div>
+                    <div class="gallery-slide"><img src="${getImgPath(item)}" alt="Фото"></div>
                 `).join('');
-                
-                mainGallery.querySelectorAll('.dyn-main-gal-img').forEach(img => {
-                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+
+                mainGallery.addEventListener('click', (e) => {
+                    const slide = e.target.closest('.gallery-slide');
+                    if (slide) {
+                        const img = slide.querySelector('img');
+                        if (img) openDynamicLightbox(img.src);
+                    }
                 });
             }
         } catch (e) { console.log('Ошибка загрузки галереи:', e); }
@@ -397,11 +386,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await res.json();
             if (data && data.images) {
                 aquaGallery.innerHTML = data.images.map(item => `
-                    <div class="gallery-slide"><img src="${getImgPath(item)}" alt="Фото" class="dyn-aqua-img"></div>
+                    <div class="gallery-slide"><img src="${getImgPath(item)}" alt="Фото"></div>
                 `).join('');
-                
-                aquaGallery.querySelectorAll('.dyn-aqua-img').forEach(img => {
-                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+
+                aquaGallery.addEventListener('click', (e) => {
+                    const slide = e.target.closest('.gallery-slide');
+                    if (slide) {
+                        const img = slide.querySelector('img');
+                        if (img) openDynamicLightbox(img.src);
+                    }
                 });
             }
         } catch (e) { console.log('Ошибка загрузки аква-галереи:', e); }
@@ -414,16 +407,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             const res = await fetch('content/school.json');
             const data = await res.json();
             if (data && data.images && data.images.length > 0) {
-                let html = `<div class="polaroid-big"><img src="${getImgPath(data.images[0])}" alt="Фото" class="dyn-school-img"></div>`;
+                let html = `<div class="polaroid-big"><img src="${getImgPath(data.images[0])}" alt="Фото"></div>`;
                 html += `<div class="polaroid-small-grid">`;
                 for (let i = 1; i < data.images.length; i++) {
-                    html += `<div class="polaroid-small"><img src="${getImgPath(data.images[i])}" alt="Фото" class="dyn-school-img"></div>`;
+                    html += `<div class="polaroid-small"><img src="${getImgPath(data.images[i])}" alt="Фото"></div>`;
                 }
                 html += `</div>`;
                 schoolPolaroids.innerHTML = html;
-                
-                schoolPolaroids.querySelectorAll('.dyn-school-img').forEach(img => {
-                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+
+                schoolPolaroids.addEventListener('click', (e) => {
+                    const card = e.target.closest('.polaroid-big, .polaroid-small');
+                    if (card) {
+                        const img = card.querySelector('img');
+                        if (img) openDynamicLightbox(img.src);
+                    }
                 });
             }
         } catch (e) { console.log('Ошибка загрузки школьной галереи:', e); }
@@ -439,12 +436,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const classes = ['item-big', 'item-small-l1', 'item-small-l2', 'item-r1', 'item-r2', 'item-r3', 'item-r4'];
                 teachMasonry.innerHTML = data.images.map((item, i) => `
                     <div class="teach-masonry-item ${classes[i] || ''}">
-                        <img src="${getImgPath(item)}" alt="Фото" class="dyn-teach-img">
+                        <img src="${getImgPath(item)}" alt="Фото">
                     </div>
                 `).join('');
 
-                teachMasonry.querySelectorAll('.dyn-teach-img').forEach(img => {
-                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+                teachMasonry.addEventListener('click', (e) => {
+                    const item = e.target.closest('.teach-masonry-item');
+                    if (item) {
+                        const img = item.querySelector('img');
+                        if (img) openDynamicLightbox(img.src);
+                    }
                 });
             }
         } catch (e) { console.log('Ошибка загрузки коллажа педагогов:', e); }
