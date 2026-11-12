@@ -1,39 +1,84 @@
-// ============ ЗАПРЕТ ПЕРЕТАСКИВАНИЯ КАРТИНОК ============
+// ============ БАЗОВЫЕ НАСТРОЙКИ ============
+
+// Запрет перетаскивания картинок
 document.addEventListener('dragstart', function(e) {
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
     }
 });
 
-// ============ УНИВЕРСАЛЬНЫЕ ФУНКЦИИ ============
-
-// Получение пути картинки (поддерживает и строки, и объекты)
+// Получение пути картинки (для данных из админки)
 const getImgPath = (item) => {
     if (!item) return '';
     return (typeof item === 'string') ? item : (item.image || '');
 };
 
-// Универсальная функция для открытия лайтбокса
-function openDynamicLightbox(imgSrc, title = '') {
-    // Ищем любой открытый лайтбокс на странице
+// ============ УНИВЕРСАЛЬНЫЙ ЛАЙТБОКС С ЛИСТАНИЕМ ============
+// Эта функция теперь умеет листать картинки, если передать массив путей
+function openDynamicLightbox(imgSrc, title = '', imgArray = null, currentIndex = 0) {
     const lightbox = document.getElementById('lightbox') || 
                      document.getElementById('aquaLightbox') || 
                      document.getElementById('teachLightbox') || 
                      document.getElementById('schoolLightbox');
     
-    if (lightbox) {
-        const imgElement = lightbox.querySelector('img');
-        if (imgElement) imgElement.src = imgSrc;
-        
-        const counter = lightbox.querySelector('.lightbox-counter');
-        if (counter) counter.textContent = title;
+    if (!lightbox) return;
 
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    const imgElement = lightbox.querySelector('img');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+    const counter = lightbox.querySelector('.lightbox-counter');
+    
+    // Если передан массив картинок (для галерей)
+    if (imgArray && imgArray.length > 1) {
+        if (prevBtn) {
+            prevBtn.style.display = 'flex';
+            prevBtn.onclick = (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + imgArray.length) % imgArray.length;
+                imgElement.src = imgArray[currentIndex];
+                if (counter) counter.textContent = (currentIndex + 1) + ' / ' + imgArray.length;
+            };
+        }
+        if (nextBtn) {
+            nextBtn.style.display = 'flex';
+            nextBtn.onclick = (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % imgArray.length;
+                imgElement.src = imgArray[currentIndex];
+                if (counter) counter.textContent = (currentIndex + 1) + ' / ' + imgArray.length;
+            };
+        }
+        if (counter) {
+            counter.style.display = 'block';
+            counter.textContent = (currentIndex + 1) + ' / ' + imgArray.length;
+        }
+        imgElement.src = imgSrc;
+    } else {
+        // Если картинка одна (например, проект на главной)
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (counter) {
+            counter.style.display = 'block';
+            counter.textContent = title || '';
+        }
+        imgElement.src = imgSrc;
     }
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
-// Универсальная функция для настройки стрелок слайдера
+// Закрытие всех лайтбоксов
+document.querySelectorAll('.lightbox').forEach(lightbox => {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// ============ УНИВЕРСАЛЬНЫЕ СТРЕЛКИ ДЛЯ СЛАЙДЕРОВ ============
 function setupSliderArrows(sliderId, prevBtnId, nextBtnId, stepMultiplier = 1) {
     const slider = document.getElementById(sliderId);
     const prevBtn = document.getElementById(prevBtnId);
@@ -54,7 +99,7 @@ function setupSliderArrows(sliderId, prevBtnId, nextBtnId, stepMultiplier = 1) {
     }
 }
 
-// ============ БАЗОВЫЕ СКРИПТЫ (ХЕДЕР, МЕНЮ, СКРОЛЛ) ============
+// ============ СТАТИЧЕСКИЕ ЭЛЕМЕНТЫ (МЕНЮ, ХЕДЕР) ============
 const header = document.getElementById('header');
 if (header) {
     window.addEventListener('scroll', () => {
@@ -78,7 +123,7 @@ if (burger && nav) {
     });
 }
 
-// FAQ
+// FAQ Аккордеон
 const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
@@ -109,7 +154,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============ МОДАЛЬНОЕ ОКНО ЭЛЕМЕНТОВ (Главная) ============
 const elementsData = [
     { title: 'ШКОЛЬНИКИ И СТУДЕНТЫ', subtitle: 'Всероссийский марафон «Биатлон ГТО»', list: ['собрать команду и пройти отбор', 'победить на муниципальном и региональном этапах', 'выполнить нормативы ГТО и выйти в финал'], percentTop: '100%', percentBottom: 'ПЕРСПЕКТИВЫ', bottom: 'Победители марафона получают ценные призы и путёвки в ВДЦ «Смена» и ВДЦ «Океан».', img: 'images/schoolboy.png' },
-    { title: 'ВСЕРОССИЙСКИЙ КРУГЛОГОДИЧНЫЙ МАРАФОН «БИАТЛОН ГТО»', subtitle: 'Ты готов проверить свою точность и выносливость? Тогда это твой старт!', list: ['Собери команду', 'Пройди отбор', 'Победи — и получи путёвку в финал', 'Выходи на старт и становись лучшим'], percentTop: '100%', percentBottom: 'УВЕРЕННОСТИ', bottom: 'Присоединяйся к марафону «Биатлон ГТО»!', img: 'images/biatlonguy.png' },
+    { title: 'ВСЕРОССИЙСКИЙ КРУГЛОГОДИЧНЫЙ МАРАФОН «БИАТЛОН ГТО»', subtitle: 'Ты готов проверить свою точность и выносливость? Тогда это твой старт!', list: ['Собери команду', 'Пройти отбор', 'Победи — и получи путёвку в финал', 'Выходи на старт и становись лучшим'], percentTop: '100%', percentBottom: 'УВЕРЕННОСТИ', bottom: 'Присоединяйся к марафону «Биатлон ГТО»!', img: 'images/biatlonguy.png' },
     { title: 'ПЕДАГОГИ И ТРЕНЕРЫ', subtitle: 'Наставники чемпионов', list: ['внедрять модуль «биатлон»', 'организовывать клубы', 'повышать квалификацию'], percentTop: '100%', percentBottom: 'ДОВЕРИЯ', bottom: 'Более 100 семинаров уже проведено.', img: 'images/teacher.png' },
     { title: 'РОДИТЕЛИ', subtitle: 'Надёжный тыл', list: ['вдохновлять детей', 'поддерживать', 'выступать на эстафетах'], percentTop: '100%', percentBottom: 'ПОДДЕРЖКИ', bottom: 'Проект объединяет всю семью.', img: 'images/preschool.png' },
     { title: 'КОЛЛЕКТИВЫ ПРЕДПРИЯТИЙ', subtitle: 'Корпоративный биатлон', list: ['формировать команды', 'проводить тренировки', 'привлекать внимание'], percentTop: '100%', percentBottom: 'ОТВЕТСТВЕННОСТИ', bottom: 'Совместные старты сплачивают коллектив.', img: 'images/worker.png' },
@@ -123,30 +168,20 @@ function openElementModal(index) {
     const data = elementsData[index];
     if (!data || !elementModal) return;
     
-    const emTitle = document.getElementById('emTitle');
-    const emSubtitle = document.getElementById('emSubtitle');
-    const emImage = document.getElementById('emImage');
-    const emBottom = document.getElementById('emBottom');
+    document.getElementById('emTitle').textContent = data.title;
+    document.getElementById('emSubtitle').textContent = data.subtitle;
+    document.getElementById('emImage').src = data.img;
+    document.getElementById('emBottom').textContent = data.bottom;
+    
     const emList = document.getElementById('emList');
-    const emPercent = document.getElementById('emPercent');
-
-    if (emTitle) emTitle.textContent = data.title;
-    if (emSubtitle) emSubtitle.textContent = data.subtitle;
-    if (emImage) emImage.src = data.img;
-    if (emBottom) emBottom.textContent = data.bottom;
+    emList.innerHTML = '';
+    data.list.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        emList.appendChild(li);
+    });
     
-    if (emList) {
-        emList.innerHTML = '';
-        data.list.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = item;
-            emList.appendChild(li);
-        });
-    }
-    
-    if (emPercent) {
-        emPercent.innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
-    }
+    document.getElementById('emPercent').innerHTML = data.percentTop + '<small>' + data.percentBottom + '</small>';
     
     const card = document.querySelector('.element-card[data-element="' + index + '"]');
     if (card) {
@@ -216,26 +251,36 @@ if (contactForm) {
     });
 }
 
-// ============ ЗАКРЫТИЕ ЛАЙТБОКСОВ ПО ФОНУ И КРЕСТИКУ ============
-document.querySelectorAll('.lightbox').forEach(lightbox => {
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-});
+// ============ АНИМАЦИИ ПРИ СКРОЛЛЕ ============
+const applySection = document.querySelector('.apply-section');
+if (applySection) {
+    const applyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); applyObserver.unobserve(entry.target); }
+        });
+    }, { threshold: 0.2 });
+    applyObserver.observe(applySection);
+}
+const contactSection = document.querySelector('.contact-form-section');
+if (contactSection) {
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); contactObserver.unobserve(entry.target); }
+        });
+    }, { threshold: 0.2 });
+    contactObserver.observe(contactSection);
+}
 
-// ============ АНИМАЦИИ И СЛАЙДЕРЫ ============
+// ============ ВСЕ ИНТЕРАКТИВЫ И СЛАЙДЕРЫ ============
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. Настройка стрелок для всех слайдеров
+    // Стрелки слайдеров
     setupSliderArrows('gallerySlider', 'gallerySliderPrev', 'gallerySliderNext', 2); // Главная
     setupSliderArrows('aquaGalSlider', 'aquaGalPrev', 'aquaGalNext', 1);             // Аква
     setupSliderArrows('studentSlider', 'studentSliderPrev', 'studentSliderNext', 1); // Студенты
     setupSliderArrows('schoolSlider', 'schoolSliderPrev', 'schoolSliderNext', 1);    // Школьники
 
-    // 2. Интерактивная мишень
+    // Интерактивная мишень
     const target = document.getElementById('aquaTarget');
     if (target) {
         const hitCounter = document.getElementById('hitCounter');
@@ -256,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (resetBtn) resetBtn.addEventListener('click', function() { hits = 0; if(hitCounter) hitCounter.textContent = hits; target.querySelectorAll('.bullet-hole').forEach(h => h.remove()); });
     }
 
-    // 3. Таймлайн
+    // Таймлайн
     const timeWrapper = document.querySelector('.timeline-scroll-wrapper');
     if (timeWrapper) {
         const timePrev = document.getElementById('timePrev');
@@ -273,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 4. Счетчики (Педагоги и Школьники)
+    // Счетчики
     const statsBlocks = document.querySelectorAll('.teach-bento-grid, .school-stats-grid');
     if (statsBlocks.length > 0) {
         const obs = new IntersectionObserver((entries, o) => {
@@ -300,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function() {
         statsBlocks.forEach(block => obs.observe(block));
     }
 
-    // 5. Чат (Школьники)
+    // Чат
     const chatSection = document.querySelector('.chat-section');
     if (chatSection) {
         const bubbles = document.querySelectorAll('.chat-bubble.bubble-in');
@@ -343,13 +388,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </div>
                 `).join('');
 
-                // Делегирование клика на весь контейнер проектов
                 projectsContainer.addEventListener('click', (e) => {
                     const card = e.target.closest('.project-card');
                     if (card) {
                         const img = card.querySelector('img');
                         const idx = card.getAttribute('data-project');
-                        if (img) openDynamicLightbox(img.src, data.items[idx].title);
+                        if (img) openDynamicLightbox(img.src, data.items[idx].title); // Без массива, так как это одиночная карточка
                     }
                 });
             }
@@ -371,7 +415,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const slide = e.target.closest('.gallery-slide');
                     if (slide) {
                         const img = slide.querySelector('img');
-                        if (img) openDynamicLightbox(img.src);
+                        const idx = Array.from(mainGallery.children).indexOf(slide);
+                        const allImages = data.images.map(i => getImgPath(i));
+                        if (img) openDynamicLightbox(img.src, '', allImages, idx);
                     }
                 });
             }
@@ -393,7 +439,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const slide = e.target.closest('.gallery-slide');
                     if (slide) {
                         const img = slide.querySelector('img');
-                        if (img) openDynamicLightbox(img.src);
+                        const idx = Array.from(aquaGallery.children).indexOf(slide);
+                        const allImages = data.images.map(i => getImgPath(i));
+                        if (img) openDynamicLightbox(img.src, '', allImages, idx);
                     }
                 });
             }
@@ -419,7 +467,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const card = e.target.closest('.polaroid-big, .polaroid-small');
                     if (card) {
                         const img = card.querySelector('img');
-                        if (img) openDynamicLightbox(img.src);
+                        const allCards = Array.from(schoolPolaroids.querySelectorAll('.polaroid-big, .polaroid-small'));
+                        const idx = allCards.indexOf(card);
+                        const allImages = data.images.map(i => getImgPath(i));
+                        if (img) openDynamicLightbox(img.src, '', allImages, idx);
                     }
                 });
             }
@@ -444,7 +495,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const item = e.target.closest('.teach-masonry-item');
                     if (item) {
                         const img = item.querySelector('img');
-                        if (img) openDynamicLightbox(img.src);
+                        const idx = Array.from(teachMasonry.children).indexOf(item);
+                        const allImages = data.images.map(i => getImgPath(i));
+                        if (img) openDynamicLightbox(img.src, '', allImages, idx);
                     }
                 });
             }
