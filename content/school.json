@@ -1,0 +1,9 @@
+{
+  "images": [
+    { "image": "images/project-1.jpg" },
+    { "image": "images/gallery-01.jpg" },
+    { "image": "images/gallery-02.jpg" },
+    { "image": "images/project-4.jpg" },
+    { "image": "images/gallery-03.jpg" }
+  ]
+}
