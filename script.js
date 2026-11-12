@@ -919,3 +919,138 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(chatSection);
     }
 });
+// ==========================================
+// ЗАГРУЗКА ДАННЫХ ИЗ АДМИНКИ (Decap CMS)
+// ==========================================
+
+// Универсальная функция для открытия лайтбокса
+function openDynamicLightbox(imgSrc, title = '') {
+    // Ищем любой открытый лайтбокс на странице
+    const lightbox = document.getElementById('lightbox') || 
+                     document.getElementById('aquaLightbox') || 
+                     document.getElementById('teachLightbox') || 
+                     document.getElementById('schoolLightbox');
+    
+    if (lightbox) {
+        const imgElement = lightbox.querySelector('img');
+        if (imgElement) imgElement.src = imgSrc;
+        
+        // Если есть счетчик, меняем текст
+        const counter = lightbox.querySelector('.lightbox-counter');
+        if (counter) counter.textContent = title;
+
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    
+    // 1. ГЛАВНАЯ: Наши проекты
+    const projectsContainer = document.getElementById('projects-container');
+    if (projectsContainer) {
+        try {
+            const res = await fetch('content/projects.json');
+            const data = await res.json();
+            
+            if (data && data.items) {
+                projectsContainer.innerHTML = data.items.map((item, index) => `
+                    <div class="project-card" data-project="${index}">
+                        <div class="project-img">
+                            <img src="${item.image}" alt="${item.title}" class="dyn-project-img">
+                        </div>
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                `).join('');
+
+                // Добавляем клики для новых карточек
+                projectsContainer.querySelectorAll('.dyn-project-img').forEach((img, idx) => {
+                    img.addEventListener('click', () => openDynamicLightbox(img.src, data.items[idx].title));
+                });
+            } else {
+                projectsContainer.innerHTML = '<p style="text-align:center; width:100%;">Пока нет проектов.</p>';
+            }
+        } catch (e) { console.log('Ошибка загрузки проектов:', e); }
+    }
+
+    // 2. ГЛАВНАЯ: Фотографии с мероприятий
+    const mainGallery = document.getElementById('gallerySlider');
+    if (mainGallery) {
+        try {
+            const res = await fetch('content/gallery.json');
+            const data = await res.json();
+            if (data && data.images) {
+                mainGallery.innerHTML = data.images.map(item => `
+                    <div class="gallery-slide"><img src="${item.image}" alt="Фото"></div>
+                `).join('');
+            }
+        } catch (e) { console.log('Ошибка загрузки галереи:', e); }
+    }
+
+    // 3. АКВА БИАТЛОН: Фотографии
+    const aquaGallery = document.getElementById('aquaGalSlider');
+    if (aquaGallery) {
+        try {
+            const res = await fetch('content/aquathlon.json');
+            const data = await res.json();
+            if (data && data.images) {
+                aquaGallery.innerHTML = data.images.map(item => `
+                    <div class="gallery-slide"><img src="${item.image}" alt="Фото" class="dyn-aqua-img"></div>
+                `).join('');
+                
+                aquaGallery.querySelectorAll('.dyn-aqua-img').forEach(img => {
+                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+                });
+            }
+        } catch (e) { console.log('Ошибка загрузки аква-галереи:', e); }
+    }
+
+    // 4. ШКОЛЬНИКАМ: Коллаж (Полароиды)
+    const schoolPolaroids = document.getElementById('schoolPolaroidContainer');
+    if (schoolPolaroids) {
+        try {
+            const res = await fetch('content/school.json');
+            const data = await res.json();
+            if (data && data.images && data.images.length > 0) {
+                // Первая картинка - большая
+                let html = `<div class="polaroid-big"><img src="${data.images[0].image}" alt="Фото" class="dyn-school-img"></div>`;
+                
+                // Остальные - маленькие
+                html += `<div class="polaroid-small-grid">`;
+                for (let i = 1; i < data.images.length; i++) {
+                    html += `<div class="polaroid-small"><img src="${data.images[i].image}" alt="Фото" class="dyn-school-img"></div>`;
+                }
+                html += `</div>`;
+                
+                schoolPolaroids.innerHTML = html;
+                
+                schoolPolaroids.querySelectorAll('.dyn-school-img').forEach(img => {
+                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+                });
+            }
+        } catch (e) { console.log('Ошибка загрузки школьной галереи:', e); }
+    }
+
+    // 5. ПЕДАГОГАМ: Коллаж
+    const teachMasonry = document.getElementById('teachMasonryContainer');
+    if (teachMasonry) {
+        try {
+            const res = await fetch('content/teachers.json');
+            const data = await res.json();
+            if (data && data.images) {
+                const classes = ['item-big', 'item-small-l1', 'item-small-l2', 'item-r1', 'item-r2', 'item-r3', 'item-r4'];
+                
+                teachMasonry.innerHTML = data.images.map((item, i) => `
+                    <div class="teach-masonry-item ${classes[i] || ''}">
+                        <img src="${item.image}" alt="Фото" class="dyn-teach-img">
+                    </div>
+                `).join('');
+
+                teachMasonry.querySelectorAll('.dyn-teach-img').forEach(img => {
+                    img.addEventListener('click', () => openDynamicLightbox(img.src));
+                });
+            }
+        } catch (e) { console.log('Ошибка загрузки коллажа педагогов:', e); }
+    }
+});
